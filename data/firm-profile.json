@@ -1,0 +1,229 @@
+{
+  "firm": {
+    "corporate_name": "Souza Guedes Advogados",
+    "trade_name": "Souza Guedes Advogados",
+    "oab_registration": "511.204/SP e 538.416/SP",
+    "foundation_year": 2026,
+    "mission": "Cuidar dos interesses de nossos clientes, antecipar riscos e encontrar soluções jurídicas que façam sentido para cada situação. Aliamos conhecimento, estratégia e uma advocacia próxima e acessível, buscando oferecer segurança e tranquilidade em cada decisão.",
+    "vision": "Nossa visão é crescer e nos consolidar no mercado jurídico, construindo um escritório reconhecido pela qualidade do nosso trabalho, pela confiança que transmitimos e pela forma atual e próxima de fazer advocacia.",
+    "values": [
+      "SOLIDEZ: Construímos nossa atuação sobre bases firmes, com segurança, estabilidade e responsabilidade.",
+      "CREDIBILIDADE: Fazemos da confiança uma consequência natural da seriedade e da transparência com que conduzimos nosso trabalho.",
+      "EXCELÊNCIA: Não tratamos qualidade como diferencial, mas como padrão em cada trabalho que entregamos."
+    ],
+    "address": {
+      "street": "Rua Uhland",
+      "number": "784",
+      "complement": "Casa 1",
+      "neighborhood": "Vila Ema",
+      "city": "São Paulo",
+      "state": "SP",
+      "postal_code": "03283-000"
+    }
+  },
+  "partners": [
+    {
+      "name": "Rodrigo Guedes da Silva",
+      "oab_number": "OAB/SP nº 538.416",
+      "role": "Advogado",
+      "primary_area": "Direito Civil",
+      "bio": "Advogado, graduado pela Universidade São Judas Tadeu (USJT), com qualificação adicional através do curso de extensão em Falências e Recuperações Judiciais da Escola Superior de Advocacia da Ordem dos Advogados do Brasil (ESA/OAB)."
+    },
+    {
+      "name": "Lays Regina de Souza",
+      "oab_number": "OAB/SP nº 511.204",
+      "role": "Advogada",
+      "primary_area": "Direito Civil",
+      "bio": "Advogada, graduada pela Universidade São Judas Tadeu (USJT), pós-graduada em Direito Imobiliário Notarial e Registral pela Pontifícia Universidade Católica (PUC)."
+    }
+  ],
+  "practice_areas": [
+    {
+      "id": "real-estate-law",
+      "slug": "direito-imobiliario",
+      "title": "Direito Imobiliário",
+      "focus": "Usucapião extrajudicial e judicial, despejo, reintegração de posse, assessoria para arrematação, imissão na posse, indenizatória para atraso na entrega do imóvel e demais demandas relacionadas à aquisição, posse, propriedade e utilização de imóveis.",
+      "summary": "Atuação em usucapião, despejo, reintegração e imissão na posse, assessoria para arrematação e indenização por atraso na entrega de imóveis.",
+      "scope_items": [
+        "Atuação em processos de usucapião judicial e extrajudicial, desde a análise documental e verificação dos requisitos até o acompanhamento do procedimento perante o Poder Judiciário ou Cartório de Registro de Imóveis",
+        "Atuação em ações de despejo, reintegração de posse e imissão na posse, envolvendo conflitos relacionados à ocupação, locação e retomada de imóveis",
+        "Assessoria jurídica em arrematação de imóveis, com análise do edital, matrícula, ônus e riscos jurídicos da aquisição, além do acompanhamento das medidas necessárias à consolidação da posse e propriedade",
+        "Propositura de ações indenizatórias decorrentes de atraso na entrega de imóveis, incluindo análise dos prejuízos suportados pelo adquirente e das obrigações assumidas pela incorporadora ou construtora"
+      ],
+      "target_audience": [
+        "Pessoas físicas proprietárias, possuidoras, adquirentes ou locatárias de imóveis",
+        "Investidores e arrematantes",
+        "Construtoras, incorporadoras, imobiliárias e empresas que possuem ou utilizam imóveis em suas atividades"
+      ]
+    },
+    {
+      "id": "health-law",
+      "slug": "direito-de-saude",
+      "title": "Direito de Saúde",
+      "focus": "Liberação de medicamentos e tratamentos, negativas de cobertura, recusa de internação, manutenção e restabelecimento de convênio médico, reajustes abusivos, cobertura de procedimentos e cirurgias, responsabilidade civil por erro médico e demais demandas relacionadas à proteção do direito à saúde.",
+      "summary": "Atuação em negativas de cobertura, liberação de medicamentos e tratamentos, manutenção de convênio, reajustes e responsabilidade civil por erro médico.",
+      "scope_items": [
+        "Atuação em demandas para obtenção de medicamentos, tratamentos, procedimentos e cirurgias negados por planos de saúde, inclusive mediante pedido de tutela de urgência",
+        "Ações para manutenção, restabelecimento ou cobertura de plano de saúde, diante de negativa indevida, cancelamento ou recusa de atendimento",
+        "Atuação em casos de negativa de internação, exames, terapias e procedimentos médicos, com adoção das medidas judiciais necessárias à garantia do tratamento indicado",
+        "Ações envolvendo reajustes abusivos e cobranças indevidas por parte de operadoras de planos de saúde",
+        "Atuação em demandas de responsabilidade civil decorrentes de erro médico e falhas na prestação de serviços de saúde, incluindo análise da conduta profissional e dos danos suportados pelo paciente"
+      ],
+      "target_audience": [
+        "Pessoas físicas, pacientes e familiares que necessitam de acesso a medicamentos, tratamentos, procedimentos ou internações",
+        "Beneficiários de planos de saúde",
+        "Profissionais da área da saúde",
+        "Clínicas, hospitais e empresas do setor de saúde"
+      ]
+    },
+    {
+      "id": "consumer-law",
+      "slug": "direito-do-consumidor",
+      "title": "Direito do Consumidor",
+      "focus": "Negativação indevida, privação indevida de serviços essenciais, cobranças indevidas, falhas na prestação de serviços, problemas relacionados à aquisição de produtos e serviços, responsabilidade civil nas relações de consumo e demais demandas consumeristas.",
+      "summary": "Atuação em negativação e cobranças indevidas, privação de serviços essenciais, falhas na prestação de serviços e vícios na aquisição de produtos.",
+      "scope_items": [
+        "Atuação em casos de negativação indevida e cobranças indevidas, com adoção das medidas necessárias para exclusão do apontamento e reparação dos danos suportados pelo consumidor",
+        "Demandas envolvendo interrupção ou privação indevida de serviços essenciais, especialmente nos casos de fornecimento de energia elétrica, água, telefonia e internet",
+        "Ações relacionadas à falha na prestação de serviços e ao descumprimento de obrigações por fornecedores, incluindo pedidos de reparação por danos materiais e morais",
+        "Atuação em casos de problemas na aquisição de produtos e serviços, como vícios, defeitos, não entrega, descumprimento da oferta e dificuldades de cancelamento ou restituição de valores"
+      ],
+      "target_audience": [
+        "Pessoas físicas em suas relações de consumo",
+        "Pequenas e médias empresas em demandas decorrentes de relações de consumo"
+      ]
+    },
+    {
+      "id": "family-successions",
+      "slug": "familia-e-sucessoes",
+      "title": "Direito de Família e Sucessões",
+      "focus": "Divórcio consensual e litigioso, alimentos, guarda, inventário e demais questões de reorganização familiar e patrimonial.",
+      "summary": "Atuação em divórcio, alimentos, guarda e inventário judicial e extrajudicial.",
+      "scope_items": [
+        "Divórcios consensuais e litigiosos, com definição de partilha de bens, alimentos e demais questões decorrentes da dissolução do vínculo conjugal",
+        "Ações e medidas relacionadas a alimentos, guarda, convivência e demais questões envolvendo filhos",
+        "Inventários judiciais e extrajudiciais, incluindo levantamento patrimonial, apuração de herdeiros e partilha de bens"
+      ],
+      "target_audience": [
+        "Pessoas físicas e famílias em reorganização familiar e patrimonial, especialmente em divórcio, sucessão, partilha de bens e transmissão do patrimônio"
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "persona-pj-imobiliario",
+      "type": "PJ",
+      "title": "Construtoras, incorporadoras, imobiliárias e empresas com imóveis",
+      "demographics": "Empresas que possuem ou utilizam imóveis em suas atividades, incluindo construtoras, incorporadoras e imobiliárias.",
+      "pain_points": [
+        "Conflitos de ocupação, locação e retomada de imóveis",
+        "Riscos jurídicos na arrematação, como ônus na matrícula e condições do edital",
+        "Atraso na entrega de imóveis e obrigações assumidas por incorporadoras ou construtoras"
+      ],
+      "legal_needs": [
+        "Assessoria em arrematação, com análise de edital, matrícula, ônus e riscos, e acompanhamento da consolidação da posse e da propriedade",
+        "Atuação em despejo, reintegração de posse e imissão na posse",
+        "Ações indenizatórias por atraso na entrega de imóveis"
+      ],
+      "preferred_channels": [
+        "E-mail institucional",
+        "WhatsApp",
+        "Telefone comercial"
+      ]
+    },
+    {
+      "id": "persona-pj-pme-saude",
+      "type": "PJ",
+      "title": "Pequenas e médias empresas e empresas do setor de saúde",
+      "demographics": "Pequenas e médias empresas em relações de consumo; clínicas, hospitais, profissionais e empresas do setor de saúde.",
+      "pain_points": [
+        "Cobranças indevidas, falhas na prestação de serviços e problemas na aquisição de produtos ou serviços",
+        "Demandas ligadas a negativas de cobertura, internação, reajustes e erro médico"
+      ],
+      "legal_needs": [
+        "Medidas contra negativação indevida, cobrança indevida e interrupção de serviços essenciais",
+        "Reparação por falha na prestação de serviços e vícios na aquisição de produtos",
+        "Atuação em cobertura de plano de saúde, negativa de tratamento e responsabilidade civil por erro médico"
+      ],
+      "preferred_channels": [
+        "E-mail institucional",
+        "WhatsApp",
+        "Telefone comercial"
+      ]
+    },
+    {
+      "id": "persona-pf-imovel-familia",
+      "type": "PF",
+      "title": "Pessoas físicas em questões imobiliárias e familiares",
+      "demographics": "Proprietários, possuidores, adquirentes, locatários, investidores e arrematantes de imóveis; pessoas e famílias em divórcio, sucessão, partilha e transmissão de patrimônio.",
+      "pain_points": [
+        "Conflitos de posse, locação, aquisição e regularização de imóveis",
+        "Atraso na entrega do imóvel e insegurança na arrematação",
+        "Reorganização familiar e patrimonial em divórcio, alimentos, guarda e inventário"
+      ],
+      "legal_needs": [
+        "Usucapião judicial e extrajudicial, despejo, reintegração e imissão na posse",
+        "Assessoria em arrematação e ações indenizatórias por atraso na entrega",
+        "Divórcio, alimentos, guarda, convivência e inventário judicial ou extrajudicial"
+      ],
+      "preferred_channels": [
+        "WhatsApp",
+        "Telefone comercial",
+        "Atendimento na sede, com apresentação e espaço para expor a demanda"
+      ]
+    },
+    {
+      "id": "persona-pf-saude-consumo",
+      "type": "PF",
+      "title": "Pacientes, beneficiários de planos e consumidores",
+      "demographics": "Pessoas físicas, pacientes, familiares e beneficiários de planos de saúde; consumidores que enfrentam cobrança indevida, negativação, interrupção de serviços ou falhas em produtos e serviços.",
+      "pain_points": [
+        "Negativa de medicamentos, tratamentos, internação, exames e cobertura de plano de saúde",
+        "Reajustes abusivos, cancelamento de convênio e erro médico",
+        "Negativação indevida, cobranças indevidas e interrupção de serviços essenciais",
+        "Vícios, defeitos, não entrega e descumprimento de oferta na aquisição de produtos e serviços"
+      ],
+      "legal_needs": [
+        "Tutela para obtenção de medicamentos, tratamentos, procedimentos e cirurgias negados",
+        "Manutenção ou restabelecimento de plano de saúde e discussão de reajustes e cobranças indevidas",
+        "Exclusão de negativação indevida e reparação por falha na prestação de serviços ou vícios de produtos"
+      ],
+      "preferred_channels": [
+        "WhatsApp",
+        "Telefone comercial",
+        "E-mail institucional"
+      ]
+    }
+  ],
+  "contact_channels": [
+    {
+      "channel_type": "email",
+      "label": "E-mail geral institucional",
+      "value": "souzaguedes.adv@gmail.com",
+      "action_uri": "mailto:souzaguedes.adv@gmail.com",
+      "availability": "Das 10h às 18h"
+    },
+    {
+      "channel_type": "phone",
+      "label": "Telefone comercial da sede",
+      "value": "(11) 93619-1904",
+      "action_uri": "tel:+5511936191904",
+      "availability": "Das 10h às 18h"
+    },
+    {
+      "channel_type": "whatsapp",
+      "label": "WhatsApp",
+      "value": "(11) 93619-1904",
+      "action_uri": "https://wa.me/5511936191904",
+      "availability": "Das 10h às 18h. Primeiro contato com apresentação e espaço para o cliente expor a demanda."
+    },
+    {
+      "channel_type": "in_person",
+      "label": "Sede",
+      "value": "Rua Uhland, 784, Casa 1, Vila Ema, São Paulo/SP, CEP 03283-000",
+      "action_uri": "https://maps.google.com/?q=Rua+Uhland,+784,+Vila+Ema,+S%C3%A3o+Paulo",
+      "availability": "Das 10h às 18h"
+    }
+  ],
+  "compliance_disclaimer": "Este portal tem finalidade exclusivamente institucional, informativa e educativa, em rigorosa conformidade com o Provimento CFOAB nº 205/2021 e o Código de Ética e Disciplina da OAB. As informações divulgadas não configuram captação de clientela, promessa de resultados ou prestação de consulta jurídica direta, a qual depende de contratação formal e análise individualizada de cada caso."
+}

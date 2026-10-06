@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SouzaGuedesFirmProfile",
+  "description": "Schema canônico para os dados institucionais, especialidades, personas e canais de contato da Souza Guedes Advogados",
+  "type": "object",
+  "required": [
+    "firm",
+    "practice_areas",
+    "personas",
+    "partners",
+    "contact_channels",
+    "compliance_disclaimer"
+  ],
+  "properties": {
+    "firm": {
+      "type": "object",
+      "required": [
+        "corporate_name",
+        "trade_name",
+        "oab_registration",
+        "foundation_year",
+        "mission",
+        "vision",
+        "values",
+        "address"
+      ],
+      "properties": {
+        "corporate_name": { "type": "string" },
+        "trade_name": { "type": "string" },
+        "oab_registration": { "type": "string" },
+        "foundation_year": { "type": "integer", "minimum": 1900 },
+        "mission": { "type": "string" },
+        "vision": { "type": "string" },
+        "values": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "type": "string" }
+        },
+        "address": {
+          "type": "object",
+          "required": [
+            "street",
+            "number",
+            "complement",
+            "neighborhood",
+            "city",
+            "state",
+            "postal_code"
+          ],
+          "properties": {
+            "street": { "type": "string" },
+            "number": { "type": "string" },
+            "complement": { "type": "string" },
+            "neighborhood": { "type": "string" },
+            "city": { "type": "string" },
+            "state": { "type": "string", "pattern": "^[A-Z]{2}$" },
+            "postal_code": { "type": "string", "pattern": "^\\d{5}-?\\d{3}$" }
+          }
+        }
+      }
+    },
+    "partners": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "oab_number",
+          "role",
+          "primary_area",
+          "bio"
+        ],
+        "properties": {
+          "name": { "type": "string" },
+          "oab_number": { "type": "string", "pattern": "^OAB/[A-Z]{2}\\s+(n[ºo]\\s*)?\\d+(\\.\\d+)?$" },
+          "role": { "type": "string" },
+          "primary_area": { "type": "string" },
+          "bio": { "type": "string" }
+        }
+      }
+    },
+    "practice_areas": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "slug",
+          "title",
+          "focus",
+          "summary",
+          "scope_items",
+          "target_audience"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "title": { "type": "string" },
+          "focus": { "type": "string" },
+          "summary": { "type": "string" },
+          "scope_items": {
+            "type": "array",
+            "minItems": 3,
+            "items": { "type": "string" }
+          },
+          "target_audience": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "personas": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "title",
+          "demographics",
+          "pain_points",
+          "legal_needs",
+          "preferred_channels"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string", "enum": ["PJ", "PF"] },
+          "title": { "type": "string" },
+          "demographics": { "type": "string" },
+          "pain_points": {
+            "type": "array",
+            "minItems": 2,
+            "items": { "type": "string" }
+          },
+          "legal_needs": {
+            "type": "array",
+            "minItems": 2,
+            "items": { "type": "string" }
+          },
+          "preferred_channels": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "contact_channels": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": [
+          "channel_type",
+          "label",
+          "value",
+          "action_uri",
+          "availability"
+        ],
+        "properties": {
+          "channel_type": { "type": "string", "enum": ["email", "phone", "whatsapp", "in_person"] },
+          "label": { "type": "string" },
+          "value": { "type": "string" },
+          "action_uri": { "type": "string" },
+          "availability": { "type": "string" }
+        }
+      }
+    },
+    "compliance_disclaimer": {
+      "type": "string",
+      "minLength": 30
+    }
+  }
+}
