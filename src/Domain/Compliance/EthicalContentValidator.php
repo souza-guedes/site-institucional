@@ -6,10 +6,16 @@ namespace App\Domain\Compliance;
 
 /**
  * Validador de Conformidade Ética com o Provimento CFOAB nº 205/2021.
- * Inspeciona textos, metadados, identificação profissional e disclaimers institucionais.
+ * Inspeciona textos, metadados, identificação profissional dos advogados e disclaimers institucionais.
  */
 final class EthicalContentValidator
 {
+    private const VALID_UFS = [
+        'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA',
+        'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN',
+        'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'
+    ];
+
     /**
      * @param list<array{term: string, category?: string, severity?: string, rationale?: string, article_reference?: string}|string> $prohibitedExpressions
      */
@@ -20,35 +26,40 @@ final class EthicalContentValidator
 
     /**
      * Valida um texto contra termos e expressões vedadas pelo regramento ético.
-     * Retorna a lista de violações identificadas.
+     * Utiliza correspondência exata de limites de palavras Unicode para evitar falsos positivos
+     * (por exemplo, assegura que 'líder' não case indevidamente com 'liderança').
      *
      * @return list<array{term: string, category: string, severity: string, position: int, rationale: string, article_reference: string}>
      */
     public function validateText(string $text): array
     {
         $violations = [];
-        $normalizedText = mb_strtolower($text, 'UTF-8');
 
         foreach ($this->prohibitedExpressions as $expr) {
             $term = is_array($expr) ? (string) ($expr['term'] ?? '') : (string) $expr;
-            if (trim($term) === '') {
+            $trimmedTerm = trim($term);
+            if ($trimmedTerm === '') {
                 continue;
             }
 
-            $normalizedTerm = mb_strtolower(trim($term), 'UTF-8');
-            $pos = mb_stripos($normalizedText, $normalizedTerm, 0, 'UTF-8');
+            $escapedTerm = preg_quote($trimmedTerm, '/');
+            // Limite de palavra Unicode: o caractere antes e depois não pode ser uma letra Unicode
+            $pattern = '/(?<!\p{L})' . $escapedTerm . '(?!\p{L})/iu';
 
-            if ($pos !== false) {
+            if (preg_match_all($pattern, $text, $matches, PREG_OFFSET_CAPTURE)) {
                 $category = is_array($expr) ? ($expr['category'] ?? 'mercantilizacao') : 'mercantilizacao';
                 $severity = is_array($expr) ? ($expr['severity'] ?? 'HIGH') : 'HIGH';
                 $rationale = is_array($expr) ? ($expr['rationale'] ?? 'Expressão vedada pelo regramento ético da OAB.') : 'Expressão vedada.';
-                $articleRef = is_array($expr) ? ($expr['article_reference'] ?? 'Art. 4º') : 'Art. 4º';
+                $articleRef = is_array($expr) ? ($expr['article_reference'] ?? 'Art. 3º, IV') : 'Art. 3º, IV';
+
+                $firstMatch = $matches[0][0];
+                $pos = (int) $firstMatch[1];
 
                 $violations[] = [
                     'term' => $term,
                     'category' => (string) $category,
                     'severity' => (string) $severity,
-                    'position' => (int) $pos,
+                    'position' => $pos,
                     'rationale' => (string) $rationale,
                     'article_reference' => (string) $articleRef,
                 ];
@@ -59,9 +70,9 @@ final class EthicalContentValidator
     }
 
     /**
-     * Valida se a apresentação do advogado atende ao Art. 3º do Provimento 205/2021:
+     * Valida se a apresentação do advogado atende ao Art. 1º, § 1º, Art. 3º e Anexo Único do Provimento 205/2021:
      * - Nome completo (prenome e ao menos um sobrenome);
-     * - Número de inscrição na Seccional da OAB válido.
+     * - Número de inscrição na Seccional da OAB em formato estrito (ex.: OAB/SP nº 538.416 ou OAB/SP 511.204).
      *
      * @param array<string, mixed> $professionalData
      * @return list<string> Lista de mensagens de erro encontradas (vazio se válido)
@@ -76,7 +87,7 @@ final class EthicalContentValidator
         } else {
             $parts = preg_split('/\s+/', $name);
             if (!is_array($parts) || count($parts) < 2) {
-                $errors[] = 'O nome do advogado deve ser completo (Art. 3º do Provimento CFOAB nº 205/2021).';
+                $errors[] = 'O nome do advogado deve ser completo (Art. 1º, § 1º c/c Anexo Único do Provimento CFOAB nº 205/2021).';
             }
         }
 
@@ -85,11 +96,15 @@ final class EthicalContentValidator
             if ($oab === '') {
                 $errors[] = 'O número de inscrição na OAB com a respectiva Seccional é obrigatório.';
             } else {
-                // Deve conter indicação de OAB ou UF e dígitos
-                $hasOabOrUf = (bool) preg_match('/OAB|[A-Z]{2}/i', $oab);
-                $hasDigits = (bool) preg_match('/\d{3,}/', $oab);
-                if (!$hasOabOrUf || !$hasDigits) {
-                    $errors[] = "Inscrição da OAB inválida: '{$oab}'. Formato exigido: 'OAB/UF nº XXXXX'.";
+                // Regex estrita: OAB/UF nº XXXXX ou OAB/UF XXXXX (suportando nº, n°, no., n.)
+                $strictPattern = '/^OAB\/([A-Z]{2})\s+(?:n[º°o]\.?\s*)?((?:\d{1,3}(?:\.\d{3})*|\d{3,8}))$/iu';
+                if (!preg_match($strictPattern, $oab, $matches)) {
+                    $errors[] = "Inscrição da OAB inválida: '{$oab}'. Formato estrito exigido: 'OAB/UF nº XXXXX'.";
+                } else {
+                    $uf = strtoupper($matches[1]);
+                    if (!in_array($uf, self::VALID_UFS, true)) {
+                        $errors[] = "Seccional da OAB inválida: '{$uf}'.";
+                    }
                 }
             }
         }

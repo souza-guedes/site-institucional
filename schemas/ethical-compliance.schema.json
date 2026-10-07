@@ -91,6 +91,7 @@
               "promessa_resultado",
               "captacao_litigio",
               "preco_honorarios",
+              "especialidade_sem_titulo",
               "ostentacao"
             ],
             "description": "Categoria da infração"

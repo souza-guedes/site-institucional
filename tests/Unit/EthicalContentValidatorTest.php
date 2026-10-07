@@ -39,9 +39,9 @@ final class EthicalContentValidatorTest
     {
         $data = [
             'id' => 'RULE-OAB-001',
-            'provimento_article' => 'Art. 1º',
-            'title' => 'Caráter meramente informativo e educativo',
-            'description' => 'Toda publicidade deve ter finalidade informativa e educativa.',
+            'provimento_article' => 'Art. 1º, caput e § 1º',
+            'title' => 'Marketing jurídico com informação objetiva e verdadeira',
+            'description' => 'Toda publicidade deve veicular informações objetivas e verdadeiras.',
             'target_audience' => ['copywriters', 'developers'],
             'enforcement_type' => 'hybrid'
         ];
@@ -50,7 +50,7 @@ final class EthicalContentValidatorTest
         if ($rule->id !== 'RULE-OAB-001') {
             throw new \AssertionError("ID da regra inconsistente: {$rule->id}");
         }
-        if ($rule->provimentoArticle !== 'Art. 1º') {
+        if ($rule->provimentoArticle !== 'Art. 1º, caput e § 1º') {
             throw new \AssertionError("Artigo inconsistente: {$rule->provimentoArticle}");
         }
 
@@ -71,7 +71,8 @@ final class EthicalContentValidatorTest
                 'identificacao_completa_advogados',
                 'ausencia_termos_superlativos_e_mercantis',
                 'sobriedade_visual_e_botoes_contato',
-                'carater_informativo_sem_promessa_resultado'
+                'carater_informativo_sem_promessa_resultado',
+                'canais_atendimento_passivo'
             ],
             isApproved: true,
             notes: 'Revisado e em conformidade estrita com Provimento 205/2021.'
@@ -81,20 +82,8 @@ final class EthicalContentValidatorTest
             throw new \AssertionError("O sign-off válido deveria ter retornado true.");
         }
 
+        // Faltando canais_atendimento_passivo
         $incompleteSignoff = new PrePublicationSignoff(
-            contentId: 'page-home-hero',
-            contentTitle: 'Página Inicial - Hero Section',
-            signoffDate: new \DateTimeImmutable('2026-10-07 10:00:00'),
-            approverNames: ['Rodrigo Guedes da Silva'],
-            checkedItems: ['identificacao_completa_advogados'], // faltam itens obrigatórios
-            isApproved: true
-        );
-
-        if ($incompleteSignoff->isValid()) {
-            throw new \AssertionError("O sign-off com checklist incompleto deveria ter retornado false.");
-        }
-
-        $unapprovedSignoff = new PrePublicationSignoff(
             contentId: 'page-home-hero',
             contentTitle: 'Página Inicial - Hero Section',
             signoffDate: new \DateTimeImmutable('2026-10-07 10:00:00'),
@@ -105,11 +94,51 @@ final class EthicalContentValidatorTest
                 'sobriedade_visual_e_botoes_contato',
                 'carater_informativo_sem_promessa_resultado'
             ],
+            isApproved: true
+        );
+
+        if ($incompleteSignoff->isValid()) {
+            throw new \AssertionError("O sign-off faltando canais_atendimento_passivo deveria ter retornado false.");
+        }
+
+        // Aprovador não autorizado (fora dos sócios fundadores)
+        $unauthorizedApproverSignoff = new PrePublicationSignoff(
+            contentId: 'page-home-hero',
+            contentTitle: 'Página Inicial - Hero Section',
+            signoffDate: new \DateTimeImmutable('2026-10-07 10:00:00'),
+            approverNames: ['Estagiário João da Silva'],
+            checkedItems: [
+                'identificacao_completa_advogados',
+                'ausencia_termos_superlativos_e_mercantis',
+                'sobriedade_visual_e_botoes_contato',
+                'carater_informativo_sem_promessa_resultado',
+                'canais_atendimento_passivo'
+            ],
+            isApproved: true
+        );
+
+        if ($unauthorizedApproverSignoff->isValid()) {
+            throw new \AssertionError("Sign-off com aprovador não autorizado deveria ter retornado false.");
+        }
+
+        // Não aprovado (isApproved = false)
+        $unapprovedSignoff = new PrePublicationSignoff(
+            contentId: 'page-home-hero',
+            contentTitle: 'Página Inicial - Hero Section',
+            signoffDate: new \DateTimeImmutable('2026-10-07 10:00:00'),
+            approverNames: ['Lays Regina de Souza'],
+            checkedItems: [
+                'identificacao_completa_advogados',
+                'ausencia_termos_superlativos_e_mercantis',
+                'sobriedade_visual_e_botoes_contato',
+                'carater_informativo_sem_promessa_resultado',
+                'canais_atendimento_passivo'
+            ],
             isApproved: false
         );
 
         if ($unapprovedSignoff->isValid()) {
-            throw new \AssertionError("O sign-off não aprovado deveria ter retornado false.");
+            throw new \AssertionError("O sign-off com isApproved=false deveria ter retornado false.");
         }
     }
 
@@ -120,22 +149,19 @@ final class EthicalContentValidatorTest
                 'term' => 'o melhor',
                 'category' => 'superlativo',
                 'severity' => 'CRITICAL',
-                'rationale' => 'Superlativo vedado',
-                'article_reference' => 'Art. 4º'
+                'article_reference' => 'Art. 3º, IV'
             ],
             [
                 'term' => 'resultado garantido',
                 'category' => 'promessa_resultado',
                 'severity' => 'CRITICAL',
-                'rationale' => 'Promessa de resultado vedada',
-                'article_reference' => 'Art. 4º'
+                'article_reference' => 'Art. 6º, caput'
             ],
             [
                 'term' => 'tabela de preços',
                 'category' => 'preco_honorarios',
                 'severity' => 'CRITICAL',
-                'rationale' => 'Preços públicos vedados',
-                'article_reference' => 'Art. 4º'
+                'article_reference' => 'Art. 3º, I'
             ]
         ];
 
@@ -157,6 +183,36 @@ final class EthicalContentValidatorTest
         }
     }
 
+    public function testValidatorWordBoundariesAvoidsFalsePositives(): void
+    {
+        $prohibited = [
+            ['term' => 'líder', 'category' => 'superlativo', 'severity' => 'CRITICAL', 'article_reference' => 'Art. 3º, IV'],
+            ['term' => 'o melhor', 'category' => 'superlativo', 'severity' => 'CRITICAL', 'article_reference' => 'Art. 3º, IV']
+        ];
+        $validator = new EthicalContentValidator($prohibited);
+
+        // "liderança" NÃO deve casar com "líder"
+        $neutralText = "Nossa liderança acadêmica e compromisso com o constante aprimoramento institucional.";
+        $violationsNeutral = $validator->validateText($neutralText);
+        if (!empty($violationsNeutral)) {
+            throw new \AssertionError("Falso positivo detectado: 'liderança' casou indevidamente com 'líder'. Violações: " . json_encode($violationsNeutral, JSON_UNESCAPED_UNICODE));
+        }
+
+        // "melhorar" NÃO deve casar com "o melhor"
+        $neutralText2 = "Buscamos melhorar a cada dia o atendimento consultivo aos nossos clientes.";
+        $violationsNeutral2 = $validator->validateText($neutralText2);
+        if (!empty($violationsNeutral2)) {
+            throw new \AssertionError("Falso positivo detectado: 'melhorar' casou indevidamente com 'o melhor'. Violações: " . json_encode($violationsNeutral2, JSON_UNESCAPED_UNICODE));
+        }
+
+        // "líder" isolado DEVE casar
+        $badText = "O escritório é líder no segmento corporativo.";
+        $violationsBad = $validator->validateText($badText);
+        if (empty($violationsBad)) {
+            throw new \AssertionError("Deveria ter detectado 'líder' isolado no texto.");
+        }
+    }
+
     public function testValidatorCleanTextPasses(): void
     {
         $prohibited = $this->complianceData['prohibited_expressions'] ?? [];
@@ -170,34 +226,57 @@ final class EthicalContentValidatorTest
         }
     }
 
-    public function testProfessionalIdentificationValidation(): void
+    public function testProfessionalIdentificationStrictValidation(): void
     {
         $validator = new EthicalContentValidator([]);
 
-        $validPartner = [
+        // Casos Válidos
+        $validPartner1 = [
             'name' => 'Rodrigo Guedes da Silva',
             'oab' => 'OAB/SP nº 538.416'
         ];
-        $errorsValid = $validator->validateProfessionalIdentification($validPartner);
-        if (!empty($errorsValid)) {
-            throw new \AssertionError("Identificação válida foi rejeitada indevidamente: " . implode(', ', $errorsValid));
+        $errors1 = $validator->validateProfessionalIdentification($validPartner1);
+        if (!empty($errors1)) {
+            throw new \AssertionError("Identificação válida foi rejeitada indevidamente: " . implode(', ', $errors1));
         }
 
-        $invalidPartnerMissingOab = [
-            'name' => 'Rodrigo Guedes da Silva',
-            'oab' => ''
+        $validPartner2 = [
+            'name' => 'Lays Regina de Souza',
+            'oab' => 'OAB/SP 511.204'
         ];
-        $errorsMissingOab = $validator->validateProfessionalIdentification($invalidPartnerMissingOab);
-        if (empty($errorsMissingOab)) {
-            throw new \AssertionError("Deveria rejeitar identificação sem número de inscrição OAB.");
+        $errors2 = $validator->validateProfessionalIdentification($validPartner2);
+        if (!empty($errors2)) {
+            throw new \AssertionError("Identificação válida foi rejeitada indevidamente: " . implode(', ', $errors2));
         }
 
-        $invalidPartnerSingleName = [
-            'name' => 'Rodrigo',
-            'oab' => 'OAB/SP nº 538.416'
-        ];
-        $errorsSingleName = $validator->validateProfessionalIdentification($invalidPartnerSingleName);
-        if (empty($errorsSingleName)) {
+        // Casos Inválidos que DEVEM ser rejeitados:
+        // 1. "abc 123"
+        $invalidAbc = ['name' => 'Beltrano da Silva', 'oab' => 'abc 123'];
+        if (empty($validator->validateProfessionalIdentification($invalidAbc))) {
+            throw new \AssertionError("Validador aceitou indevidamente 'abc 123' como inscrição na OAB.");
+        }
+
+        // 2. Apenas números sem OAB e sem UF
+        $invalidNumbersOnly = ['name' => 'Beltrano da Silva', 'oab' => '538416'];
+        if (empty($validator->validateProfessionalIdentification($invalidNumbersOnly))) {
+            throw new \AssertionError("Validador aceitou indevidamente número puro sem sigla OAB e Seccional.");
+        }
+
+        // 3. Sem Seccional (ex: "OAB 538416")
+        $invalidNoUf = ['name' => 'Beltrano da Silva', 'oab' => 'OAB 538416'];
+        if (empty($validator->validateProfessionalIdentification($invalidNoUf))) {
+            throw new \AssertionError("Validador aceitou indevidamente inscrição sem indicação da Seccional (UF).");
+        }
+
+        // 4. Sem número (ex: "OAB/SP")
+        $invalidNoNumber = ['name' => 'Beltrano da Silva', 'oab' => 'OAB/SP'];
+        if (empty($validator->validateProfessionalIdentification($invalidNoNumber))) {
+            throw new \AssertionError("Validador aceitou indevidamente inscrição sem número de registro.");
+        }
+
+        // 5. Nome simples (não completo)
+        $invalidSingleName = ['name' => 'Rodrigo', 'oab' => 'OAB/SP nº 538.416'];
+        if (empty($validator->validateProfessionalIdentification($invalidSingleName))) {
             throw new \AssertionError("Deveria rejeitar identificação profissional sem nome completo.");
         }
     }

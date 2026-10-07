@@ -14,7 +14,8 @@ final readonly class PrePublicationSignoff
         'identificacao_completa_advogados',
         'ausencia_termos_superlativos_e_mercantis',
         'sobriedade_visual_e_botoes_contato',
-        'carater_informativo_sem_promessa_resultado'
+        'carater_informativo_sem_promessa_resultado',
+        'canais_atendimento_passivo'
     ];
 
     public const AUTHORIZED_APPROVERS = [
@@ -49,17 +50,15 @@ final readonly class PrePublicationSignoff
             return false;
         }
 
-        // Verifica se há pelo menos um aprovador autorizado (sócio fundador)
-        $hasAuthorizedApprover = false;
-        foreach ($this->approverNames as $approver) {
-            if (in_array(trim($approver), self::AUTHORIZED_APPROVERS, true)) {
-                $hasAuthorizedApprover = true;
-                break;
-            }
+        if (empty($this->approverNames)) {
+            return false;
         }
 
-        if (!$hasAuthorizedApprover) {
-            return false;
+        // Todos os aprovadores declarados devem ser sócios fundadores autorizados
+        foreach ($this->approverNames as $approver) {
+            if (!in_array(trim($approver), self::AUTHORIZED_APPROVERS, true)) {
+                return false;
+            }
         }
 
         // Verifica se todos os itens mandatórios do checklist foram conferidos e marcados

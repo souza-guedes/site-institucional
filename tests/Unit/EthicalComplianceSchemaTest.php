@@ -97,7 +97,7 @@ final class EthicalComplianceSchemaTest
         }
     }
 
-    public function testProhibitedExpressionsContainsCoreCategories(): void
+    public function testProhibitedExpressionsContainsCoreCategoriesAndPreciseArticles(): void
     {
         $expressions = $this->data['prohibited_expressions'] ?? [];
         if (!is_array($expressions) || count($expressions) < 10) {
@@ -105,7 +105,15 @@ final class EthicalComplianceSchemaTest
         }
 
         $categories = array_unique(array_column($expressions, 'category'));
-        $expectedCategories = ['mercantilizacao', 'superlativo', 'promessa_resultado', 'preco_honorarios', 'captacao_litigio'];
+        $expectedCategories = [
+            'mercantilizacao',
+            'superlativo',
+            'promessa_resultado',
+            'preco_honorarios',
+            'captacao_litigio',
+            'especialidade_sem_titulo',
+            'ostentacao'
+        ];
 
         foreach ($expectedCategories as $expCat) {
             if (!in_array($expCat, $categories, true)) {
@@ -113,23 +121,44 @@ final class EthicalComplianceSchemaTest
             }
         }
 
-        $terms = array_map('mb_strtolower', array_column($expressions, 'term'));
-        $essentialTerms = ['o melhor', 'líder', 'resultado garantido', 'tabela de preços'];
-        foreach ($essentialTerms as $term) {
-            $found = false;
-            foreach ($terms as $t) {
-                if (str_contains($t, $term)) {
-                    $found = true;
-                    break;
+        // Valida referências precisas aos artigos do Provimento 205/2021
+        foreach ($expressions as $expr) {
+            $term = mb_strtolower($expr['term'] ?? '');
+            $article = $expr['article_reference'] ?? '';
+
+            if ($term === 'o melhor' || $term === 'líder') {
+                if (!str_contains($article, 'Art. 3º, IV') && !str_contains($article, 'Art. 3º, inc. IV')) {
+                    throw new \AssertionError("O termo '{$term}' deve referenciar o Art. 3º, IV (expressões persuasivas e autoengrandecimento), e não '{$article}'.");
                 }
             }
-            if (!$found) {
-                throw new \AssertionError("Termo mandatório vedado pela OAB '{$term}' não está presente no catálogo.");
+
+            if ($term === 'tabela de preços' || $term === 'consulta grátis') {
+                if (!str_contains($article, 'Art. 3º, I') && !str_contains($article, 'Art. 3º, inc. I')) {
+                    throw new \AssertionError("O termo '{$term}' deve referenciar o Art. 3º, I (honorários e gratuidade), e não '{$article}'.");
+                }
+            }
+
+            if ($term === 'resultado garantido') {
+                if (!str_contains($article, 'Art. 6º') && !str_contains($article, 'Art. 3º')) {
+                    throw new \AssertionError("O termo '{$term}' deve referenciar o Art. 6º ou Art. 3º, I (promessa de resultado), e não '{$article}'.");
+                }
+            }
+
+            if (str_contains($term, 'especialista')) {
+                if (!str_contains($article, 'Art. 3º, III') && !str_contains($article, 'Art. 3º, inc. III')) {
+                    throw new \AssertionError("Termos de especialidade devem referenciar o Art. 3º, III (especialidade sem título). Encontrado: '{$article}'.");
+                }
+            }
+
+            if (str_contains($term, 'ostentação')) {
+                if (!str_contains($article, 'Art. 6º, parágrafo único') && !str_contains($article, 'Art. 6º')) {
+                    throw new \AssertionError("Termo de ostentação deve referenciar o Art. 6º, parágrafo único. Encontrado: '{$article}'.");
+                }
             }
         }
     }
 
-    public function testRulesCoverArticles1Through6(): void
+    public function testRulesCoverArticles1Through6Strictly(): void
     {
         $rules = $this->data['rules'] ?? [];
         if (!is_array($rules) || empty($rules)) {
@@ -142,17 +171,36 @@ final class EthicalComplianceSchemaTest
             $articlesCovered[] = $art;
         }
 
+        // Validação estrita por regex, impedindo falsos positivos como 'Art. 16'
         for ($i = 1; $i <= 6; $i++) {
             $found = false;
             foreach ($articlesCovered as $covered) {
-                if (str_contains($covered, (string)$i)) {
+                if (preg_match('/^Art\.\s*' . $i . '[ºo]/iu', trim($covered))) {
                     $found = true;
                     break;
                 }
             }
             if (!$found) {
-                throw new \AssertionError("Não foi encontrada regra cobrindo o Artigo {$i}º do Provimento 205/2021.");
+                throw new \AssertionError("Não foi encontrada regra cobrindo formalmente o Artigo {$i}º do Provimento 205/2021 (cobertura atual: " . implode(', ', $articlesCovered) . ").");
             }
+        }
+    }
+
+    public function testRulesContainArticle3SpecialtyRule(): void
+    {
+        $rules = $this->data['rules'] ?? [];
+        $found = false;
+        foreach ($rules as $rule) {
+            $art = $rule['provimento_article'] ?? '';
+            $desc = $rule['description'] ?? '';
+            if (str_contains($art, '3º') && (str_contains($desc, 'especialidade') || str_contains($desc, 'especialização'))) {
+                $found = true;
+                break;
+            }
+        }
+
+        if (!$found) {
+            throw new \AssertionError("Deve existir regra cobrindo expressamente o Art. 3º, III (vedação ao anúncio de especialidade sem título formal ou notória especialização).");
         }
     }
 
@@ -169,6 +217,10 @@ final class EthicalComplianceSchemaTest
 
         if (empty($steps) || empty($approvers) || empty($checklist)) {
             throw new \AssertionError("O protocolo de sign-off deve conter workflow_steps, required_approvers e checklist_items preenchidos.");
+        }
+
+        if (!in_array('canais_atendimento_passivo', $checklist, true)) {
+            throw new \AssertionError("O checklist pré-publicação deve conter obrigatoriamente o item 'canais_atendimento_passivo'.");
         }
     }
 }

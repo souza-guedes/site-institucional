@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "last_updated": "2026-10-07",
   "regulatory_framework": {
     "statute": "Estatuto da Advocacia e da OAB (Lei Federal nº 8.906/1994)",
@@ -10,170 +10,214 @@
     "require_lawyer_full_name": true,
     "require_oab_registration_number": true,
     "require_uf_subdivision": true,
-    "society_registration_rules": "Obrigatória a menção à denominação social e inscrição individual dos sócios fundadores (Rodrigo Guedes da Silva, OAB/SP nº 538.416 e Lays Regina de Souza, OAB/SP nº 511.204) em rodapés, páginas de perfil e expediente institucional."
+    "society_registration_rules": "Conforme Art. 1º, § 1º e Anexo Único do Provimento CFOAB nº 205/2021 c/c Lei Federal nº 8.906/1994, é obrigatória a menção expressa ao nome completo de cada advogado e respectivo número de inscrição na Seccional da OAB (Rodrigo Guedes da Silva, OAB/SP nº 538.416 e Lays Regina de Souza, OAB/SP nº 511.204), bem como à denominação social do escritório."
   },
   "prohibited_expressions": [
     {
       "term": "o melhor",
       "category": "superlativo",
       "severity": "CRITICAL",
-      "rationale": "Uso de adjetivos superlativos ou de autoengrandecimento é vedado pelo Art. 4º, inc. II do Provimento 205/2021 e Art. 40 do CED.",
-      "article_reference": "Art. 4º, II"
+      "rationale": "Vedação expressa à utilização de orações ou expressões persuasivas, de autoengrandecimento ou de comparação.",
+      "article_reference": "Art. 3º, IV"
     },
     {
       "term": "o mais experiente",
       "category": "superlativo",
       "severity": "HIGH",
-      "rationale": "Comparações implícitas ou explícitas entre bancas e profissionais são vedadas.",
-      "article_reference": "Art. 4º, II"
+      "rationale": "Expressão de comparação vedada pelo Art. 3º, IV do Provimento 205/2021.",
+      "article_reference": "Art. 3º, IV"
     },
     {
       "term": "líder",
       "category": "superlativo",
       "severity": "CRITICAL",
-      "rationale": "Autointitulação como líder de mercado configura mercantilização e publicidade comparativa vedada.",
-      "article_reference": "Art. 4º, II"
+      "rationale": "Autointitulação como líder de mercado configura autoengrandecimento e publicidade comparativa vedada.",
+      "article_reference": "Art. 3º, IV"
+    },
+    {
+      "term": "líderes",
+      "category": "superlativo",
+      "severity": "CRITICAL",
+      "rationale": "Variação no plural de termo vedado de autoengrandecimento e concorrência comercial.",
+      "article_reference": "Art. 3º, IV"
     },
     {
       "term": "imbatível",
       "category": "superlativo",
       "severity": "CRITICAL",
-      "rationale": "Termo promocional incompatível com a sobriedade e dignidade da advocacia.",
-      "article_reference": "Art. 4º, II"
+      "rationale": "Expressão persuasiva e mercantil incompatível com a moderação da advocacia.",
+      "article_reference": "Art. 3º, IV"
     },
     {
       "term": "resultado garantido",
       "category": "promessa_resultado",
       "severity": "CRITICAL",
-      "rationale": "A advocacia é atividade de meio e não de resultado. Vedada qualquer promessa de êxito processual (Art. 4º, inc. III).",
-      "article_reference": "Art. 4º, III"
+      "rationale": "A advocacia é atividade de meio. Vedada qualquer promessa de resultado na publicidade profissional.",
+      "article_reference": "Art. 6º, caput c/c Art. 3º, I"
     },
     {
       "term": "garantia de causa",
       "category": "promessa_resultado",
       "severity": "CRITICAL",
       "rationale": "Vedação categórica a promessas de resultado ou indução a certezas de ganho de causa.",
-      "article_reference": "Art. 4º, III"
+      "article_reference": "Art. 6º, caput c/c Art. 3º, I"
     },
     {
       "term": "causa ganha",
       "category": "promessa_resultado",
       "severity": "CRITICAL",
-      "rationale": "Expressão antiética clássica expressamente proibida pela jurisprudência do TED e Provimento 205/2021.",
-      "article_reference": "Art. 4º, III"
+      "rationale": "Expressão antiética clássica vedada pelo Provimento 205/2021 e jurisprudência dos TEDs.",
+      "article_reference": "Art. 6º, caput"
     },
     {
       "term": "sem risco",
       "category": "promessa_resultado",
       "severity": "CRITICAL",
-      "rationale": "Indução indevida de ausência de risco jurídico é proibida pelo Código de Ética.",
-      "article_reference": "Art. 4º, III"
+      "rationale": "Indução indevida de ausência de risco processual viola a exigência de informação objetiva e verdadeira.",
+      "article_reference": "Art. 6º, caput"
     },
     {
       "term": "tabela de preços",
       "category": "preco_honorarios",
       "severity": "CRITICAL",
-      "rationale": "É expressamente vedada a veiculação de tabelas de honorários, preços ou valores de serviços jurídicos em canais públicos (Art. 4º, inc. I).",
-      "article_reference": "Art. 4º, I"
+      "rationale": "É expressamente vedada a menção, direta ou indireta, a valores de honorários, tabelas de preços ou formas de pagamento em canais públicos.",
+      "article_reference": "Art. 3º, I"
     },
     {
       "term": "honorários promocionais",
       "category": "preco_honorarios",
       "severity": "CRITICAL",
-      "rationale": "Promoção de preços ou descontos caracteriza mercantilização da advocacia (Art. 4º, inc. I).",
-      "article_reference": "Art. 4º, I"
+      "rationale": "Promoção de preços ou descontos caracteriza mercantilização da advocacia.",
+      "article_reference": "Art. 3º, I"
     },
     {
       "term": "consulta grátis",
       "category": "mercantilizacao",
       "severity": "CRITICAL",
-      "rationale": "Oferta de gratuidade ou 'consulta grátis' configura captação indevida de clientela e aviltamento de honorários (Art. 4º, inc. I c/c Anexo Único).",
-      "article_reference": "Art. 4º, I"
+      "rationale": "Oferta de gratuidade ou 'consulta grátis' configura captação indevida e aviltamento de honorários.",
+      "article_reference": "Art. 3º, I"
     },
     {
       "term": "consulte grátis",
       "category": "mercantilizacao",
       "severity": "CRITICAL",
-      "rationale": "Variação imperativa de oferta gratuita expressamente vedada.",
-      "article_reference": "Art. 4º, I"
+      "rationale": "Variação imperativa de oferta de serviços jurídicos gratuitos vedada pela OAB.",
+      "article_reference": "Art. 3º, I"
     },
     {
       "term": "desconto exclusivo",
       "category": "preco_honorarios",
       "severity": "CRITICAL",
-      "rationale": "Práticas de varejo comercial são incompatíveis com o exercício da advocacia.",
-      "article_reference": "Art. 4º, I"
+      "rationale": "Práticas de descontos comerciais são vedadas pelo Art. 3º, I.",
+      "article_reference": "Art. 3º, I"
+    },
+    {
+      "term": "especialista em saúde",
+      "category": "especialidade_sem_titulo",
+      "severity": "CRITICAL",
+      "rationale": "Vedado anunciar especialidade jurídica sem possuir título reconhecido ou notória especialização comprovada. O portal deve divulgar 'Área de Atuação: Direito de Saúde'.",
+      "article_reference": "Art. 3º, III"
+    },
+    {
+      "term": "especialista em consumidor",
+      "category": "especialidade_sem_titulo",
+      "severity": "CRITICAL",
+      "rationale": "Vedado intitular-se especialista em Direito do Consumidor sem certificação formal reconhecida. Divulgar como 'Área de Atuação: Direito do Consumidor'.",
+      "article_reference": "Art. 3º, III"
+    },
+    {
+      "term": "especialista em família",
+      "category": "especialidade_sem_titulo",
+      "severity": "CRITICAL",
+      "rationale": "Vedado intitular-se especialista em Direito de Família sem titulação formal. Divulgar como 'Área de Atuação: Direito de Família e Sucessões'.",
+      "article_reference": "Art. 3º, III"
     },
     {
       "term": "processe sua empresa agora",
       "category": "captacao_litigio",
       "severity": "CRITICAL",
-      "rationale": "Incitação explícita ao litígio e estímulo à judicialização predatória são vedados (Art. 1º, § 1º e Art. 4º).",
-      "article_reference": "Art. 1º, § 1º"
+      "rationale": "Incitação explícita ao litígio e estímulo à judicialização predatória são expressamente vedados.",
+      "article_reference": "Art. 2º, VIII c/c Art. 3º, § 1º"
     },
     {
       "term": "processe o banco",
       "category": "captacao_litigio",
       "severity": "HIGH",
-      "rationale": "Linguagem incitadora de conflitos em vez de conteúdo explicativo-educativo.",
-      "article_reference": "Art. 1º, § 1º"
+      "rationale": "Linguagem incitadora de conflitos em vez de orientação técnico-educativa.",
+      "article_reference": "Art. 2º, VIII c/c Art. 3º, § 1º"
     },
     {
       "term": "ostentação de patrimônio",
       "category": "ostentacao",
       "severity": "CRITICAL",
-      "rationale": "Vedada a ostentação de bens materiais, veículos ou estilo de vida como atrativo profissional.",
-      "article_reference": "Art. 4º, VI"
+      "rationale": "Fica expressamente vedada a ostentação de bens materiais decorrentes do êxito na advocacia em qualquer meio de publicidade profissional.",
+      "article_reference": "Art. 6º, parágrafo único"
     }
   ],
   "rules": [
     {
       "id": "RULE-OAB-001",
-      "provimento_article": "Art. 1º",
-      "title": "Caráter estritamente informativo, educativo e moderado",
-      "description": "Toda a presença digital do escritório deve primar pela discrição, moderação e sobriedade, tendo caráter meramente informativo e educador, vedada a publicidade ativa agressiva e a incitação ao litígio.",
+      "provimento_article": "Art. 1º, caput e § 1º",
+      "title": "Marketing jurídico pautado na informação objetiva, verdadeira e identificação responsável",
+      "description": "Permissão do marketing jurídico desde que exercido em conformidade com preceitos éticos. As informações veiculadas devem ser objetivas e verdadeiras, sob responsabilidade dos advogados e da sociedade identificados.",
       "target_audience": ["copywriters", "designers", "developers", "partners"],
       "enforcement_type": "hybrid"
     },
     {
       "id": "RULE-OAB-002",
-      "provimento_article": "Art. 2º",
-      "title": "Publicidade passiva institucional como pilar da arquitetura do site",
-      "description": "O portal institucional deve operar no modelo de publicidade passiva, no qual o interessado busca espontaneamente as informações da banca, sem pop-ups invasivos de contato forçado ou gatilhos predatórios de escassez comercial.",
-      "target_audience": ["designers", "developers"],
-      "enforcement_type": "automated"
+      "provimento_article": "Art. 2º, incisos VI, VII e VIII",
+      "title": "Arquitetura institucional passiva e proibição de captação ou estímulo ao litígio",
+      "description": "O portal institucional deve operar no modelo de publicidade passiva (inciso VII), no qual o interessado busca espontaneamente as informações da banca, sendo vedados artifícios de captação de clientela com estímulo predatório ao litígio (inciso VIII).",
+      "target_audience": ["designers", "developers", "copywriters"],
+      "enforcement_type": "manual_review"
     },
     {
       "id": "RULE-OAB-003",
-      "provimento_article": "Art. 3º",
-      "title": "Identificação profissional obrigatória e transparente",
-      "description": "Em todas as páginas, rodapés e seções de biografia, é obrigatória a menção ao nome completo de cada advogado acompanhado de seu respectivo número de inscrição na Seccional da OAB (ex.: Rodrigo Guedes da Silva, OAB/SP nº 538.416). É proibida a menção a cargos ou funções públicas pretéritas/atuais como atrativo.",
-      "target_audience": ["copywriters", "developers", "designers"],
+      "provimento_article": "Art. 3º, caput, inc. IV e § 1º",
+      "title": "Vedação a expressões persuasivas, autoengrandecimento, comparação e incitação ao litígio",
+      "description": "A publicidade profissional deve primar pela discrição e sobriedade, sendo vedado o uso de orações persuasivas, adjetivos superlativos ou de autoengrandecimento ('o melhor', 'líder'), bem como qualquer incitação direta ou indireta ao litígio (§ 1º).",
+      "target_audience": ["copywriters", "partners"],
       "enforcement_type": "automated"
     },
     {
       "id": "RULE-OAB-004",
-      "provimento_article": "Art. 4º",
-      "title": "Vedações expressas a promessas, superlativos e mercantilização",
-      "description": "Fica terminantemente vedada a inclusão de tabelas de honorários, valores de causas, adjetivos de autoengrandecimento ('o melhor', 'líder'), garantia de resultado processual ou facilidades de pagamento públicas.",
+      "provimento_article": "Art. 3º, inciso I",
+      "title": "Vedação absoluta de menção a honorários, tabelas de preços, gratuidade ou descontos",
+      "description": "É expressamente vedada qualquer referência direta ou indireta a valores de honorários, tabelas de preços, formas de pagamento, 'consulta grátis' ou reduções promocionais de preço na presença digital do escritório.",
       "target_audience": ["copywriters", "developers", "partners"],
       "enforcement_type": "automated"
     },
     {
       "id": "RULE-OAB-005",
-      "provimento_article": "Art. 5º",
-      "title": "Canais de mensageria e limites do atendimento tecnológico",
-      "description": "O uso de WhatsApp institucional e canais de contato deve restringir-se à recepção passiva e agendamento de atendimentos individualizados, com mensagens de apresentação formal. É vedada a realização de consultas jurídicas automatizadas em massa por chatbots sem intervenção do advogado.",
-      "target_audience": ["developers", "copywriters"],
-      "enforcement_type": "manual_review"
+      "provimento_article": "Art. 3º, inciso III",
+      "title": "Vedação ao anúncio de especialidade jurídica sem título certificado ou notória especialização",
+      "description": "É vedado anunciar ou divulgar especialidades jurídicas sem título de pós-graduação/especialização reconhecido ou notória especialização comprovada. No portal de Souza Guedes Advogados, as quatro disciplinas devem ser apresentadas com a nomenclatura descritiva 'Áreas de Atuação' (Direito Imobiliário, Saúde, Consumidor, Família e Sucessões), vedada a autointitulação desprovida de título como 'Especialista em Saúde/Consumidor/Família', ressalvada a pós-graduação formal da sócia Lays Regina de Souza em Direito Imobiliário Notarial e Registral.",
+      "target_audience": ["copywriters", "designers", "partners"],
+      "enforcement_type": "hybrid"
     },
     {
       "id": "RULE-OAB-006",
-      "provimento_article": "Art. 6º",
-      "title": "Diretrizes e limites éticos para links e buscas patrocinadas",
-      "description": "Qualquer impulsionamento de conteúdo informativo nas ferramentas de busca (Google Ads) deve manter discrição, vedado o direcionamento de anúncios com termos de comparação, promessas ou incitação a disputas jurídicas.",
-      "target_audience": ["partners", "copywriters"],
+      "provimento_article": "Art. 4º, caput e §§ 1º a 5º",
+      "title": "Marketing de conteúdo e anúncios digitais nos meios não vedados pelo Art. 40 do CED",
+      "description": "Autorização de publicidade ativa e passiva no marketing de conteúdo e em anúncios na internet e redes sociais, desde que com finalidade informativa, respeitados os limites éticos e os meios de divulgação permitidos pelo Art. 40 do Código de Ética e Disciplina.",
+      "target_audience": ["copywriters", "developers", "partners"],
       "enforcement_type": "manual_review"
+    },
+    {
+      "id": "RULE-OAB-007",
+      "provimento_article": "Art. 5º, caput, §§ 1º e 2º e Anexo Único",
+      "title": "Sobriedade em ferramentas digitais, proibição de rankings pagos e regras de WhatsApp/Chatbot",
+      "description": "Proibição de pagamento ou patrocínio para figurar em guias ou rankings comerciais de 'melhores advogados' (§ 1º); vedação de uso de logotipos, brasões ou símbolos oficiais da OAB e da República (§ 2º). WhatsApp limitado ao atendimento passivo de clientes e interessados pré-autorizados. Chatbot permitido exclusivamente para triagem e primeiro contato institucional, vedada a resposta automatizada a consultas jurídicas sem intervenção do advogado (Anexo Único).",
+      "target_audience": ["developers", "copywriters", "designers"],
+      "enforcement_type": "hybrid"
+    },
+    {
+      "id": "RULE-OAB-008",
+      "provimento_article": "Art. 6º, caput, parágrafo único e Anexo Único",
+      "title": "Limites da publicidade ativa, vedação à ostentação de patrimônio e diretrizes do Google Ads",
+      "description": "A publicidade ativa é restrita a conteúdo educativo, vedada a menção a dimensões, estrutura física do escritório, promessas de resultado ou casos concretos. É terminantemente proibida a ostentação de bens patrimoniais decorrentes da atividade advocatícia em qualquer publicidade profissional (parágrafo único). Anúncios de busca (Google Ads) devem responder a consultas ativas do usuário, sem uso de marcas de concorrentes ou termos mercantis (Anexo Único).",
+      "target_audience": ["copywriters", "designers", "partners"],
+      "enforcement_type": "hybrid"
     }
   ],
   "pre_publication_signoff_protocol": {
@@ -192,7 +236,8 @@
       "identificacao_completa_advogados",
       "ausencia_termos_superlativos_e_mercantis",
       "sobriedade_visual_e_botoes_contato",
-      "carater_informativo_sem_promessa_resultado"
+      "carater_informativo_sem_promessa_resultado",
+      "canais_atendimento_passivo"
     ]
   }
 }
