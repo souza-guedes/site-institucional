@@ -1,0 +1,42 @@
+# ==============================================================================
+# Souza Guedes Advogados - Configuração Apache/LiteSpeed (.htaccess)
+# WDLC 2.1 - Rotas Amigáveis, Canonicalização e Segurança
+# ==============================================================================
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # 1. Bloqueio de Acesso a Arquivos Ocultos e Dotfiles (.git, .env, etc.)
+    RewriteRule ^\..* - [F,L]
+
+    # 2. Redirecionamento Canônico para HTTPS (ignora localhost)
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1) [NC]
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # 3. Normalização de Trailing Slash (remove barra final de rotas limpas)
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # 4. Front Controller Pattern: Despacho de rotas para index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?route=$1 [QSA,L]
+</IfModule>
+
+# Bloqueio de arquivos sensíveis adicionais
+<FilesMatch "(composer\.(json|lock)|\.env|\.git|README\.md|\.gitignore)$">
+    Require all denied
+</FilesMatch>
+
+# Headers de Segurança
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Desativação de listagem de diretórios
+Options -Indexes
