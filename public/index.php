@@ -10,6 +10,7 @@ declare(strict_types=1);
 // Autoload simples / requires das classes de domínio e aplicação
 $baseDir = dirname(__DIR__);
 
+require_once $baseDir . '/src/Config/AppConfig.php';
 require_once $baseDir . '/src/Http/Request.php';
 require_once $baseDir . '/src/Http/Response.php';
 require_once $baseDir . '/src/Http/Router.php';

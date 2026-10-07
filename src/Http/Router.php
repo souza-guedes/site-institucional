@@ -36,7 +36,7 @@ final class Router
         return $this;
     }
 
-    public function setNotFoundHandler(callable $handler): self
+    public function setNotFoundHandler(callable|array $handler): self
     {
         $this->notFoundHandler = $handler;
         return $this;

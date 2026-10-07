@@ -1,0 +1,25 @@
+# Souza Guedes Advogados - Proteção Raiz e Encaminhamento para public/
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Bloqueio estrito de acesso direto a diretórios de código e dados internos
+    RewriteRule ^(src|data|schemas|tests|docs|\.git) - [F,L,NC]
+
+    # Redireciona requisições da raiz para o diretório public/
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Bloqueio de arquivos de configuração e sensíveis
+<FilesMatch "(\.(json|md|lock|gitignore|gitattributes|env)|composer\..*)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+DirectoryIndex public/index.php
+Options -Indexes

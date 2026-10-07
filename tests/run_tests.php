@@ -7,6 +7,8 @@ require_once __DIR__ . '/Unit/FirmProfileEntityTest.php';
 require_once __DIR__ . '/Unit/EthicalComplianceSchemaTest.php';
 require_once __DIR__ . '/Unit/EthicalContentValidatorTest.php';
 require_once __DIR__ . '/Unit/RouterTest.php';
+require_once __DIR__ . '/Unit/FrontControllerExecutionTest.php';
+require_once __DIR__ . '/Unit/AppConfigTest.php';
 require_once __DIR__ . '/Unit/HtaccessConfigTest.php';
 require_once __DIR__ . '/Unit/ViewsStructureTest.php';
 
@@ -15,6 +17,8 @@ use Tests\Unit\FirmProfileEntityTest;
 use Tests\Unit\EthicalComplianceSchemaTest;
 use Tests\Unit\EthicalContentValidatorTest;
 use Tests\Unit\RouterTest;
+use Tests\Unit\FrontControllerExecutionTest;
+use Tests\Unit\AppConfigTest;
 use Tests\Unit\HtaccessConfigTest;
 use Tests\Unit\ViewsStructureTest;
 
@@ -33,6 +37,8 @@ $testClasses = [
     EthicalComplianceSchemaTest::class,
     EthicalContentValidatorTest::class,
     RouterTest::class,
+    FrontControllerExecutionTest::class,
+    AppConfigTest::class,
     HtaccessConfigTest::class,
     ViewsStructureTest::class,
 ];

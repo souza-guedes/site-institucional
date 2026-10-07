@@ -10,14 +10,14 @@
     # 1. Bloqueio de Acesso a Arquivos Ocultos e Dotfiles (.git, .env, etc.)
     RewriteRule ^\..* - [F,L]
 
-    # 2. Redirecionamento Canônico para HTTPS (ignora localhost)
+    # 2. Redirecionamento Canônico para HTTPS (ignora localhost e portas de desenvolvimento)
     RewriteCond %{HTTPS} off
-    RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1) [NC]
+    RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:[0-9]+)?$ [NC]
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-    # 3. Normalização de Trailing Slash (remove barra final de rotas limpas)
+    # 3. Normalização de Trailing Slash (remove barra final preservando query strings)
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)/$ /$1 [L,R=301]
+    RewriteRule ^(.*)/$ /$1 [L,R=301,QSA]
 
     # 4. Front Controller Pattern: Despacho de rotas para index.php
     RewriteCond %{REQUEST_FILENAME} !-f

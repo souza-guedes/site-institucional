@@ -23,11 +23,14 @@ final readonly class Request
     public static function createFromGlobals(): self
     {
         $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
-        $uri = $_SERVER['REQUEST_URI'] ?? '/';
+        $rawUri = $_SERVER['REQUEST_URI'] ?? '/';
+        $parsedPath = parse_url($rawUri, PHP_URL_PATH);
 
-        // Se passado via query param no rewrite do .htaccess (?route=...)
-        if (isset($_GET['route']) && is_string($_GET['route'])) {
+        // Se o servidor web chamou index.php diretamente e passou ?route= (fallback de rewrite)
+        if (($parsedPath === null || $parsedPath === '' || str_ends_with($parsedPath, 'index.php')) && isset($_GET['route']) && is_string($_GET['route'])) {
             $uri = '/' . ltrim($_GET['route'], '/');
+        } else {
+            $uri = $rawUri;
         }
 
         $headers = [];

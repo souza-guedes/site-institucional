@@ -93,4 +93,17 @@ final class ViewsStructureTest
             }
         }
     }
+
+    public function testMainCssAssetExists(): void
+    {
+        $cssPath = dirname(__DIR__, 2) . '/public/assets/css/main.css';
+        if (!file_exists($cssPath)) {
+            throw new \AssertionError("Arquivo CSS principal não encontrado em '{$cssPath}'. As páginas não podem ser entregues sem estilização.");
+        }
+
+        $cssContent = (string) file_get_contents($cssPath);
+        if (trim($cssContent) === '') {
+            throw new \AssertionError("Arquivo CSS '{$cssPath}' está vazio.");
+        }
+    }
 }

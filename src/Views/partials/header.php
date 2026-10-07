@@ -1,3 +1,6 @@
+<?php
+use App\Config\AppConfig;
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($pageTitle ?? 'Souza Guedes Advogados') ?></title>
     <meta name="description" content="<?= htmlspecialchars($metaDescription ?? 'Portal Institucional de Souza Guedes Advogados') ?>">
-    <link rel="canonical" href="<?= htmlspecialchars('https://souzaguedesadv.com.br' . ($_SERVER['REQUEST_URI'] ?? '/')) ?>">
+    <link rel="canonical" href="<?= htmlspecialchars(AppConfig::getCanonicalUrl($_SERVER['REQUEST_URI'] ?? '/')) ?>">
     
     <!-- Meta tags institucionais e Open Graph -->
     <meta property="og:type" content="website">
