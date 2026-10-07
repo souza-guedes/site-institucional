@@ -20,7 +20,10 @@
                     <li><a href="/" class="hover:text-white transition">Início</a></li>
                     <li><a href="/sobre" class="hover:text-white transition">O Escritório</a></li>
                     <li><a href="/areas-de-atuacao" class="hover:text-white transition">Áreas de Atuação</a></li>
+                    <li><a href="/advogados" class="hover:text-white transition">Corpo Jurídico</a></li>
+                    <li><a href="/artigos" class="hover:text-white transition">Artigos e Orientações</a></li>
                     <li><a href="/contato" class="hover:text-white transition">Contato e Localização</a></li>
+                    <li><a href="/privacidade" class="hover:text-white transition">Política de Privacidade (LGPD)</a></li>
                 </ul>
             </div>
 

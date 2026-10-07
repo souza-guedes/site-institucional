@@ -1,0 +1,149 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sitemap & Legal Taxonomy Schema - Souza Guedes Advogados",
+  "description": "Validação da arquitetura de informação, mapa canônico de rotas e taxonomia das áreas de atuação em conformidade com o Provimento CFOAB nº 205/2021",
+  "type": "object",
+  "required": [
+    "version",
+    "last_updated",
+    "routes",
+    "practice_areas_taxonomy",
+    "redirects"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "last_updated": {
+      "type": "string"
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "controller",
+          "action",
+          "title",
+          "nav_visible",
+          "oab_compliance_notes"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "controller": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "nav_visible": {
+            "type": "boolean"
+          },
+          "oab_compliance_notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "practice_areas_taxonomy": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "slug",
+          "title",
+          "target_audience",
+          "sub_disciplines",
+          "procedural_tracks",
+          "prohibited_terms",
+          "recommended_terms"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "target_audience": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sub_disciplines": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "procedural_tracks": {
+            "type": "object",
+            "required": [
+              "judicial",
+              "extrajudicial"
+            ],
+            "properties": {
+              "judicial": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "extrajudicial": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "prohibited_terms": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recommended_terms": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "redirects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "from",
+          "to",
+          "status"
+        ],
+        "properties": {
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

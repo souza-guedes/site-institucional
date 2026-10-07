@@ -38,6 +38,9 @@ final class ViewsStructureTest
             'practice-areas.php',
             'practice-area-detail.php',
             'contact.php',
+            'lawyers.php',
+            'articles.php',
+            'privacy.php',
             '404.php'
         ];
 

@@ -42,6 +42,13 @@ final class Router
         return $this;
     }
 
+    public function redirect(string $from, string $to, int $status = 301): self
+    {
+        return $this->get($from, function () use ($to, $status): Response {
+            return new Response('', $status, ['Location' => $to]);
+        });
+    }
+
     public function match(string $method, string $path): ?array
     {
         $method = strtoupper($method);

@@ -21,6 +21,9 @@ require_once $baseDir . '/src/Controllers/AboutController.php';
 require_once $baseDir . '/src/Controllers/PracticeAreaController.php';
 require_once $baseDir . '/src/Controllers/ContactController.php';
 require_once $baseDir . '/src/Controllers/ErrorController.php';
+require_once $baseDir . '/src/Controllers/LawyerController.php';
+require_once $baseDir . '/src/Controllers/ArticleController.php';
+require_once $baseDir . '/src/Controllers/PrivacyController.php';
 
 use App\Http\Request;
 use App\Http\Router;
@@ -29,6 +32,9 @@ use App\Controllers\AboutController;
 use App\Controllers\PracticeAreaController;
 use App\Controllers\ContactController;
 use App\Controllers\ErrorController;
+use App\Controllers\LawyerController;
+use App\Controllers\ArticleController;
+use App\Controllers\PrivacyController;
 
 // Instanciação e configuração das rotas limpas
 $router = new Router();
@@ -37,7 +43,11 @@ $router->get('/', [HomeController::class, 'index']);
 $router->get('/sobre', [AboutController::class, 'index']);
 $router->get('/areas-de-atuacao', [PracticeAreaController::class, 'index']);
 $router->get('/areas-de-atuacao/{slug}', [PracticeAreaController::class, 'detail']);
+$router->redirect('/atuacao', '/areas-de-atuacao', 301);
+$router->get('/advogados', [LawyerController::class, 'index']);
+$router->get('/artigos', [ArticleController::class, 'index']);
 $router->get('/contato', [ContactController::class, 'index']);
+$router->get('/privacidade', [PrivacyController::class, 'index']);
 
 // Handler customizado para 404 Not Found
 $router->setNotFoundHandler([ErrorController::class, 'notFound']);

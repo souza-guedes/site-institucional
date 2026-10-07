@@ -11,6 +11,10 @@ require_once __DIR__ . '/Unit/FrontControllerExecutionTest.php';
 require_once __DIR__ . '/Unit/AppConfigTest.php';
 require_once __DIR__ . '/Unit/HtaccessConfigTest.php';
 require_once __DIR__ . '/Unit/ViewsStructureTest.php';
+require_once __DIR__ . '/Unit/SitemapTaxonomySchemaTest.php';
+require_once __DIR__ . '/Unit/TaxonomyEntityTest.php';
+require_once __DIR__ . '/Unit/TaxonomyComplianceTest.php';
+require_once __DIR__ . '/Unit/RouterExpandedTest.php';
 
 use Tests\Unit\FirmProfileSchemaTest;
 use Tests\Unit\FirmProfileEntityTest;
@@ -21,10 +25,14 @@ use Tests\Unit\FrontControllerExecutionTest;
 use Tests\Unit\AppConfigTest;
 use Tests\Unit\HtaccessConfigTest;
 use Tests\Unit\ViewsStructureTest;
+use Tests\Unit\SitemapTaxonomySchemaTest;
+use Tests\Unit\TaxonomyEntityTest;
+use Tests\Unit\TaxonomyComplianceTest;
+use Tests\Unit\RouterExpandedTest;
 
 echo "====================================================\n";
 echo " Executando Suíte de Testes: Souza Guedes Advogados \n";
-echo " Validação de Contrato, Compliance & Rotas WDLC 2.1 \n";
+echo " Validação de Contrato, Taxonomia & WDLC 2.2        \n";
 echo "====================================================\n\n";
 
 $passed = 0;
@@ -41,6 +49,10 @@ $testClasses = [
     AppConfigTest::class,
     HtaccessConfigTest::class,
     ViewsStructureTest::class,
+    SitemapTaxonomySchemaTest::class,
+    TaxonomyEntityTest::class,
+    TaxonomyComplianceTest::class,
+    RouterExpandedTest::class,
 ];
 
 foreach ($testClasses as $className) {

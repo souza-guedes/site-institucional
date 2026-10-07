@@ -1,0 +1,252 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-10-07",
+  "routes": [
+    {
+      "path": "/",
+      "controller": "App\\Controllers\\HomeController",
+      "action": "index",
+      "title": "Souza Guedes Advogados | Advocacia Estratégica na Vila Ema",
+      "nav_visible": true,
+      "oab_compliance_notes": "Apresentação institucional sóbria, credenciais dos sócios fundadores e disclaimer regulamentar do Provimento CFOAB nº 205/2021."
+    },
+    {
+      "path": "/sobre",
+      "controller": "App\\Controllers\\AboutController",
+      "action": "index",
+      "title": "O Escritório | Souza Guedes Advogados",
+      "nav_visible": true,
+      "oab_compliance_notes": "Histórico, princípios éticos e estrutura física da sede própria sem ostentação (Art. 6º, parágrafo único)."
+    },
+    {
+      "path": "/areas-de-atuacao",
+      "controller": "App\\Controllers\\PracticeAreaController",
+      "action": "index",
+      "title": "Áreas de Atuação | Souza Guedes Advogados",
+      "nav_visible": true,
+      "oab_compliance_notes": "Uso obrigatório da nomenclatura 'Áreas de Atuação' (Art. 3º, III do Provimento CFOAB nº 205/2021)."
+    },
+    {
+      "path": "/areas-de-atuacao/{slug}",
+      "controller": "App\\Controllers\\PracticeAreaController",
+      "action": "detail",
+      "title": "Detalhamento de Área de Atuação | Souza Guedes Advogados",
+      "nav_visible": false,
+      "oab_compliance_notes": "Detalhamento técnico estritamente informativo sem promessa de resultado ou captação de clientes."
+    },
+    {
+      "path": "/advogados",
+      "controller": "App\\Controllers\\LawyerController",
+      "action": "index",
+      "title": "Corpo Jurídico | Souza Guedes Advogados",
+      "nav_visible": true,
+      "oab_compliance_notes": "Qualificação verdadeira dos advogados e número de inscrição OAB/SP obrigatórios (Art. 1º, § 1º)."
+    },
+    {
+      "path": "/artigos",
+      "controller": "App\\Controllers\\ArticleController",
+      "action": "index",
+      "title": "Artigos e Informações Jurídicas | Souza Guedes Advogados",
+      "nav_visible": true,
+      "oab_compliance_notes": "Marketing de conteúdo jurídico educativo e informativo (Art. 4º do Provimento CFOAB nº 205/2021)."
+    },
+    {
+      "path": "/contato",
+      "controller": "App\\Controllers\\ContactController",
+      "action": "index",
+      "title": "Contato & Localização | Souza Guedes Advogados",
+      "nav_visible": true,
+      "oab_compliance_notes": "Canais formais de atendimento passivo, localização da sede e ausência de consulta jurídica imediata."
+    },
+    {
+      "path": "/privacidade",
+      "controller": "App\\Controllers\\PrivacyController",
+      "action": "index",
+      "title": "Política de Privacidade & LGPD | Souza Guedes Advogados",
+      "nav_visible": false,
+      "oab_compliance_notes": "Transparência quanto ao tratamento de dados pessoais (Lei Federal nº 13.709/2018) e canal do DPO."
+    }
+  ],
+  "redirects": [
+    {
+      "from": "/atuacao",
+      "to": "/areas-de-atuacao",
+      "status": 301
+    }
+  ],
+  "practice_areas_taxonomy": [
+    {
+      "id": "real-estate-law",
+      "slug": "direito-imobiliario",
+      "title": "Direito Imobiliário",
+      "target_audience": [
+        "Pessoas físicas proprietárias, possuidoras, adquirentes ou locatárias de imóveis",
+        "Investidores e arrematantes",
+        "Construtoras, incorporadoras, imobiliárias e empresas"
+      ],
+      "sub_disciplines": [
+        "Usucapião Judicial e Extrajudicial",
+        "Ações Locatícias e Despejo",
+        "Reintegração, Manutenção e Imissão na Posse",
+        "Assessoria Jurídica para Arrematação de Imóveis",
+        "Indenizações por Atraso na Entrega de Imóveis",
+        "Regularização Fundiária e Notarial"
+      ],
+      "procedural_tracks": {
+        "judicial": [
+          "Ação de Usucapião",
+          "Ação de Despejo e Cobrança de Aluguéis",
+          "Ações Possessórias e Petitórias",
+          "Ação Indenizatória por Atraso na Entrega",
+          "Embargos à Arrematação"
+        ],
+        "extrajudicial": [
+          "Usucapião perante Cartório de Registro de Imóveis",
+          "Notificação Premonitória e Rescisão Extrajudicial",
+          "Due Diligence Imobiliária e Análise de Matrículas",
+          "Retificação de Registro Imobiliário"
+        ]
+      },
+      "prohibited_terms": [
+        "imóvel garantido",
+        "despejo em 24 horas",
+        "cancele seu distrato sem custos",
+        "arremate com lucro garantido",
+        "causa ganha em usucapião"
+      ],
+      "recommended_terms": [
+        "análise de regularidade registral",
+        "assessoria para arrematação",
+        "ações possessórias",
+        "análise documental de viabilidade"
+      ]
+    },
+    {
+      "id": "health-law",
+      "slug": "direito-de-saude",
+      "title": "Direito de Saúde",
+      "target_audience": [
+        "Pessoas físicas, pacientes e familiares",
+        "Beneficiários de planos de saúde",
+        "Profissionais da área da saúde",
+        "Clínicas e instituições de saúde"
+      ],
+      "sub_disciplines": [
+        "Liberação de Medicamentos de Alto Custo",
+        "Negativas de Cobertura de Cirurgias e Procedimentos",
+        "Manutenção e Restabelecimento de Planos de Saúde",
+        "Revisão de Reajustes Abusivos de Mensalidades",
+        "Responsabilidade Civil por Erro Médico"
+      ],
+      "procedural_tracks": {
+        "judicial": [
+          "Ação de Obrigação de Fazer com Pedido de Tutela de Urgência",
+          "Ação Revisional de Cláusulas e Reajustes de Mensalidade",
+          "Ação Indenizatória por Erro Médico ou Falha de Prestação",
+          "Cumprimento de Sentença e Astreintes"
+        ],
+        "extrajudicial": [
+          "Requerimento Administrativo perante Operadoras e SUS",
+          "Reclamação fundamentada perante a ANS",
+          "Composição amigável e termo de ajuste"
+        ]
+      },
+      "prohibited_terms": [
+        "liminar garantida",
+        "remédio grátis para todos",
+        "indenização certa por erro médico",
+        "resultado garantido contra plano"
+      ],
+      "recommended_terms": [
+        "tutela de urgência para tratamento",
+        "revisão de reajustes",
+        "responsabilidade profissional em saúde",
+        "análise de negativa de cobertura"
+      ]
+    },
+    {
+      "id": "consumer-law",
+      "slug": "direito-do-consumidor",
+      "title": "Direito do Consumidor",
+      "target_audience": [
+        "Pessoas físicas em relações de consumo",
+        "Micro e pequenas empresas destinatárias finais de produtos e serviços"
+      ],
+      "sub_disciplines": [
+        "Negativação Indevida e Cadastro de Inadimplentes",
+        "Interrupção de Serviços Essenciais (Água, Energia, Telefonia)",
+        "Falha na Prestação de Serviços Bancários e Digitais",
+        "Vícios, Defeitos e Atraso na Entrega de Produtos",
+        "Práticas Comerciais Abusivas e Cobranças Excessivas"
+      ],
+      "procedural_tracks": {
+        "judicial": [
+          "Ação de Inexistência de Débito com Pedido Liminar de Baixa",
+          "Ação de Obrigação de Fazer para Restabelecimento de Serviço",
+          "Ação Reparatória por Danos Morais e Materiais",
+          "Ação Redibitória ou Estimiatória por Vício do Produto"
+        ],
+        "extrajudicial": [
+          "Notificação formal perante SAC e Ouvidorias",
+          "Intermediação no Procon e plataformas públicas de resolução",
+          "Acordos extrajudiciais de ressarcimento"
+        ]
+      },
+      "prohibited_terms": [
+        "limpe seu nome em 24h",
+        "causa ganha contra banco",
+        "risco zero",
+        "indenização milionária automática"
+      ],
+      "recommended_terms": [
+        "exclusão de apontamento indevido",
+        "reparação por vícios de produtos",
+        "serviços essenciais",
+        "defesa do consumidor em juízo"
+      ]
+    },
+    {
+      "id": "family-successions",
+      "slug": "familia-e-sucessoes",
+      "title": "Direito de Família e Sucessões",
+      "target_audience": [
+        "Pessoas físicas e membros do núcleo familiar",
+        "Herdeiros, meeiro e inventariantes"
+      ],
+      "sub_disciplines": [
+        "Divórcio Consensual e Litigioso",
+        "Dissolução de União Estável e Partilha de Bens",
+        "Fixação, Revisão e Execução de Alimentos",
+        "Guarda, Convivência Familiar e Regulamentação de Visitas",
+        "Inventário Judicial e Extrajudicial",
+        "Planejamento Sucessório e Testamentos"
+      ],
+      "procedural_tracks": {
+        "judicial": [
+          "Ação de Divórcio e Partilha de Bens",
+          "Ação de Alimentos e Cumprimento de Sentença (Prisão e Penhora)",
+          "Ação de Regulamentação de Guarda e Convivência",
+          "Inventário e Arrolamento Judicial"
+        ],
+        "extrajudicial": [
+          "Divórcio Extrajudicial perante Tabelionato de Notas",
+          "Inventário e Partilha Extrajudicial em Cartório",
+          "Escritura Pública de União Estável e Pacto Antenupcial",
+          "Mediação familiar e acordos consensuais"
+        ]
+      },
+      "prohibited_terms": [
+        "divórcio relâmpago",
+        "fique com todos os bens",
+        "pensão máxima garantida",
+        "tome a guarda dos filhos"
+      ],
+      "recommended_terms": [
+        "planejamento sucessório",
+        "inventário extrajudicial",
+        "mediação e resolução consensual de conflitos",
+        "organização e partilha patrimonial"
+      ]
+    }
+  ]
+}

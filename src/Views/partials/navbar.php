@@ -12,6 +12,8 @@
                 <a href="/" class="hover:text-primary-700 transition">Início</a>
                 <a href="/sobre" class="hover:text-primary-700 transition">O Escritório</a>
                 <a href="/areas-de-atuacao" class="hover:text-primary-700 transition">Áreas de Atuação</a>
+                <a href="/advogados" class="hover:text-primary-700 transition">Advogados</a>
+                <a href="/artigos" class="hover:text-primary-700 transition">Artigos</a>
                 <a href="/contato" class="hover:text-primary-700 transition">Contato</a>
             </nav>
 
