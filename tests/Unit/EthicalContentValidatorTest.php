@@ -213,6 +213,23 @@ final class EthicalContentValidatorTest
         }
     }
 
+    public function testValidatorCatchesPhrasesFromRuleForbiddenList(): void
+    {
+        $validator = new EthicalContentValidator($this->complianceData['prohibited_expressions'] ?? []);
+
+        $textWithSpecialtiesAndMarkdownTerms = "Somos especialistas em direito de saúde e temos os melhores advogados da região. Oferecemos atendimento com risco zero e preço popular.";
+        $violations = $validator->validateText($textWithSpecialtiesAndMarkdownTerms);
+
+        $detected = array_map('mb_strtolower', array_column($violations, 'term'));
+        $expected = ['especialistas em direito de saúde', 'os melhores', 'risco zero', 'preço popular'];
+
+        foreach ($expected as $exp) {
+            if (!in_array($exp, $detected, true)) {
+                throw new \AssertionError("O validador falhou ao identificar o termo proibido '{$exp}'. Detectados: " . implode(', ', $detected));
+            }
+        }
+    }
+
     public function testValidatorCleanTextPasses(): void
     {
         $prohibited = $this->complianceData['prohibited_expressions'] ?? [];

@@ -139,8 +139,11 @@ final class EthicalComplianceSchemaTest
             }
 
             if ($term === 'resultado garantido') {
-                if (!str_contains($article, 'Art. 6º') && !str_contains($article, 'Art. 3º')) {
-                    throw new \AssertionError("O termo '{$term}' deve referenciar o Art. 6º ou Art. 3º, I (promessa de resultado), e não '{$article}'.");
+                if (!str_contains($article, 'Art. 6º')) {
+                    throw new \AssertionError("O termo '{$term}' deve referenciar o Art. 6º, caput (promessa de resultado), e não '{$article}'.");
+                }
+                if (str_contains($article, 'Art. 3º')) {
+                    throw new \AssertionError("O termo '{$term}' não deve ser cruzado com o Art. 3º, I (que versa sobre honorários), mas referenciar o Art. 6º, caput.");
                 }
             }
 
@@ -154,6 +157,23 @@ final class EthicalComplianceSchemaTest
                 if (!str_contains($article, 'Art. 6º, parágrafo único') && !str_contains($article, 'Art. 6º')) {
                     throw new \AssertionError("Termo de ostentação deve referenciar o Art. 6º, parágrafo único. Encontrado: '{$article}'.");
                 }
+            }
+        }
+
+        // Valida presença de termos citados expressamente na documentação e no provimento
+        $catalogTerms = array_map('mb_strtolower', array_column($expressions, 'term'));
+        $mandatoryExactTerms = [
+            'os melhores',
+            'preço popular',
+            'risco zero',
+            'especialistas em direito de saúde',
+            'especialista em direito do consumidor',
+            'especialistas em direito de família'
+        ];
+
+        foreach ($mandatoryExactTerms as $mTerm) {
+            if (!in_array($mTerm, $catalogTerms, true)) {
+                throw new \AssertionError("Termo mandatório citado nas diretrizes '{$mTerm}' não está catalogado em prohibited_expressions.");
             }
         }
     }

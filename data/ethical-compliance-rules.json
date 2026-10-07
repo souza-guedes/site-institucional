@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "last_updated": "2026-10-07",
   "regulatory_framework": {
     "statute": "Estatuto da Advocacia e da OAB (Lei Federal nº 8.906/1994)",
@@ -18,6 +18,13 @@
       "category": "superlativo",
       "severity": "CRITICAL",
       "rationale": "Vedação expressa à utilização de orações ou expressões persuasivas, de autoengrandecimento ou de comparação.",
+      "article_reference": "Art. 3º, IV"
+    },
+    {
+      "term": "os melhores",
+      "category": "superlativo",
+      "severity": "CRITICAL",
+      "rationale": "Variação no plural de adjetivo superlativo vedado pelo Art. 3º, IV.",
       "article_reference": "Art. 3º, IV"
     },
     {
@@ -53,14 +60,14 @@
       "category": "promessa_resultado",
       "severity": "CRITICAL",
       "rationale": "A advocacia é atividade de meio. Vedada qualquer promessa de resultado na publicidade profissional.",
-      "article_reference": "Art. 6º, caput c/c Art. 3º, I"
+      "article_reference": "Art. 6º, caput"
     },
     {
       "term": "garantia de causa",
       "category": "promessa_resultado",
       "severity": "CRITICAL",
       "rationale": "Vedação categórica a promessas de resultado ou indução a certezas de ganho de causa.",
-      "article_reference": "Art. 6º, caput c/c Art. 3º, I"
+      "article_reference": "Art. 6º, caput"
     },
     {
       "term": "causa ganha",
@@ -77,10 +84,24 @@
       "article_reference": "Art. 6º, caput"
     },
     {
+      "term": "risco zero",
+      "category": "promessa_resultado",
+      "severity": "CRITICAL",
+      "rationale": "Variação de promessa de ausência de risco processual vedada pelo Art. 6º, caput.",
+      "article_reference": "Art. 6º, caput"
+    },
+    {
       "term": "tabela de preços",
       "category": "preco_honorarios",
       "severity": "CRITICAL",
       "rationale": "É expressamente vedada a menção, direta ou indireta, a valores de honorários, tabelas de preços ou formas de pagamento em canais públicos.",
+      "article_reference": "Art. 3º, I"
+    },
+    {
+      "term": "preço popular",
+      "category": "preco_honorarios",
+      "severity": "CRITICAL",
+      "rationale": "Referência mercantil a preços e tabelas promocionais expressamente vedada pelo Art. 3º, I.",
       "article_reference": "Art. 3º, I"
     },
     {
@@ -115,21 +136,98 @@
       "term": "especialista em saúde",
       "category": "especialidade_sem_titulo",
       "severity": "CRITICAL",
-      "rationale": "Vedado anunciar especialidade jurídica sem possuir título reconhecido ou notória especialização comprovada. O portal deve divulgar 'Área de Atuação: Direito de Saúde'.",
+      "rationale": "Vedado anunciar especialidade sem possuir título certificado ou notória especialização nos termos do art. 3º-A do Estatuto (Art. 3º, III). Divulgar como 'Área de Atuação: Direito de Saúde'.",
+      "article_reference": "Art. 3º, III"
+    },
+    {
+      "term": "especialistas em saúde",
+      "category": "especialidade_sem_titulo",
+      "severity": "CRITICAL",
+      "rationale": "Variação no plural de autointitulação como especialista sem o título do art. 3º-A (Art. 3º, III).",
+      "article_reference": "Art. 3º, III"
+    },
+    {
+      "term": "especialista em direito de saúde",
+      "category": "especialidade_sem_titulo",
+      "severity": "CRITICAL",
+      "rationale": "Vedação expressa de anúncio de especialidade sem título certificado (Art. 3º, III).",
+      "article_reference": "Art. 3º, III"
+    },
+    {
+      "term": "especialistas em direito de saúde",
+      "category": "especialidade_sem_titulo",
+      "severity": "CRITICAL",
+      "rationale": "Vedação expressa de anúncio de especialidade sem título certificado (Art. 3º, III). Divulgar como 'Áreas de Atuação: Direito de Saúde'.",
       "article_reference": "Art. 3º, III"
     },
     {
       "term": "especialista em consumidor",
       "category": "especialidade_sem_titulo",
       "severity": "CRITICAL",
-      "rationale": "Vedado intitular-se especialista em Direito do Consumidor sem certificação formal reconhecida. Divulgar como 'Área de Atuação: Direito do Consumidor'.",
+      "rationale": "Vedado intitular-se especialista em Direito do Consumidor sem título certificado nos termos do art. 3º-A (Art. 3º, III). Divulgar como 'Área de Atuação: Direito do Consumidor'.",
+      "article_reference": "Art. 3º, III"
+    },
+    {
+      "term": "especialistas em consumidor",
+      "category": "especialidade_sem_titulo",
+      "severity": "CRITICAL",
+      "rationale": "Variação no plural vedada pelo Art. 3º, III.",
+      "article_reference": "Art. 3º, III"
+    },
+    {
+      "term": "especialista em direito do consumidor",
+      "category": "especialidade_sem_titulo",
+      "severity": "CRITICAL",
+      "rationale": "Vedado anunciar especialidade sem título certificado (Art. 3º, III).",
+      "article_reference": "Art. 3º, III"
+    },
+    {
+      "term": "especialistas em direito do consumidor",
+      "category": "especialidade_sem_titulo",
+      "severity": "CRITICAL",
+      "rationale": "Vedado anunciar especialidade sem título certificado (Art. 3º, III). Divulgar como 'Áreas de Atuação'.",
       "article_reference": "Art. 3º, III"
     },
     {
       "term": "especialista em família",
       "category": "especialidade_sem_titulo",
       "severity": "CRITICAL",
-      "rationale": "Vedado intitular-se especialista em Direito de Família sem titulação formal. Divulgar como 'Área de Atuação: Direito de Família e Sucessões'.",
+      "rationale": "Vedado intitular-se especialista em Direito de Família sem titulação formal nos termos do art. 3º-A (Art. 3º, III).",
+      "article_reference": "Art. 3º, III"
+    },
+    {
+      "term": "especialistas em família",
+      "category": "especialidade_sem_titulo",
+      "severity": "CRITICAL",
+      "rationale": "Variação no plural vedada pelo Art. 3º, III.",
+      "article_reference": "Art. 3º, III"
+    },
+    {
+      "term": "especialista em direito de família",
+      "category": "especialidade_sem_titulo",
+      "severity": "CRITICAL",
+      "rationale": "Vedado anunciar especialidade sem título certificado (Art. 3º, III).",
+      "article_reference": "Art. 3º, III"
+    },
+    {
+      "term": "especialistas em direito de família",
+      "category": "especialidade_sem_titulo",
+      "severity": "CRITICAL",
+      "rationale": "Vedado anunciar especialidade sem título certificado (Art. 3º, III). Divulgar como 'Áreas de Atuação'.",
+      "article_reference": "Art. 3º, III"
+    },
+    {
+      "term": "especialista em direito imobiliário",
+      "category": "especialidade_sem_titulo",
+      "severity": "HIGH",
+      "rationale": "A pós-graduação lato sensu cabe como qualificação profissional verdadeira (art. 4º, § 1º), mas a banca deve divulgar institucionalmente 'Áreas de Atuação', sem autointitulação ampla como especialista do art. 3º-A.",
+      "article_reference": "Art. 3º, III"
+    },
+    {
+      "term": "especialistas em direito imobiliário",
+      "category": "especialidade_sem_titulo",
+      "severity": "HIGH",
+      "rationale": "Variação institucional no plural vedada para a banca (Art. 3º, III).",
       "article_reference": "Art. 3º, III"
     },
     {
@@ -173,9 +271,9 @@
     },
     {
       "id": "RULE-OAB-003",
-      "provimento_article": "Art. 3º, caput, inc. IV e § 1º",
-      "title": "Vedação a expressões persuasivas, autoengrandecimento, comparação e incitação ao litígio",
-      "description": "A publicidade profissional deve primar pela discrição e sobriedade, sendo vedado o uso de orações persuasivas, adjetivos superlativos ou de autoengrandecimento ('o melhor', 'líder'), bem como qualquer incitação direta ou indireta ao litígio (§ 1º).",
+      "provimento_article": "Art. 3º, caput, inc. II, IV e § 1º",
+      "title": "Vedação a indução a erro, expressões persuasivas, autoengrandecimento, comparação e incitação ao litígio",
+      "description": "A publicidade profissional deve primar pela discrição e sobriedade, sendo vedada a veiculação de informações que possam induzir a erro ou causar dano (inc. II), orações persuasivas ou de autoengrandecimento ('o melhor', 'líder') (inc. IV), bem como incitação direta ou indireta ao litígio (§ 1º). A divulgação da advocacia conjunta com outra atividade é vedada pelo Art. 8º.",
       "target_audience": ["copywriters", "partners"],
       "enforcement_type": "automated"
     },
@@ -190,16 +288,16 @@
     {
       "id": "RULE-OAB-005",
       "provimento_article": "Art. 3º, inciso III",
-      "title": "Vedação ao anúncio de especialidade jurídica sem título certificado ou notória especialização",
-      "description": "É vedado anunciar ou divulgar especialidades jurídicas sem título de pós-graduação/especialização reconhecido ou notória especialização comprovada. No portal de Souza Guedes Advogados, as quatro disciplinas devem ser apresentadas com a nomenclatura descritiva 'Áreas de Atuação' (Direito Imobiliário, Saúde, Consumidor, Família e Sucessões), vedada a autointitulação desprovida de título como 'Especialista em Saúde/Consumidor/Família', ressalvada a pós-graduação formal da sócia Lays Regina de Souza em Direito Imobiliário Notarial e Registral.",
+      "title": "Vedação ao anúncio de especialidades sem título certificado ou notória especialização",
+      "description": "Conforme Art. 3º, III do Provimento CFOAB nº 205/2021, é vedado o 'anúncio de especialidades para as quais não se possua título certificado ou notória especialização, nos termos do art. 3º-A do Estatuto da Advocacia'. A pós-graduação lato sensu não constitui, por si, o título certificado do art. 3º-A, cabendo como qualificação profissional verdadeira (art. 4º, § 1º). No portal, as disciplinas devem ser apresentadas com a nomenclatura descritiva 'Áreas de Atuação' (Direito Imobiliário, Saúde, Consumidor, Família e Sucessões), vedada a autointitulação como 'Especialistas em...'.",
       "target_audience": ["copywriters", "designers", "partners"],
       "enforcement_type": "hybrid"
     },
     {
       "id": "RULE-OAB-006",
       "provimento_article": "Art. 4º, caput e §§ 1º a 5º",
-      "title": "Marketing de conteúdo e anúncios digitais nos meios não vedados pelo Art. 40 do CED",
-      "description": "Autorização de publicidade ativa e passiva no marketing de conteúdo e em anúncios na internet e redes sociais, desde que com finalidade informativa, respeitados os limites éticos e os meios de divulgação permitidos pelo Art. 40 do Código de Ética e Disciplina.",
+      "title": "Marketing de conteúdo, anúncios digitais e sigilo de clientes",
+      "description": "Autorização de publicidade ativa e passiva no marketing de conteúdo e em anúncios na internet e redes sociais, desde que com finalidade informativa e nos meios permitidos pelo Art. 40 do CED. Vedada a divulgação de lista de clientes ou casos concretos (§ 2º c/c Art. 5º, § 3º e Art. 6º).",
       "target_audience": ["copywriters", "developers", "partners"],
       "enforcement_type": "manual_review"
     },
@@ -214,8 +312,8 @@
     {
       "id": "RULE-OAB-008",
       "provimento_article": "Art. 6º, caput, parágrafo único e Anexo Único",
-      "title": "Limites da publicidade ativa, vedação à ostentação de patrimônio e diretrizes do Google Ads",
-      "description": "A publicidade ativa é restrita a conteúdo educativo, vedada a menção a dimensões, estrutura física do escritório, promessas de resultado ou casos concretos. É terminantemente proibida a ostentação de bens patrimoniais decorrentes da atividade advocatícia em qualquer publicidade profissional (parágrafo único). Anúncios de busca (Google Ads) devem responder a consultas ativas do usuário, sem uso de marcas de concorrentes ou termos mercantis (Anexo Único).",
+      "title": "Limites da publicidade ativa, promessa de resultado, vedação à ostentação e diretrizes do Google Ads",
+      "description": "A publicidade ativa é restrita a conteúdo educativo, vedada a menção a dimensões, estrutura física do escritório, promessas de resultado ('resultado garantido', 'causa ganha') ou casos concretos. É terminantemente proibida a ostentação de bens patrimoniais decorrentes da atividade advocatícia em qualquer publicidade profissional (parágrafo único). Anúncios de busca (Google Ads) devem responder a consultas ativas do usuário, sem uso de marcas de concorrentes ou termos mercantis (Anexo Único).",
       "target_audience": ["copywriters", "designers", "partners"],
       "enforcement_type": "hybrid"
     }
