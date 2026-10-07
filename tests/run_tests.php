@@ -4,13 +4,17 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/Unit/FirmProfileSchemaTest.php';
 require_once __DIR__ . '/Unit/FirmProfileEntityTest.php';
+require_once __DIR__ . '/Unit/EthicalComplianceSchemaTest.php';
+require_once __DIR__ . '/Unit/EthicalContentValidatorTest.php';
 
 use Tests\Unit\FirmProfileSchemaTest;
 use Tests\Unit\FirmProfileEntityTest;
+use Tests\Unit\EthicalComplianceSchemaTest;
+use Tests\Unit\EthicalContentValidatorTest;
 
 echo "====================================================\n";
 echo " Executando Suíte de Testes: Souza Guedes Advogados \n";
-echo " Validação de Contrato Canônico & DTOs - WDLC 1.1   \n";
+echo " Validação de Contrato Canônico & DTOs - WDLC 1.1/1.2\n";
 echo "====================================================\n\n";
 
 $passed = 0;
@@ -20,6 +24,8 @@ $errors = [];
 $testClasses = [
     FirmProfileSchemaTest::class,
     FirmProfileEntityTest::class,
+    EthicalComplianceSchemaTest::class,
+    EthicalContentValidatorTest::class,
 ];
 
 foreach ($testClasses as $className) {

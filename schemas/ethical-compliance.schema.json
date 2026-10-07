@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SouzaGuedesEthicalComplianceCatalog",
+  "description": "Schema canônico para validação de conformidade ética da advocacia (Provimento CFOAB nº 205/2021 c/c CED e Lei nº 8.906/1994)",
+  "type": "object",
+  "required": [
+    "version",
+    "last_updated",
+    "regulatory_framework",
+    "mandatory_identifications",
+    "prohibited_expressions",
+    "rules",
+    "pre_publication_signoff_protocol"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Versão do catálogo de conformidade ética"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "Data da última atualização"
+    },
+    "regulatory_framework": {
+      "type": "object",
+      "required": ["statute", "primary_provimento", "ethics_code"],
+      "properties": {
+        "statute": {
+          "type": "string",
+          "description": "Estatuto da Advocacia e da OAB (Lei Federal nº 8.906/1994)"
+        },
+        "primary_provimento": {
+          "type": "string",
+          "description": "Provimento principal de publicidade e propaganda (Provimento CFOAB nº 205/2021)"
+        },
+        "ethics_code": {
+          "type": "string",
+          "description": "Código de Ética e Disciplina da OAB (Resolução CFOAB nº 02/2015)"
+        }
+      }
+    },
+    "mandatory_identifications": {
+      "type": "object",
+      "required": [
+        "require_lawyer_full_name",
+        "require_oab_registration_number",
+        "require_uf_subdivision"
+      ],
+      "properties": {
+        "require_lawyer_full_name": {
+          "type": "boolean",
+          "description": "Exigência de menção expressa do nome completo dos advogados"
+        },
+        "require_oab_registration_number": {
+          "type": "boolean",
+          "description": "Exigência do número de inscrição na OAB"
+        },
+        "require_uf_subdivision": {
+          "type": "boolean",
+          "description": "Exigência da identificação da Seccional da OAB (ex.: SP)"
+        },
+        "society_registration_rules": {
+          "type": "string",
+          "description": "Regras aplicáveis ao registro da Sociedade de Advogados na Seccional"
+        }
+      }
+    },
+    "prohibited_expressions": {
+      "type": "array",
+      "description": "Catálogo de termos e expressões expressamente vedadas pelo regramento ético",
+      "items": {
+        "type": "object",
+        "required": [
+          "term",
+          "category",
+          "severity",
+          "rationale",
+          "article_reference"
+        ],
+        "properties": {
+          "term": {
+            "type": "string",
+            "description": "Expressão vedada"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "mercantilizacao",
+              "superlativo",
+              "promessa_resultado",
+              "captacao_litigio",
+              "preco_honorarios",
+              "ostentacao"
+            ],
+            "description": "Categoria da infração"
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["CRITICAL", "HIGH"],
+            "description": "Nível de severidade da violação"
+          },
+          "rationale": {
+            "type": "string",
+            "description": "Fundamentação jurídica da proibição"
+          },
+          "article_reference": {
+            "type": "string",
+            "description": "Dispositivo normativo de referência (ex: Art. 4º, Provimento 205/2021)"
+          }
+        }
+      }
+    },
+    "rules": {
+      "type": "array",
+      "description": "Matriz de regras regulatórias operacionais",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "provimento_article",
+          "title",
+          "description",
+          "target_audience",
+          "enforcement_type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identificador único da regra"
+          },
+          "provimento_article": {
+            "type": "string",
+            "description": "Artigo do Provimento 205/2021 de referência"
+          },
+          "title": {
+            "type": "string",
+            "description": "Título descritivo da regra"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detalhamento e diretriz operacional da regra"
+          },
+          "target_audience": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["copywriters", "developers", "designers", "partners"]
+            },
+            "description": "Público técnico-alvo da regra"
+          },
+          "enforcement_type": {
+            "type": "string",
+            "enum": ["automated", "manual_review", "hybrid"],
+            "description": "Forma de verificação e aplicação da regra"
+          }
+        }
+      }
+    },
+    "pre_publication_signoff_protocol": {
+      "type": "object",
+      "required": [
+        "workflow_steps",
+        "required_approvers",
+        "checklist_items"
+      ],
+      "properties": {
+        "workflow_steps": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Etapas do fluxo de revisão pré-publicação"
+        },
+        "required_approvers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Sócios ou responsáveis com poder de sign-off formal"
+        },
+        "checklist_items": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Itens mandatórios do checklist de conformidade pré-publicação"
+        }
+      }
+    }
+  }
+}
