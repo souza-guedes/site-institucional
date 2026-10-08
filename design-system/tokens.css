@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap');
+
+:root{
+  /* Cores */
+  --turquesa: #5AA7A1;
+  --petroleo: #1E5A56;
+  --petroleo-profundo: #123B39;
+  --tinta: #0E1E1D;
+  --papel: #F5F2EC;
+  --nevoa: #E4EEEC;
+  --texto-secundario: #4A5554;
+  --texto-claro: #B9CFCC;
+  --latao: #C9A970;
+  --latao-escuro: #7A5F33;
+  --linha: #CFD8D6;
+  --borda-campo: #6E7C7A;
+  --branco: #FFFFFF;
+
+  /* Famílias */
+  --font-display: "Cinzel", "Trajan Pro", Georgia, serif;
+  --font-titulo: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+
+  /* spacing */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --space-10: 80px;
+  --space-16: 128px;
+
+  /* radius */
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-full: 9999px;
+
+  /* border */
+  --hairline: 1px;
+}
+
+.t-eyebrow{font-family:var(--font-display);font-size:13px;line-height:16px;font-weight:500;letter-spacing:0.18em;}
+.t-display{font-family:var(--font-display);font-size:44px;line-height:52px;font-weight:400;letter-spacing:0.04em;}
+.t-h1{font-family:var(--font-titulo);font-size:46px;line-height:54px;font-weight:600;letter-spacing:-0.01em;}
+.t-h2{font-family:var(--font-titulo);font-size:34px;line-height:42px;font-weight:600;letter-spacing:-0.01em;}
+.t-h3{font-family:var(--font-titulo);font-size:22px;line-height:30px;font-weight:600;}
+.t-lead{font-family:var(--font-sans);font-size:20px;line-height:30px;font-weight:400;}
+.t-body{font-family:var(--font-sans);font-size:17px;line-height:27px;font-weight:400;}
+.t-botao{font-family:var(--font-sans);font-size:16px;line-height:20px;font-weight:600;}
+.t-nota{font-family:var(--font-sans);font-size:14px;line-height:21px;font-weight:400;}
