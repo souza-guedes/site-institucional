@@ -3,3 +3,6 @@ composer.phar
 .phpunit.result.cache
 .DS_Store
 Thumbs.db
+
+# Pasta de assets originais da marca (24 MB, não rastreada)
+SITE-Conteudo de marca/

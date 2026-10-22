@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockups Souza Guedes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Visual do modo Preview do Stitch: canvas escuro pontilhado, painéis flutuantes e um aparelho por vez no centro */
+:root{
+  --canvas:#1C1C1D; --dot:#2E2E30; --panel:#232325; --panel-2:#2C2C2F; --border:#38383C;
+  --text:#E8E8EA; --muted:#A2A2A8; --accent:#8F86F7; --accent-bg:rgba(143,134,247,.16);
+  --bezel:#C3C7CE; --bezel-edge:#9EA3AB;
+  --font:"Google Sans","Segoe UI",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;overflow:hidden;background:var(--canvas);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.4;
+  background-image:radial-gradient(var(--dot) 1px,transparent 1.2px);background-size:22px 22px}
+button,a{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pill{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;background:var(--panel);border:1px solid var(--border);font-weight:500;font-size:15px;text-decoration:none;cursor:pointer;white-space:nowrap}
+.pill svg,.tool svg{width:18px;height:18px;flex:none}
+
+/* Barra superior */
+.bar{position:fixed;top:14px;left:16px;right:16px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;z-index:5;pointer-events:none}
+.bar > *{pointer-events:auto}
+.project{justify-self:start;max-width:100%;overflow:hidden}
+.project span{overflow:hidden;text-overflow:ellipsis}
+.seg{display:flex;gap:2px;padding:4px;border-radius:999px;background:var(--panel);border:1px solid var(--border)}
+.seg button{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border:0;border-radius:999px;background:transparent;color:var(--muted);font-weight:500;font-size:15px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--panel-2);color:var(--text)}
+.seg svg{width:16px;height:16px}
+.right{justify-self:end;display:flex;align-items:center;gap:10px}
+.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#123B39;border:1px solid #5AA7A1;color:#F5F2EC;font-size:13px;letter-spacing:.06em}
+
+/* Painel de telas */
+.screens{position:fixed;top:72px;left:16px;width:232px;max-height:calc(100% - 90px);display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--border);border-radius:16px;z-index:4;overflow:hidden}
+.screens__head{display:flex;align-items:center;justify-content:space-between;padding:14px 12px 10px 16px;font-weight:500;font-size:15px}
+.icon-btn{width:28px;height:28px;border:0;border-radius:8px;background:transparent;color:var(--muted);display:grid;place-items:center;cursor:pointer}
+.icon-btn:hover{background:var(--panel-2);color:var(--text)}
+.icon-btn svg{width:16px;height:16px}
+.screens__list{list-style:none;margin:0;padding:4px 12px 12px;display:grid;gap:12px;overflow:auto;scrollbar-width:thin;scrollbar-color:#444 transparent}
+.card{display:block;width:100%;padding:0;border:2px solid var(--border);border-radius:12px;background:var(--panel-2);overflow:hidden;cursor:pointer;text-align:left}
+.card img{display:block;width:100%;aspect-ratio:4 / 3;object-fit:cover;object-position:top;background:#F5F2EC}
+body[data-device="mobile"] .card img{aspect-ratio:3 / 4}
+.card span{display:block;padding:8px 10px;font-weight:500;font-size:13px}
+.card:hover{border-color:#55555c}
+.card[aria-current="true"]{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-bg)}
+.screens__foot{display:grid;gap:8px;padding:10px 12px 12px;border-top:1px solid var(--border)}
+.wide{display:flex;align-items:center;justify-content:center;gap:8px;height:40px;border-radius:10px;border:1px solid var(--border);background:var(--panel-2);font-weight:500;cursor:pointer}
+.wide--dashed{background:transparent;border-style:dashed}
+.wide svg{width:16px;height:16px}
+.screens.collapsed .screens__list,.screens.collapsed .screens__foot{display:none}
+
+/* Aparelho */
+.stage{position:fixed;inset:0;display:grid;place-items:center;padding:var(--pad-t) var(--pad-r) var(--pad-b) var(--pad-l)}
+.device{position:relative;background:var(--bezel);box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),0 0 0 1px var(--bezel-edge),0 24px 60px rgba(0,0,0,.45)}
+.device--desktop{padding:10px;border-radius:30px}
+.device--mobile{padding:9px;border-radius:44px}
+.device .screen{width:100%;height:100%;overflow-y:auto;overflow-x:hidden;background:#F5F2EC;scrollbar-width:none}
+.device .screen::-webkit-scrollbar{display:none}
+.device--desktop .screen{border-radius:21px}
+.device--mobile .screen{border-radius:36px}
+.screen img{display:block;width:100%;height:auto}
+body[data-device="desktop"] .device--mobile,body[data-device="mobile"] .device--desktop{display:none}
+
+/* Barra de ferramentas da direita */
+.tools{position:fixed;right:16px;top:50%;transform:translateY(-50%);display:grid;justify-items:center;gap:14px;z-index:4}
+.chat{width:44px;height:30px;border-radius:999px;border:0;background:#F1F1F3;color:#1C1C1D;display:grid;place-items:center;cursor:pointer}
+.chat[aria-pressed="true"]{background:var(--accent);color:#fff}
+.chat svg{width:20px;height:20px}
+.toolbar{display:grid;gap:6px;padding:6px;border-radius:999px;background:var(--panel);border:1px solid var(--border)}
+.tool{width:40px;height:40px;border-radius:50%;border:0;background:transparent;color:var(--muted);display:grid;place-items:center;cursor:pointer;text-decoration:none}
+.tool:hover{color:var(--text);background:var(--panel-2)}
+.tool[aria-pressed="true"]{background:#F1F1F3;color:#1C1C1D}
+.help{position:fixed;right:20px;bottom:18px;width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--panel);display:grid;place-items:center;cursor:pointer;z-index:4;font-weight:500}
+
+/* Notas do apresentador */
+.notes{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);width:min(560px,calc(100% - 32px));padding:14px 18px;border-radius:16px;background:var(--panel);border:1px solid var(--border);box-shadow:0 16px 40px rgba(0,0,0,.4);z-index:6;display:grid;gap:4px}
+.notes small{color:var(--accent);font-weight:500;letter-spacing:.02em}
+.notes b{font-weight:500;font-size:16px}
+.notes p{margin:0;color:var(--muted)}
+
+/* Visão geral e ajuda */
+.overlay{position:fixed;inset:0;z-index:8;background:rgba(20,20,21,.96);overflow:auto;padding:76px 24px 40px}
+.overlay__close{position:fixed;top:16px;right:16px}
+.overlay h2{font-weight:500;font-size:20px;margin:0 auto 18px;max-width:1240px}
+.overview{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.help-card{max-width:440px;margin:10vh auto 0;padding:22px 24px;border-radius:16px;background:var(--panel);border:1px solid var(--border);display:grid;gap:10px}
+.help-card h2{margin:0}
+.help-card dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:0}
+.help-card dt{font-weight:500}
+.help-card dd{margin:0;color:var(--muted)}
+kbd{font-family:inherit;border:1px solid var(--border);border-radius:5px;padding:1px 7px;background:var(--panel-2)}
+
+/* Tela cheia: só o aparelho e as ferramentas */
+body.full .bar,body.full .screens,body.full .help{display:none}
+
+@media (max-width:760px){
+  .screens,.project,.right .pill span{display:none}
+  .bar{grid-template-columns:auto 1fr auto}
+  .seg{justify-self:center}
+}
+</style>
+</head>
+<body data-device="desktop">
+
+<header class="bar">
+  <button type="button" class="pill project" id="overview-btn" title="Visão geral das telas">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+    <span>Souza Guedes Advogados — Site institucional</span>
+  </button>
+  <div class="seg" role="group" aria-label="Modo">
+    <button type="button" id="mode-preview" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg>Preview</button>
+    <button type="button" id="mode-notes" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h10l4 4v12H5zM14 4v5h5M8 13h8M8 17h5"/></svg>Notas</button>
+  </div>
+  <div class="right">
+    <button type="button" class="pill" id="share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg><span id="share-label">Share</span></button>
+    <span class="avatar" aria-hidden="true">SG</span>
+  </div>
+</header>
+
+<aside class="screens" id="screens" aria-label="Telas do protótipo">
+  <div class="screens__head">
+    <span>Screens in prototype</span>
+    <button type="button" class="icon-btn" id="collapse" aria-label="Recolher painel" aria-expanded="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+  </div>
+  <ol class="screens__list" id="list"></ol>
+  <div class="screens__foot">
+    <button type="button" class="wide" id="overview-btn-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg>Visão geral</button>
+    <button type="button" class="wide wide--dashed" id="full-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>Apresentar em tela cheia</button>
+  </div>
+</aside>
+
+<main class="stage" id="stage">
+  <div class="device device--desktop" id="dev-desktop" aria-label="Versão desktop">
+    <div class="screen" id="desk" tabindex="0"><img id="desk-img" alt=""></div>
+  </div>
+  <div class="device device--mobile" id="dev-mobile" aria-label="Versão mobile">
+    <div class="screen" id="mob" tabindex="0"><img id="mob-img" alt=""></div>
+  </div>
+</main>
+
+<nav class="tools" aria-label="Ferramentas">
+  <button type="button" class="chat" id="notes-btn" aria-pressed="false" aria-label="Notas do apresentador" title="Notas (N)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18" cy="12" r="2"/></svg></button>
+  <div class="toolbar">
+    <button type="button" class="tool" id="device-btn" title="Trocar aparelho (D)" aria-label="Trocar entre desktop e mobile">
+      <svg id="ico-desktop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg>
+      <svg id="ico-mobile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" hidden><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>
+    </button>
+    <button type="button" class="tool" id="top-btn" title="Voltar ao topo da página" aria-label="Voltar ao topo da página"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg></button>
+    <button type="button" class="tool" id="full-tool" aria-pressed="false" title="Tela cheia (F)" aria-label="Apresentar em tela cheia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></button>
+    <button type="button" class="tool" id="grid-tool" title="Visão geral (G)" aria-label="Visão geral das telas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM18 14h2M14 18v2"/></svg></button>
+    <a class="tool" id="open-tool" href="#" target="_blank" rel="noopener" title="Abrir a tela inteira em outra aba" aria-label="Abrir a tela inteira em outra aba"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
+  </div>
+</nav>
+
+<button type="button" class="help" id="help-btn" aria-label="Atalhos de teclado">?</button>
+
+<section class="notes" id="notes" hidden aria-live="polite">
+  <small id="n-wf"></small>
+  <b id="n-title"></b>
+  <p id="n-text"></p>
+</section>
+
+<div class="overlay" id="overlay" hidden>
+  <button type="button" class="pill overlay__close" id="overlay-close">Fechar</button>
+  <h2>Todas as telas</h2>
+  <div class="overview" id="overview"></div>
+</div>
+
+<div class="overlay" id="help" hidden>
+  <button type="button" class="pill overlay__close" id="help-close">Fechar</button>
+  <div class="help-card">
+    <h2>Atalhos</h2>
+    <dl>
+      <dt><kbd>←</kbd> <kbd>→</kbd></dt><dd>Tela anterior / próxima</dd>
+      <dt><kbd>D</kbd></dt><dd>Trocar entre desktop e mobile</dd>
+      <dt><kbd>N</kbd></dt><dd>Mostrar ou esconder as notas</dd>
+      <dt><kbd>F</kbd></dt><dd>Tela cheia, só com o aparelho</dd>
+      <dt><kbd>G</kbd></dt><dd>Visão geral de todas as telas</dd>
+      <dt><kbd>Esc</kbd></dt><dd>Fechar painel ou sair da tela cheia</dd>
+    </dl>
+    <p style="margin:0;color:var(--muted)">Role dentro do aparelho para percorrer a página inteira.</p>
+  </div>
+</div>
+
+<script>
+const SCREENS = [
+  { f:'inicio', t:'Início', r:'/', wf:'WF-01', n:'A composição da marca abre a página e cada seção retoma um elemento dela. Sócios com OAB/SP no hero e no Corpo Jurídico; artigos em carrossel no mobile.' },
+  { f:'sobre', t:'O Escritório', r:'/sobre', wf:'WF-02', n:'Trajetória, missão e visão em faixa branca e princípios éticos em faixa papel, seguidos do bloco de atendimento.' },
+  { f:'areas', t:'Áreas de Atuação', r:'/areas-de-atuacao', wf:'WF-03', n:'Nomenclatura obrigatória “Áreas de Atuação” (Art. 3º, III). Filtro por público: pessoas físicas e jurídicas.' },
+  { f:'area-imobiliario', t:'Direito Imobiliário', r:'/areas-de-atuacao/direito-imobiliario', wf:'WF-04', n:'Detalhe de área: escopo, procedimentos e público atendido, com painel de atendimento passivo. Mesmo modelo para as quatro áreas.' },
+  { f:'advogados', t:'Corpo Jurídico', r:'/advogados', wf:'WF-05', n:'Perfis dos sócios com formação verdadeira e inscrição OAB/SP (Art. 1º, § 1º).' },
+  { f:'artigos', t:'Artigos e Informações', r:'/artigos', wf:'WF-06', n:'Aviso de natureza educativa (Art. 4º) antes do conteúdo, publicação mais recente em destaque e filtro por área.' },
+  { f:'artigo', t:'Artigo', r:'/artigos/usucapiao-extrajudicial', wf:'WF-06b', n:'O clique leva direto ao texto. Autoria com OAB/SP, área relacionada e “Leia também”. Proposta de rota nova.' },
+  { f:'contato', t:'Contato', r:'/contato', wf:'WF-07', n:'Canais oficiais, como funciona o primeiro contato, formulário com consentimento LGPD e mapa da sede.' },
+  { f:'privacidade', t:'Privacidade e LGPD', r:'/privacidade', wf:'WF-08', n:'Lei 13.709/2018, sigilo profissional e canal do encarregado de dados.' },
+  { f:'404', t:'Página não encontrada', r:'/pagina-inexistente', wf:'404', n:'Erro com atalhos para início, áreas e contato, no selo da marca.' },
+  { f:'menu', t:'Menu mobile', r:'/', wf:'Estado', n:'O menu desce sob o cabeçalho fixo, com o conteúdo escurecido e levemente desfocado atrás.', mobileOnly:true }
+];
+const $ = s => document.querySelector(s);
+const src = (s, vp) => s.mobileOnly ? 'telas/menu-mobile.jpg' : `telas/${s.f}-${vp}.jpg`;
+const DESK_AR = 1.25;          // proporção do quadro desktop do Stitch
+const MOB_AR = 393 / 852;      // proporção do celular
+let i = 0, device = 'desktop';
+
+function renderList() {
+  const vp = device;
+  $('#list').innerHTML = SCREENS.map((s, k) => (s.mobileOnly && vp === 'desktop') ? '' :
+    `<li><button type="button" class="card" data-i="${k}"><img src="${src(s, vp)}" alt="" loading="lazy"><span>${s.t}</span></button></li>`).join('');
+  markCurrent();
+}
+function markCurrent() {
+  document.querySelectorAll('.card').forEach(c => c.setAttribute('aria-current', String(+c.dataset.i === i)));
+  document.querySelector('.card[aria-current="true"]')?.scrollIntoView({ block:'nearest' });
+}
+
+/* Ajusta o aparelho ao espaço entre o painel de telas e a barra de ferramentas */
+function fit() {
+  const full = document.body.classList.contains('full');
+  const narrow = innerWidth <= 760;
+  const padL = full || narrow ? 24 : 16 + 232 + 40;
+  const padR = narrow ? 76 : 16 + 52 + 40;
+  const padT = full ? 24 : 72;
+  const padB = full ? 24 : 40;
+  const st = $('#stage').style;
+  st.setProperty('--pad-l', padL + 'px'); st.setProperty('--pad-r', padR + 'px');
+  st.setProperty('--pad-t', padT + 'px'); st.setProperty('--pad-b', padB + 'px');
+  const w = innerWidth - padL - padR, h = innerHeight - padT - padB;
+  const d = $('#dev-desktop'), m = $('#dev-mobile');
+  const dh = Math.min(h, w / DESK_AR);
+  d.style.height = dh + 'px'; d.style.width = Math.min(w, dh * DESK_AR) + "px";
+  const mh = Math.min(h, w / MOB_AR);
+  m.style.height = mh + 'px'; m.style.width = mh * MOB_AR + 'px';
+}
+
+function show(k) {
+  const list = SCREENS.map((s, n) => n).filter(n => !(SCREENS[n].mobileOnly && device === 'desktop'));
+  const pos = list.indexOf(k);
+  i = pos === -1 ? (k > i ? list.find(n => n > i) ?? list[0] : [...list].reverse().find(n => n < i) ?? list.at(-1)) : k;
+  const s = SCREENS[i];
+  $('#desk-img').src = src(s, 'desktop'); $('#desk-img').alt = `${s.t}, versão desktop`;
+  $('#mob-img').src = src(s, 'mobile'); $('#mob-img').alt = `${s.t}, versão mobile`;
+  $('#desk').scrollTop = 0; $('#mob').scrollTop = 0;
+  $('#n-wf').textContent = `${s.wf} · ${s.r}`;
+  $('#n-title').textContent = s.t;
+  $('#n-text').textContent = s.n;
+  $('#open-tool').href = src(s, device);
+  markCurrent();
+  const nx = SCREENS[(i + 1) % SCREENS.length]; new Image().src = src(nx, device);
+  try { history.replaceState(null, '', '#' + s.f); } catch (e) {}
+}
+function step(dir) {
+  const list = SCREENS.map((s, n) => n).filter(n => !(SCREENS[n].mobileOnly && device === 'desktop'));
+  const p = list.indexOf(i);
+  show(list[(p + dir + list.length) % list.length]);
+}
+function setDevice(dv) {
+  if (device === 'mobile' && dv === 'desktop' && SCREENS[i].mobileOnly) i = 0;
+  device = dv;
+  document.body.dataset.device = dv;
+  $('#ico-desktop').hidden = dv !== 'desktop';
+  $('#ico-mobile').hidden = dv !== 'mobile';
+  renderList(); show(i); fit();
+}
+function setNotes(on) {
+  $('#notes').hidden = !on;
+  $('#notes-btn').setAttribute('aria-pressed', String(on));
+  $('#mode-notes').setAttribute('aria-pressed', String(on));
+  $('#mode-preview').setAttribute('aria-pressed', String(!on));
+}
+function setFull(on) {
+  document.body.classList.toggle('full', on);
+  $('#full-tool').setAttribute('aria-pressed', String(on));
+  if (on) document.documentElement.requestFullscreen?.().catch(() => {});
+  else if (document.fullscreenElement) document.exitFullscreen?.().catch(() => {});
+  fit();
+}
+function openOverview() {
+  $('#overview').innerHTML = SCREENS.map((s, k) => (s.mobileOnly && device === 'desktop') ? '' :
+    `<button type="button" class="card" data-i="${k}"><img src="${src(s, device)}" alt="" loading="lazy"><span>${s.t}</span></button>`).join('');
+  $('#overlay').hidden = false; $('#overlay-close').focus();
+}
+
+$('#list').addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (b) show(+b.dataset.i); });
+$('#overview').addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (b) { $('#overlay').hidden = true; show(+b.dataset.i); } });
+$('#device-btn').addEventListener('click', () => setDevice(device === 'desktop' ? 'mobile' : 'desktop'));
+$('#top-btn').addEventListener('click', () => { $('#desk').scrollTo({ top:0 }); $('#mob').scrollTo({ top:0 }); });
+$('#notes-btn').addEventListener('click', () => setNotes($('#notes').hidden));
+$('#mode-notes').addEventListener('click', () => setNotes(true));
+$('#mode-preview').addEventListener('click', () => setNotes(false));
+$('#full-tool').addEventListener('click', () => setFull(!document.body.classList.contains('full')));
+$('#full-btn').addEventListener('click', () => setFull(true));
+['#grid-tool', '#overview-btn', '#overview-btn-2'].forEach(s => $(s).addEventListener('click', openOverview));
+$('#overlay-close').addEventListener('click', () => $('#overlay').hidden = true);
+$('#help-btn').addEventListener('click', () => { $('#help').hidden = false; $('#help-close').focus(); });
+$('#help-close').addEventListener('click', () => $('#help').hidden = true);
+$('#collapse').addEventListener('click', e => {
+  const c = $('#screens').classList.toggle('collapsed');
+  e.currentTarget.setAttribute('aria-expanded', String(!c));
+});
+$('#share').addEventListener('click', async () => {
+  const label = $('#share-label');
+  try { await navigator.clipboard.writeText(location.href.split('#')[0]); label.textContent = 'Link copiado'; }
+  catch (err) { label.textContent = 'Use o Share do claude.ai'; }
+  setTimeout(() => label.textContent = 'Share', 2200);
+});
+document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && document.body.classList.contains('full')) setFull(false); });
+addEventListener('keydown', e => {
+  if (e.altKey || e.ctrlKey || e.metaKey) return;
+  const k = e.key.toLowerCase();
+  if (k === 'escape') { $('#overlay').hidden = true; $('#help').hidden = true; if (document.body.classList.contains('full')) setFull(false); return; }
+  if (!$('#overlay').hidden || !$('#help').hidden) return;
+  if (k === 'arrowright') step(1);
+  else if (k === 'arrowleft') step(-1);
+  else if (k === 'd') setDevice(device === 'desktop' ? 'mobile' : 'desktop');
+  else if (k === 'n') setNotes($('#notes').hidden);
+  else if (k === 'f') setFull(!document.body.classList.contains('full'));
+  else if (k === 'g') openOverview();
+});
+addEventListener('resize', fit);
+
+const start = SCREENS.findIndex(s => s.f === location.hash.slice(1));
+if (start > -1 && SCREENS[start].mobileOnly) device = 'mobile';
+setDevice(device);
+show(start > -1 ? start : 0);
+</script>
+</body>
+</html>
