@@ -1,6 +1,7 @@
-"""Gera uma cópia autônoma do protótipo: um único .html com as imagens embutidas.
+"""Gera uma cópia autônoma do protótipo: um único .html com o CSS e as imagens embutidos.
 
-Abre com dois cliques no navegador, sem servidor e sem a pasta assets/.
+Abre com dois cliques no navegador, sem servidor, sem a pasta assets/ e sem o componentes.css
+(WDLC 3.3) nem o design-system/tokens.css.
 Uso (na raiz do projeto):  python docs/fase-3-design-system/wdlc-3.2-mockups/build-standalone.py
 """
 import base64
@@ -18,7 +19,19 @@ def data_uri(rel):
     return f'data:{MIME[path.suffix.lower()]};base64,' + base64.b64encode(path.read_bytes()).decode()
 
 
+def inline_css(path):
+    """Conteúdo de uma folha de estilo, com os @import locais resolvidos (o das Google Fonts fica)."""
+    css = path.read_text(encoding='utf-8')
+    local = re.compile(r'@import url\("([^":]+)"\);\n?')
+    return local.sub(lambda m: inline_css((path.parent / m.group(1)).resolve()) + '\n', css)
+
+
 html = SRC.read_text(encoding='utf-8')
+
+# Folhas de estilo locais (<link rel="stylesheet" href="../...css">)
+html = re.sub(r'<link rel="stylesheet" href="([^":]+\.css)">',
+              lambda m: f'<style>\n{inline_css(HERE / m.group(1))}</style>', html)
+assert '.css"' not in html, 'ainda há folha de estilo local não embutida'
 
 # Imagens referenciadas diretamente no HTML (src="assets/...")
 html = re.sub(r'src="(assets/[^"$]+)"', lambda m: f'src="{data_uri(m.group(1))}"', html)
