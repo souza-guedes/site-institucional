@@ -23,6 +23,8 @@ Fórmula de luminância relativa do WCAG 2.x. Limites: texto normal 4,5:1; texto
 | turquesa | petroleo-profundo | 4,37 | só texto grande | Texto ≥24px apenas |
 | borda-campo | papel | 3,89 | AA (UI ≥3:1) | Borda de input |
 | borda-campo | branco | 4,35 | AA (UI ≥3:1) | Borda de input em formulário branco |
+| erro | branco | 7,57 | AAA | Mensagem e borda de campo inválido (WDLC 3.3) |
+| erro | papel | 6,78 | AA | Idem, formulário sobre papel |
 
 ## Combinações proibidas
 
@@ -32,9 +34,12 @@ Fórmula de luminância relativa do WCAG 2.x. Limites: texto normal 4,5:1; texto
 | turquesa sobre papel | 2,51 | Reprova |
 | turquesa sobre petroleo | 2,82 | Reprova |
 | latao sobre papel/nevoa | < 3 | Use latao-escuro em fundo claro |
+| erro sobre petroleo-profundo / tinta | 1,62 / 2,27 | Erro só em formulário claro |
 
 `linha` é decorativa (não carrega informação), por isso fica fora da exigência de contraste.
 
 ## Tailwind
 
 `tailwind.config.js` substitui a paleta padrão pelos tokens acima. Classes disponíveis: `text-tinta`, `bg-petroleo`, `border-linha`, `font-titulo`, `text-h1`, `p-4`, `rounded-sm` etc.
+
+Desde a WDLC 3.3, os breakpoints são `sm` 560px, `md` 760px e `lg` 1100px, e os títulos são mobile-first: `text-h2-mobile md:text-h2` (idem `display`, `h1`, `h3`, `lead`).

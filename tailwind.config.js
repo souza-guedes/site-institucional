@@ -3,6 +3,12 @@
 module.exports = {
   content: ['./src/**/*.php', './public/**/*.{php,html,js}'],
   theme: {
+    // Mesmos pontos do protótipo (WDLC 3.2) e do catálogo (WDLC 3.3).
+    screens: {
+      sm: '560px',
+      md: '760px',
+      lg: '1100px',
+    },
     // Substitui (não estende) a paleta padrão: só cores aprovadas e auditadas (ver docs/fase-3-design-system/wdlc-3.1-auditoria-wcag.md).
     colors: {
       transparent: 'transparent',
@@ -19,6 +25,7 @@ module.exports = {
       'latao-escuro': '#7A5F33',
       linha: '#CFD8D6',
       'borda-campo': '#6E7C7A',
+      erro: '#9B2C1F',
       branco: '#FFFFFF',
     },
     fontFamily: {
@@ -27,12 +34,18 @@ module.exports = {
       sans: ['Source Sans 3', 'Segoe UI', 'system-ui', 'sans-serif'],
     },
     // [tamanho, { lineHeight, fontWeight, letterSpacing }]
+    // Mobile-first: use o par, ex. `text-h2-mobile md:text-h2`.
     fontSize: {
       eyebrow: ['13px', { lineHeight: '16px', fontWeight: '500', letterSpacing: '0.18em' }],
-      display: ['44px', { lineHeight: '52px', fontWeight: '400', letterSpacing: '0.04em' }],
-      h1: ['46px', { lineHeight: '54px', fontWeight: '600', letterSpacing: '-0.01em' }],
+      'display-mobile': ['30px', { lineHeight: '38px', fontWeight: '400', letterSpacing: '0.03em' }],
+      display: ['44px', { lineHeight: '52px', fontWeight: '400', letterSpacing: '0.03em' }],
+      'h1-mobile': ['30px', { lineHeight: '38px', fontWeight: '600', letterSpacing: '-0.01em' }],
+      h1: ['44px', { lineHeight: '54px', fontWeight: '600', letterSpacing: '-0.01em' }],
+      'h2-mobile': ['26px', { lineHeight: '34px', fontWeight: '600', letterSpacing: '-0.01em' }],
       h2: ['34px', { lineHeight: '42px', fontWeight: '600', letterSpacing: '-0.01em' }],
+      'h3-mobile': ['20px', { lineHeight: '28px', fontWeight: '600' }],
       h3: ['22px', { lineHeight: '30px', fontWeight: '600' }],
+      'lead-mobile': ['19px', { lineHeight: '29px', fontWeight: '400' }],
       lead: ['20px', { lineHeight: '30px', fontWeight: '400' }],
       body: ['17px', { lineHeight: '27px', fontWeight: '400' }],
       botao: ['16px', { lineHeight: '20px', fontWeight: '600' }],
