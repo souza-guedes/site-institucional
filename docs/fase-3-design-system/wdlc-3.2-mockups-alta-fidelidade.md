@@ -6,7 +6,8 @@
 > **Épico Relacionado:** [#7](https://github.com/souza-guedes/site-institucional/issues/7)  
 > **Dependências:** tokens do WDLC 3.1 ([`design-system/tokens.css`](../../design-system/tokens.css)) e wireframes do WDLC 2.2 ([`wdlc-2.2-wireframes-taxonomia.md`](../fase-2-planejamento/wdlc-2.2-wireframes-taxonomia.md))  
 > **Protótipo navegável:** [`wdlc-3.2-mockups/prototipo.html`](wdlc-3.2-mockups/prototipo.html)  
-> **Apresentação das telas (link público):** https://claude.ai/artifact/9KUxcLx4LV4qbWviWRQqvg
+> **Apresentação das telas (link público):** https://claude.ai/artifact/9KUxcLx4LV4qbWviWRQqvg  
+> **Spec de uso (handoff Fase 5 / #22):** [`wdlc-3.2-spec-uso-mockups.md`](wdlc-3.2-spec-uso-mockups.md)
 
 ---
 
