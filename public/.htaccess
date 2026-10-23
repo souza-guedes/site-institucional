@@ -38,5 +38,35 @@
     Header set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
 
+# Compressão e cache (WDLC 6.1)
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript image/svg+xml application/json text/plain
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    # Imagens mantêm o nome quando trocadas: 30 dias. Fontes não mudam de conteúdo: 1 ano.
+    ExpiresByType image/webp "access plus 30 days"
+    ExpiresByType image/png "access plus 30 days"
+    ExpiresByType image/svg+xml "access plus 30 days"
+    ExpiresByType font/woff2 "access plus 1 year"
+    # CSS e JS levam ?v=<data de modificação> no link (asset() em src/Views/helpers.php)
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(woff2|css|js)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    <FilesMatch "\.(webp|png|svg)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+</IfModule>
+
+AddType font/woff2 .woff2
+AddType image/webp .webp
+
 # Desativação de listagem de diretórios
 Options -Indexes

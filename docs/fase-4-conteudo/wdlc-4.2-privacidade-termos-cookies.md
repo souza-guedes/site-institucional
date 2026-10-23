@@ -74,7 +74,6 @@ Os dados ficam com o escritório. Eles só passam por terceiros na medida necess
 
 - Provedor de e-mail: os e-mails chegam à caixa institucional do escritório, mantida no Gmail, serviço da Google.
 - Provedor de hospedagem do site, que armazena os registros técnicos de acesso.
-- Google Fonts, serviço da Google que fornece as fontes do site: ao carregar uma página, o navegador solicita as fontes aos servidores da Google, que recebem o endereço IP e as informações do navegador de quem visita.
 - Autoridades públicas, quando houver obrigação legal ou ordem judicial.
 
 Quem usa o WhatsApp para falar com o escritório também se sujeita aos termos e à política de privacidade do aplicativo.

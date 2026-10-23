@@ -16,7 +16,7 @@ $values = array_map(static fn (string $v): array => array_map('trim', explode(':
                 <p class="eyebrow">Trajetória</p>
                 <h2 class="h2" id="trajetoria-t">Uma advocacia próxima e técnica</h2>
                 <figure class="photo">
-                    <img src="/assets/img/socios-palacio.jpg" alt="<?= e(implode(' e ', array_column($firm['partners'], 'name'))) ?>, de terno azul-marinho, em frente a um edifício histórico" width="1000" height="1250" loading="lazy">
+                    <img src="/assets/img/socios-palacio.webp" srcset="<?= e(srcset('/assets/img/socios-palacio.webp', [1000, 720, 480])) ?>" sizes="(min-width: 1100px) 410px, calc(100vw - 32px)" alt=""<?= e(implode(' e ', array_column($firm['partners'], 'name'))) ?>, de terno azul-marinho, em frente a um edifício histórico" width="1000" height="1250" fetchpriority="high">
                     <figcaption><?= e(implode(' e ', array_column($firm['partners'], 'name'))) ?>, sócios fundadores.</figcaption>
                 </figure>
             </div>

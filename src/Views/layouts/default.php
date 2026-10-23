@@ -11,6 +11,6 @@ partial('head');
 <?php if ($showCta) { partial('cta'); } ?>
 <?php partial('footer'); ?>
 <?php partial('cookie-banner'); ?>
-<script src="/assets/js/site.js" defer></script>
+<script src="<?= e(asset('/assets/js/site.js')) ?>" defer></script>
 </body>
 </html>

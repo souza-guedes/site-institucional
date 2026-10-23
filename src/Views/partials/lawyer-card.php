@@ -6,7 +6,8 @@
  * @var string $variant 'compacto' (Home, seção escura) ou 'perfil' (página Corpo Jurídico)
  */
 $variant ??= 'compacto';
-$portrait = '<div class="portrait"><div class="seal of"><img src="' . e($partner['photo']) . '" alt="' . e($partner['name']) . '" width="800" height="1000"></div></div>';
+$portrait = '<div class="portrait"><div class="seal of"><img src="' . e($partner['photo']) . '" srcset="' . e(srcset($partner['photo'], [800, 400]))
+    . '" sizes="220px" alt="' . e($partner['name']) . '" width="800" height="1000"' . ($variant === 'compacto' ? ' loading="lazy"' : '') . '></div></div>';
 ?>
 <?php if ($variant === 'perfil'): ?>
     <article class="profile">
