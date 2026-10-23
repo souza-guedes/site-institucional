@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SouzaGuedesPrivacyPolicy",
+  "description": "Schema dos textos da rota /privacidade: Política de Privacidade, Política de Cookies, Termos de Uso e banner de cookies (WDLC 4.2, LGPD).",
+  "type": "object",
+  "$defs": {
+    "section": {
+      "type": "object",
+      "required": ["heading", "paragraphs", "list", "closing_paragraphs"],
+      "properties": {
+        "heading": { "type": "string" },
+        "paragraphs": { "type": "array", "items": { "type": "string" } },
+        "list": { "type": "array", "items": { "type": "string" } },
+        "closing_paragraphs": { "type": "array", "items": { "type": "string" } },
+        "table": {
+          "type": "object",
+          "required": ["columns", "rows"],
+          "properties": {
+            "columns": { "type": "array", "minItems": 2, "items": { "type": "string" } },
+            "rows": { "type": "array", "items": { "type": "array", "items": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "document": {
+      "type": "object",
+      "required": ["title", "sections"],
+      "properties": {
+        "title": { "type": "string" },
+        "sections": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/section" } }
+      }
+    }
+  },
+  "required": [
+    "version",
+    "last_updated",
+    "status",
+    "route",
+    "page_title",
+    "controller",
+    "data_protection_officer",
+    "retention",
+    "privacy_policy",
+    "cookie_policy",
+    "terms_of_use",
+    "cookie_banner",
+    "references",
+    "pending"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "last_updated": { "type": "string", "format": "date" },
+    "status": { "type": "string", "enum": ["rascunho", "aprovado"] },
+    "route": { "type": "string", "const": "/privacidade" },
+    "page_title": { "type": "string" },
+    "controller": {
+      "type": "object",
+      "required": ["corporate_name", "oab_registration", "address", "email"],
+      "properties": {
+        "corporate_name": { "type": "string" },
+        "oab_registration": { "type": "string" },
+        "address": { "type": "string" },
+        "email": { "type": "string", "format": "email" }
+      }
+    },
+    "data_protection_officer": {
+      "description": "Encarregado pelo tratamento de dados pessoais (art. 41 da LGPD).",
+      "type": "object",
+      "required": ["name", "oab_number", "email", "email_subject"],
+      "properties": {
+        "name": { "type": "string" },
+        "oab_number": { "type": "string", "pattern": "^OAB/[A-Z]{2}\\s+(n[ºo]\\s*)?\\d+(\\.\\d+)?$" },
+        "email": { "type": "string", "format": "email" },
+        "email_subject": { "type": "string" }
+      }
+    },
+    "retention": {
+      "type": "object",
+      "required": ["contact_without_engagement_months", "access_logs_months"],
+      "properties": {
+        "contact_without_engagement_months": { "type": "integer", "minimum": 1 },
+        "access_logs_months": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "privacy_policy": { "$ref": "#/$defs/document" },
+    "cookie_policy": {
+      "allOf": [{ "$ref": "#/$defs/document" }],
+      "required": ["cookie_categories_in_use"],
+      "properties": {
+        "cookie_categories_in_use": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "enum": ["estritamente_necessarios", "analiticos", "publicidade"] }
+        }
+      }
+    },
+    "terms_of_use": { "$ref": "#/$defs/document" },
+    "cookie_banner": {
+      "type": "object",
+      "required": ["mode", "text", "link_label", "link_href", "button_label"],
+      "properties": {
+        "mode": { "type": "string", "enum": ["informativo", "consentimento"] },
+        "text": { "type": "string" },
+        "link_label": { "type": "string" },
+        "link_href": { "type": "string" },
+        "button_label": { "type": "string" },
+        "future_consent_variant": { "type": "object" }
+      }
+    },
+    "references": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "pending": { "type": "array", "items": { "type": "string" } }
+  }
+}

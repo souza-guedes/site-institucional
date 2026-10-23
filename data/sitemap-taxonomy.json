@@ -62,9 +62,9 @@
       "path": "/privacidade",
       "controller": "App\\Controllers\\PrivacyController",
       "action": "index",
-      "title": "Política de Privacidade & LGPD | Souza Guedes Advogados",
+      "title": "Privacidade e Termos de Uso | Souza Guedes Advogados",
       "nav_visible": false,
-      "oab_compliance_notes": "Transparência quanto ao tratamento de dados pessoais (Lei Federal nº 13.709/2018) e canal do DPO."
+      "oab_compliance_notes": "Política de Privacidade, Política de Cookies e Termos de Uso (Lei Federal nº 13.709/2018), com a identificação da encarregada de dados e o aviso de que o site não presta consulta jurídica. Textos em data/privacy-policy.json."
     }
   ],
   "redirects": [
