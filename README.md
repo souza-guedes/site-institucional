@@ -35,6 +35,22 @@ npm run images   # gera as variantes WebP usadas nos srcset
 
 Com o servidor local no ar, `npm run audit:lighthouse` roda o Lighthouse (mobile e desktop) e `npm run audit:browsers` testa Chrome, Edge, Firefox e WebKit (antes, rode `npx playwright install firefox webkit`). O relatório da WDLC 6.1 está em `docs/fase-6-testes-qa/`.
 
+## Deploy
+
+Cada push na `main` que passa no CI é publicado na Hostinger pelo workflow `.github/workflows/deploy.yml`. Pela aba Actions dá para publicar à mão ("Run workflow").
+
+- **Envio:** rsync por SSH, só com `public/`, `src/` e `data/`, com arquivos em 644 e diretórios em 755. No servidor, o código fica em `~/domains/<site>/app`, e o `public_html` do site é um link para `app/public`.
+- **Chave:** é só de deploy. No `~/.ssh/authorized_keys` do servidor ela fica presa ao `rrsync` (`command="$HOME/bin/rrsync -wo …/app",restrict`). Assim só escreve na pasta deste site e não abre shell. A conta hospeda outros sites.
+- **Secrets do environment `production`:**
+  - `DEPLOY_SSH_KEY` (chave privada);
+  - `DEPLOY_HOST`, `DEPLOY_PORT` e `DEPLOY_USER`;
+  - `DEPLOY_KNOWN_HOSTS` (chave do servidor).
+
+  A variável `DEPLOY_URL` é a URL do site.
+- **Teste de fumaça:** depois do envio, o workflow abre as 9 páginas principais e falha se alguma não responder 200 ou exibir mensagem do PHP.
+- **Endereço temporário:** em `*.hostingersite.com`, as páginas saem com `X-Robots-Tag: noindex`.
+- **Trocar a chave:** gere um par novo (`ssh-keygen -t ed25519`), troque a linha correspondente no `authorized_keys` do servidor e atualize o secret `DEPLOY_SSH_KEY`.
+
 ## Conteúdo
 
 Os textos e dados do site ficam em `data/` (`firm-profile.json`, `articles.json`, `privacy-policy.json` e `sitemap-taxonomy.json`), com schemas em `schemas/`. As views em `src/Views/` só leem esses arquivos.
