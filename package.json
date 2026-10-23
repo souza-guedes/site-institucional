@@ -1,12 +1,22 @@
 {
   "name": "souza-guedes-site-institucional",
   "private": true,
-  "description": "Build do CSS de produção do site Souza Guedes Advogados (Tailwind CSS + design-system/componentes.css).",
+  "description": "Build do CSS, das fontes e das imagens e auditorias (Lighthouse e navegadores) do site Souza Guedes Advogados.",
   "scripts": {
     "build:css": "node scripts/build-css.mjs && tailwindcss -c tailwind.config.js -i resources/css/app.generated.css -o public/assets/css/main.css --minify",
-    "watch:css": "node scripts/build-css.mjs && tailwindcss -c tailwind.config.js -i resources/css/app.generated.css -o public/assets/css/main.css --watch"
+    "watch:css": "node scripts/build-css.mjs && tailwindcss -c tailwind.config.js -i resources/css/app.generated.css -o public/assets/css/main.css --watch",
+    "audit:lighthouse": "node scripts/lighthouse.mjs",
+    "audit:browsers": "node scripts/browser-check.mjs",
+    "fonts": "node scripts/copy-fonts.mjs",
+    "images": "node scripts/optimize-images.mjs"
   },
   "devDependencies": {
+    "@fontsource/cinzel": "5.3.0",
+    "@fontsource/plus-jakarta-sans": "5.3.0",
+    "@fontsource/source-sans-3": "5.3.0",
+    "@playwright/test": "1.64.0",
+    "lighthouse": "13.5.0",
+    "sharp": "0.35.5",
     "tailwindcss": "3.4.17"
   }
 }

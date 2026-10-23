@@ -10,3 +10,6 @@ SITE-Conteudo de marca/
 # Build do CSS (WDLC 5.1)
 node_modules/
 resources/css/app.generated.css
+
+# Relatórios locais da auditoria (WDLC 6.1)
+reports/
