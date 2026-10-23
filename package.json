@@ -1,0 +1,12 @@
+{
+  "name": "souza-guedes-site-institucional",
+  "private": true,
+  "description": "Build do CSS de produção do site Souza Guedes Advogados (Tailwind CSS + design-system/componentes.css).",
+  "scripts": {
+    "build:css": "node scripts/build-css.mjs && tailwindcss -c tailwind.config.js -i resources/css/app.generated.css -o public/assets/css/main.css --minify",
+    "watch:css": "node scripts/build-css.mjs && tailwindcss -c tailwind.config.js -i resources/css/app.generated.css -o public/assets/css/main.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}
