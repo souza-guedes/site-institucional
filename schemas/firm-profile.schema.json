@@ -36,6 +36,17 @@
           "minItems": 3,
           "items": { "type": "string" }
         },
+        "history": {
+          "description": "Trajetória institucional em parágrafos (WDLC 4.1).",
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "pending": {
+          "description": "Informações a confirmar pelos sócios antes da publicação.",
+          "type": "array",
+          "items": { "type": "string" }
+        },
         "address": {
           "type": "object",
           "required": [
@@ -76,7 +87,34 @@
           "oab_number": { "type": "string", "pattern": "^OAB/[A-Z]{2}\\s+(n[ºo]\\s*)?\\d+(\\.\\d+)?$" },
           "role": { "type": "string" },
           "primary_area": { "type": "string" },
-          "bio": { "type": "string" }
+          "bio": { "type": "string" },
+          "bio_long": {
+            "description": "Minibio curricular em parágrafos (WDLC 4.1).",
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          },
+          "education": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["level", "course", "institution"],
+              "properties": {
+                "level": { "type": "string" },
+                "course": { "type": "string" },
+                "institution": { "type": "string" }
+              }
+            }
+          },
+          "publications": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "pending": {
+            "description": "Informações a confirmar pelo sócio antes da publicação.",
+            "type": "array",
+            "items": { "type": "string" }
+          }
         }
       }
     },
@@ -106,6 +144,12 @@
             "items": { "type": "string" }
           },
           "target_audience": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          },
+          "description": {
+            "description": "Descrição detalhada da área em parágrafos (WDLC 4.1).",
             "type": "array",
             "minItems": 1,
             "items": { "type": "string" }

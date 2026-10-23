@@ -19,7 +19,17 @@
       "city": "São Paulo",
       "state": "SP",
       "postal_code": "03283-000"
-    }
+    },
+    "history": [
+      "A Souza Guedes Advogados foi fundada em 2026 pelos advogados Lays Regina de Souza e Rodrigo Guedes da Silva, com sede na Vila Ema, Zona Leste de São Paulo.",
+      "O escritório atua no Direito Civil, em quatro áreas: Direito Imobiliário, Direito de Saúde, Direito do Consumidor e Direito de Família e Sucessões. O trabalho tem duas frentes. Na consultiva, o escritório orienta antes que o problema se instale: analisa documentos, contratos, matrículas e editais e aponta os riscos de cada decisão. Na contenciosa, conduz as medidas extrajudiciais e judiciais necessárias quando o conflito já existe.",
+      "Cada caso é analisado e acompanhado diretamente pelos sócios. O atendimento é presencial na sede, com agendamento, ou pelos canais oficiais do escritório.",
+      "A atuação se apoia em três valores, solidez, credibilidade e excelência, e segue o Estatuto da Advocacia, o Código de Ética e Disciplina da OAB e o Provimento CFOAB nº 205/2021: informação clara, sem promessa de resultado e sem captação de clientela."
+    ],
+    "pending": [
+      "Fatos da fundação que os sócios queiram registrar (motivação, escolha da Vila Ema).",
+      "Confirmar que todos os casos são conduzidos diretamente pelos sócios, como diz o terceiro parágrafo."
+    ]
   },
   "partners": [
     {
@@ -27,14 +37,61 @@
       "oab_number": "OAB/SP nº 538.416",
       "role": "Advogado",
       "primary_area": "Direito Civil",
-      "bio": "Advogado, graduado pela Universidade São Judas Tadeu (USJT), com qualificação adicional através do curso de extensão em Falências e Recuperações Judiciais da Escola Superior de Advocacia da Ordem dos Advogados do Brasil (ESA/OAB)."
+      "bio": "Advogado, graduado pela Universidade São Judas Tadeu (USJT), com qualificação adicional através do curso de extensão em Falências e Recuperações Judiciais da Escola Superior de Advocacia da Ordem dos Advogados do Brasil (ESA/OAB).",
+      "bio_long": [
+        "Rodrigo Guedes da Silva é advogado inscrito na OAB/SP sob o nº 538.416 e sócio fundador da Souza Guedes Advogados. Graduou-se em Direito pela Universidade São Judas Tadeu (USJT) e concluiu o curso de extensão em Falências e Recuperações Judiciais da Escola Superior de Advocacia da OAB (ESA/OAB).",
+        "Atua no Direito Civil, nas áreas de atuação do escritório."
+      ],
+      "education": [
+        {
+          "level": "Graduação",
+          "course": "Direito",
+          "institution": "Universidade São Judas Tadeu (USJT)"
+        },
+        {
+          "level": "Extensão",
+          "course": "Falências e Recuperações Judiciais",
+          "institution": "Escola Superior de Advocacia da OAB (ESA/OAB)"
+        }
+      ],
+      "publications": [],
+      "pending": [
+        "Ano de conclusão da graduação, da extensão e de inscrição na OAB/SP.",
+        "Publicações, se houver.",
+        "Experiência profissional anterior à fundação do escritório, se for para constar.",
+        "Áreas do escritório em que atua com mais frequência, se for para constar."
+      ]
     },
     {
       "name": "Lays Regina de Souza",
       "oab_number": "OAB/SP nº 511.204",
       "role": "Advogada",
       "primary_area": "Direito Civil",
-      "bio": "Advogada, graduada pela Universidade São Judas Tadeu (USJT), pós-graduada em Direito Imobiliário Notarial e Registral pela Pontifícia Universidade Católica (PUC)."
+      "bio": "Advogada, graduada pela Universidade São Judas Tadeu (USJT), pós-graduada em Direito Imobiliário Notarial e Registral pela Pontifícia Universidade Católica (PUC).",
+      "bio_long": [
+        "Lays Regina de Souza é advogada inscrita na OAB/SP sob o nº 511.204 e sócia fundadora da Souza Guedes Advogados. Graduou-se em Direito pela Universidade São Judas Tadeu (USJT) e é pós-graduada em Direito Imobiliário Notarial e Registral pela Pontifícia Universidade Católica (PUC).",
+        "Atua no Direito Civil, nas áreas de atuação do escritório. A formação em direito notarial e registral apoia o trabalho com matrículas, escrituras e procedimentos em cartório, como a usucapião extrajudicial e o inventário por escritura pública."
+      ],
+      "education": [
+        {
+          "level": "Graduação",
+          "course": "Direito",
+          "institution": "Universidade São Judas Tadeu (USJT)"
+        },
+        {
+          "level": "Pós-graduação",
+          "course": "Direito Imobiliário Notarial e Registral",
+          "institution": "Pontifícia Universidade Católica (PUC)"
+        }
+      ],
+      "publications": [],
+      "pending": [
+        "Unidade da PUC e ano de conclusão da pós-graduação.",
+        "Ano de conclusão da graduação e de inscrição na OAB/SP.",
+        "Publicações, se houver.",
+        "Experiência profissional anterior à fundação do escritório, se for para constar.",
+        "Confirmar a relação entre a pós-graduação e o trabalho em cartório descrita no segundo parágrafo."
+      ]
     }
   ],
   "practice_areas": [
@@ -54,6 +111,11 @@
         "Pessoas físicas proprietárias, possuidoras, adquirentes ou locatárias de imóveis",
         "Investidores e arrematantes",
         "Construtoras, incorporadoras, imobiliárias e empresas que possuem ou utilizam imóveis em suas atividades"
+      ],
+      "description": [
+        "A área de Direito Imobiliário reúne as questões jurídicas ligadas à aquisição, à posse, à propriedade e ao uso de imóveis. O escritório atua em usucapião judicial e extrajudicial, em ações de despejo, reintegração e imissão na posse, na assessoria para arrematação de imóveis em leilão e em ações indenizatórias por atraso na entrega de imóveis.",
+        "O trabalho começa pela análise documental: matrícula, contratos, edital do leilão e comprovantes de posse. É essa análise que indica se o caminho é extrajudicial, como a usucapião perante o Cartório de Registro de Imóveis ou a notificação para desocupação, ou se a questão precisa ser levada ao Judiciário.",
+        "A área atende pessoas físicas proprietárias, possuidoras, adquirentes ou locatárias de imóveis, investidores e arrematantes, e também construtoras, incorporadoras, imobiliárias e empresas que possuem ou utilizam imóveis em suas atividades."
       ]
     },
     {
@@ -74,6 +136,11 @@
         "Beneficiários de planos de saúde",
         "Profissionais da área da saúde",
         "Clínicas, hospitais e empresas do setor de saúde"
+      ],
+      "description": [
+        "A área de Direito de Saúde trata da relação entre pacientes, planos de saúde e prestadores de serviços de saúde. O escritório atua em negativas de cobertura de medicamentos, tratamentos, exames, cirurgias e internações, na manutenção e no restabelecimento de planos de saúde, na revisão de reajustes e cobranças indevidas e em casos de responsabilidade civil por erro médico.",
+        "Quando há negativa de cobertura, o primeiro passo é reunir a prescrição e o relatório médico, a negativa da operadora e o contrato do plano. Com esses documentos, avalia-se o pedido administrativo à operadora e a reclamação à ANS ou, quando a situação exige, a ação judicial com pedido de tutela de urgência.",
+        "A área atende pacientes, familiares e beneficiários de planos de saúde, e também profissionais, clínicas, hospitais e empresas do setor de saúde."
       ]
     },
     {
@@ -91,6 +158,11 @@
       "target_audience": [
         "Pessoas físicas em suas relações de consumo",
         "Pequenas e médias empresas em demandas decorrentes de relações de consumo"
+      ],
+      "description": [
+        "A área de Direito do Consumidor cuida dos conflitos nas relações de consumo. O escritório atua em negativação e cobranças indevidas, na interrupção de serviços essenciais, como energia elétrica, água, telefonia e internet, em falhas na prestação de serviços e em problemas na compra de produtos e serviços, como vícios, defeitos, não entrega, descumprimento da oferta e dificuldade de cancelamento ou de restituição de valores.",
+        "A atuação parte dos documentos da relação de consumo: contratos, faturas, comprovantes de pagamento, protocolos de atendimento e registros de reclamação. Conforme o caso, busca-se a solução diretamente com o fornecedor ou pelos canais administrativos, ou propõe-se a ação para corrigir o problema e pedir a reparação dos danos materiais e morais.",
+        "A área atende pessoas físicas em suas relações de consumo e pequenas e médias empresas em demandas decorrentes dessas relações."
       ]
     },
     {
@@ -106,6 +178,11 @@
       ],
       "target_audience": [
         "Pessoas físicas e famílias em reorganização familiar e patrimonial, especialmente em divórcio, sucessão, partilha de bens e transmissão do patrimônio"
+      ],
+      "description": [
+        "A área de Direito de Família e Sucessões acompanha os momentos de reorganização familiar e patrimonial. O escritório atua em divórcios consensuais e litigiosos, com a definição da partilha de bens, em ações sobre alimentos, guarda e convivência dos filhos, e em inventários judiciais e extrajudiciais.",
+        "Quando há acordo entre as partes, avalia-se a possibilidade de resolver a questão em cartório, por escritura pública, como no divórcio consensual e no inventário extrajudicial. Quando não há acordo, ou quando a lei exige, o caso segue pela via judicial. Nos dois caminhos, a assistência de advogado é obrigatória.",
+        "A área atende pessoas físicas e famílias em divórcio, sucessão, partilha de bens e transmissão de patrimônio."
       ]
     }
   ],
