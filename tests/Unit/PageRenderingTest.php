@@ -207,12 +207,18 @@ final class PageRenderingTest
         }
     }
 
-    public function testContactFormHasNoConsentCheckbox(): void
+    public function testContactPageHasNoForm(): void
     {
-        // A base legal do contato é o art. 7º, V, da LGPD: o checkbox declara ciência, não consentimento.
+        // O site não tem formulário (issue #15): o contato é só pelos canais oficiais.
         $html = $this->dispatch('/contato')->content;
-        if (stripos($html, 'autorizo') !== false || !str_contains($html, 'id="f-ciencia"')) {
-            throw new \AssertionError('O formulário deve trazer a declaração de ciência da Política de Privacidade, sem pedir autorização de uso dos dados.');
+        if (stripos($html, '<form') !== false) {
+            throw new \AssertionError('/contato não deve ter formulário.');
+        }
+        foreach ($this->firm['contact_channels'] as $channel) {
+            if (in_array($channel['channel_type'], ['phone', 'email'], true)
+                && !str_contains($html, 'data-copy="' . htmlspecialchars($channel['value'], ENT_QUOTES) . '"')) {
+                throw new \AssertionError("/contato deve oferecer o canal '{$channel['label']}'.");
+            }
         }
     }
 }

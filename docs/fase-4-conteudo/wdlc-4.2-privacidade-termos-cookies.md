@@ -22,13 +22,13 @@ A redação usa só fatos do projeto e as decisões tomadas para esta issue. Cad
 | Cookies | Só os estritamente necessários; aviso informativo, sem pedido de consentimento |
 | Retenção de mensagens | 12 meses para contatos que não viram contratação; registros de acesso por 6 meses |
 | Termos de Uso | Seção da própria página `/privacidade`, sem rota nova |
-| Base legal do formulário | Procedimentos preliminares relacionados a contrato, a pedido do titular (art. 7º, V), e não o consentimento |
+| Base legal do contato | Procedimentos preliminares relacionados a contrato, a pedido do titular (art. 7º, V), e não o consentimento |
 
 **Itens da issue**
 
 | Item da #12 | Onde está |
 | --- | --- |
-| Finalidade da coleta no formulário (nome, e-mail, telefone) | Política de Privacidade, seções 2 e 3 |
+| Finalidade da coleta nos canais de contato (nome, e-mail, telefone) | Política de Privacidade, seções 2 e 3 |
 | Hipóteses legais do art. 7º | Política de Privacidade, seção 3 (tabela) |
 | Direitos dos titulares (art. 18) | Política de Privacidade, seções 9 e 10 |
 | Identificação e e-mail do encarregado | Política de Privacidade, seções 1 e 10 |
@@ -47,8 +47,7 @@ O controlador dos dados é a Souza Guedes Advogados, com sede na Rua Uhland, 784
 
 Tratamos apenas os dados necessários para responder a quem nos procura:
 
-- Formulário de contato: nome, e-mail, telefone (opcional), área de interesse e a mensagem que você escrever.
-- Contato direto por e-mail, telefone ou WhatsApp: os dados que você nos enviar nesses canais, como nome, número de telefone, endereço de e-mail e o conteúdo da conversa.
+- Contato por e-mail, telefone ou WhatsApp: os dados que você nos enviar nesses canais, como nome, número de telefone, endereço de e-mail e o conteúdo da conversa.
 - Registros técnicos de acesso: endereço IP, data e hora de acesso e informações do navegador, gerados automaticamente pelo servidor que hospeda o site.
 
 #### 3. Para que usamos os dados e com qual base legal
@@ -57,7 +56,7 @@ Cada uso tem uma finalidade e uma base legal prevista no art. 7º da LGPD:
 
 | Finalidade | Dados | Base legal |
 | --- | --- | --- |
-| Responder ao seu contato, entender a sua demanda e agendar atendimento | Nome, e-mail, telefone, área de interesse e mensagem | Procedimentos preliminares relacionados a contrato, a pedido do titular (art. 7º, V) |
+| Responder ao seu contato, entender a sua demanda e agendar atendimento | Os dados que você nos enviar nos canais de contato | Procedimentos preliminares relacionados a contrato, a pedido do titular (art. 7º, V) |
 | Guardar o histórico do contato pelo prazo da seção 6, para dar continuidade ao atendimento | Os mesmos dados do contato | Procedimentos preliminares relacionados a contrato, a pedido do titular (art. 7º, V) |
 | Manter o site seguro e funcionando | Registros técnicos de acesso | Legítimo interesse do controlador (art. 7º, IX) |
 | Cumprir obrigação legal ou atender a ordem de autoridade competente | Os dados necessários em cada caso | Cumprimento de obrigação legal ou regulatória (art. 7º, II) |
@@ -65,15 +64,15 @@ Cada uso tem uma finalidade e uma base legal prevista no art. 7º da LGPD:
 
 Não usamos os seus dados para publicidade, não os vendemos e não montamos perfis de navegação.
 
-#### 4. Não envie dados sensíveis pelo formulário
+#### 4. Não envie dados sensíveis no primeiro contato
 
-O primeiro contato serve para apresentação e para que você exponha a sua demanda de forma resumida. Pedimos que não envie documentos nem dados pessoais sensíveis, como informações de saúde, por esse canal. Se a demanda exigir esses dados, eles serão tratados depois, no atendimento, com a base legal adequada (art. 11 da LGPD).
+O primeiro contato serve para apresentação e para que você exponha a sua demanda de forma resumida. Pedimos que não envie documentos nem dados pessoais sensíveis, como informações de saúde, nessa etapa. Se a demanda exigir esses dados, eles serão tratados depois, no atendimento, com a base legal adequada (art. 11 da LGPD).
 
 #### 5. Com quem os dados são compartilhados
 
 Os dados ficam com o escritório. Eles só passam por terceiros na medida necessária para o funcionamento dos canais de contato:
 
-- Provedor de e-mail: as mensagens do formulário e os e-mails chegam à caixa institucional do escritório, mantida no Gmail, serviço da Google.
+- Provedor de e-mail: os e-mails chegam à caixa institucional do escritório, mantida no Gmail, serviço da Google.
 - Provedor de hospedagem do site, que armazena os registros técnicos de acesso.
 - Google Fonts, serviço da Google que fornece as fontes do site: ao carregar uma página, o navegador solicita as fontes aos servidores da Google, que recebem o endereço IP e as informações do navegador de quem visita.
 - Autoridades públicas, quando houver obrigação legal ou ordem judicial.
@@ -130,13 +129,9 @@ Cookies são pequenos arquivos que um site grava no navegador de quem o visita, 
 
 #### 2. Cookies usados neste site
 
-Este site usa apenas cookies estritamente necessários ao seu funcionamento e à segurança do formulário de contato. Não usamos cookies de publicidade, de redes sociais nem de análise de navegação.
+Hoje este site não grava nenhum cookie. Se vier a usar, serão apenas os estritamente necessários ao seu funcionamento. Não usamos cookies de publicidade, de redes sociais nem de análise de navegação.
 
-| Cookie | Finalidade | Tipo | Duração |
-| --- | --- | --- | --- |
-| [A DEFINIR NA FASE 5] | Proteção do formulário de contato contra envios automatizados | Estritamente necessário | Sessão (apagado ao fechar o navegador) |
-
-A tabela é atualizada sempre que um cookie for incluído ou removido.
+Se um cookie for incluído, ele será listado aqui, com a finalidade, o tipo e a duração.
 
 #### 3. Por que não pedimos consentimento
 
@@ -144,7 +139,7 @@ Cookies estritamente necessários são indispensáveis para o site funcionar e n
 
 #### 4. Como bloquear cookies
 
-Você pode bloquear ou apagar cookies nas configurações do seu navegador. Se bloquear os cookies estritamente necessários, o formulário de contato pode não funcionar; os demais canais continuam disponíveis.
+Você pode bloquear ou apagar cookies nas configurações do seu navegador.
 
 ## 4. Termos de Uso
 
@@ -158,7 +153,7 @@ Os textos publicados, inclusive os artigos, explicam direitos e procedimentos de
 
 #### 3. Contato não cria relação advogado-cliente
 
-O envio de mensagem pelo formulário ou pelos canais oficiais não estabelece relação advogado-cliente nem constitui consulta jurídica. A prestação de serviços depende de contratação formal e de análise individualizada do caso.
+O contato pelos canais oficiais não estabelece relação advogado-cliente nem constitui consulta jurídica. A prestação de serviços depende de contratação formal e de análise individualizada do caso.
 
 #### 4. Mensagens enviadas ao escritório
 
@@ -217,9 +212,7 @@ Conferência feita em 23/10/2026. Antes de publicar, vale confirmar que não hou
 - [ ] Provedor de hospedagem do site (operador que guarda os registros de acesso) e confirmação de que ele mantém os registros por 6 meses.
 - [ ] Foro dos Termos de Uso (seção 8).
 - [ ] Confirmar que só os sócios têm acesso à caixa de e-mail e às mensagens (Política de Privacidade, seção 8, e Termos de Uso, seção 4).
-- [ ] Nome técnico do cookie de sessão do formulário, definido na WDLC 5.2 (Política de Cookies, seção 2).
 - [ ] Enquadramento como agente de tratamento de pequeno porte (Res. CD/ANPD nº 2/2022). A indicação da encarregada vale de qualquer forma; se houver o enquadramento, ela conta como boa prática (art. 11, § 2º).
-- [ ] Fase 5: trocar o texto do checkbox do formulário de "autorizo o uso dos meus dados" por uma declaração de ciência da Política de Privacidade, porque a base legal do contato é o art. 7º, V, e não o consentimento.
 
 ## 8. Auditoria automática
 

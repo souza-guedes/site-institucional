@@ -34,7 +34,7 @@ $dpo = $privacy['data_protection_officer'];
                             <section>
                                 <h3 class="h3"><?= e($section['heading']) ?></h3>
                                 <?php foreach ($section['paragraphs'] as $paragraph): ?><p><?= e($paragraph) ?></p><?php endforeach; ?>
-                                <?php if (isset($section['table'])): ?>
+                                <?php if (!empty($section['table']['rows'])): ?>
                                     <div class="ptable" role="region" aria-label="<?= e($section['heading']) ?>" tabindex="0">
                                         <table>
                                             <thead><tr><?php foreach ($section['table']['columns'] as $column): ?><th scope="col"><?= e($column) ?></th><?php endforeach; ?></tr></thead>

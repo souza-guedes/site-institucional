@@ -1,6 +1,6 @@
 /* Souza Guedes Advogados: comportamento das páginas (WDLC 5.1), em JavaScript sem dependências.
    Mesma lógica do protótipo da WDLC 3.2: gaveta mobile, header fixo, filtros, carrossel,
-   botão "Copiar", validação do formulário e aviso de cookies. */
+   botão "Copiar" e aviso de cookies. */
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -96,42 +96,6 @@
       announce(b.dataset.copy);
     }
   });
-
-  /* ---------- Formulário de contato: validação por campo ---------- */
-  const form = $('#contact-form');
-  if (form) {
-    const status = $('#form-status');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      let first = null;
-      $$('[data-msg]', form).forEach((input) => {
-        const field = input.closest('.field'), hint = input.id === 'f-msg' ? 'f-msg-hint ' : '';
-        field.querySelector('.err')?.remove();
-        if (!input.checkValidity()) {
-          field.dataset.invalid = '';
-          input.setAttribute('aria-invalid', 'true');
-          field.insertAdjacentHTML('beforeend', `<p class="err" id="${input.id}-err">${input.dataset.msg}</p>`);
-          input.setAttribute('aria-describedby', `${hint}${input.id}-err`);
-          first ??= input;
-        } else {
-          delete field.dataset.invalid;
-          input.removeAttribute('aria-invalid');
-          if (hint) input.setAttribute('aria-describedby', hint.trim()); else input.removeAttribute('aria-describedby');
-        }
-      });
-      const check = $('#f-ciencia'), wrap = $('#f-ciencia-wrap');
-      if (!check.checked) { wrap.dataset.invalid = ''; first ??= check; } else { delete wrap.dataset.invalid; }
-
-      status.hidden = false;
-      if (first) {
-        status.textContent = 'Revise os campos destacados para enviar a mensagem.';
-        first.focus();
-      } else if (form.hasAttribute('data-envio-indisponivel')) {
-        // O envio pelo servidor entra na WDLC 5.2 (#15).
-        status.textContent = 'O envio pelo site ainda não está disponível. Use o telefone, o WhatsApp ou o e-mail indicados nesta página.';
-      }
-    });
-  }
 
   /* ---------- Aviso de cookies: fechado fica lembrado neste navegador (sem gravar cookie) ---------- */
   const cookie = $('#cookie');

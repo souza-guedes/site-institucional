@@ -26,6 +26,8 @@ O `main.css` gerado é versionado, porque a hospedagem não roda Node. Depois de
 
 Os textos e dados do site ficam em `data/` (`firm-profile.json`, `articles.json`, `privacy-policy.json` e `sitemap-taxonomy.json`), com schemas em `schemas/`. As views em `src/Views/` só leem esses arquivos.
 
+O site não tem formulário nem envia e-mail pelo servidor: o contato é só pelos canais oficiais (telefone, WhatsApp, e-mail e a sede), listados em `contact_channels` do `firm-profile.json`.
+
 ## Testes
 
 ```bash

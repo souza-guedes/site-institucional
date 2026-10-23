@@ -26,8 +26,7 @@ final class ViewsStructureTest
             'article-card.php',
             'channels.php',
             'notice.php',
-            'cta.php',
-            'contact-form.php'
+            'cta.php'
         ];
 
         foreach ($partials as $partial) {

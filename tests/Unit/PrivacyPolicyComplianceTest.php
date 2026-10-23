@@ -197,6 +197,16 @@ final class PrivacyPolicyComplianceTest
         }
     }
 
+    public function testTextsDoNotMentionAContactForm(): void
+    {
+        // O site não tem formulário (issue #15): os textos não podem prometer um.
+        foreach ($this->texts($this->policy, 'privacy-policy.json') as $path => $text) {
+            if (mb_stripos($text, 'formulário') !== false) {
+                throw new \AssertionError("{$path} cita um formulário de contato, que o site não tem.");
+            }
+        }
+    }
+
     public function testApprovedVersionHasNoPlaceholders(): void
     {
         if (($this->policy['status'] ?? '') !== 'aprovado') {
