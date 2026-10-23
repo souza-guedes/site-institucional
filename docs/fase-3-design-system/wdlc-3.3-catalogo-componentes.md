@@ -73,7 +73,7 @@ Esta issue resolveu as pendências de token que a [spec de uso dos mockups](wdlc
 | Tipografia mobile-first: `display-mobile`, `h1-mobile`, `h2-mobile`, `h3-mobile`, `lead-mobile`. `display` passa a `.03em`; `h1` passa a 44/54 (título do artigo). As classes `.t-*` de `tokens.css` agora são mobile-first. | idem |
 | Breakpoints `sm` 560px, `md` 760px, `lg` 1100px, iguais aos do protótipo | `tokens.json`, `tailwind.config.js` |
 | `radius-full` sem uso aprovado (o botão flutuante de WhatsApp foi descartado na 3.2) | `tokens.json` |
-| CSS do site extraído do protótipo para `componentes.css`, que importa `tokens.css` e usa os nomes oficiais (`--space-*`, `--radius-sm`). O CSS da barra de revisão foi para `revisao.css`. As 21 capturas do protótipo ficaram idênticas às de antes da extração. | `wdlc-3.3-componentes/`, `wdlc-3.2-mockups/prototipo.html`, `build-standalone.py` |
+| CSS do site extraído do protótipo para `componentes.css` (hoje em `design-system/`, desde a WDLC 5.1), que importa `tokens.css` e usa os nomes oficiais (`--space-*`, `--radius-sm`). O CSS da barra de revisão foi para `revisao.css`. As 21 capturas do protótipo ficaram idênticas às de antes da extração. | `wdlc-3.3-componentes/`, `wdlc-3.2-mockups/prototipo.html`, `build-standalone.py` |
 
 ## 4. Conformidade OAB e WCAG por componente
 

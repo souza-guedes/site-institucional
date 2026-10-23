@@ -2,7 +2,7 @@
 um único .html cada, com o CSS e as imagens embutidos.
 
 Abrem com dois cliques no navegador, sem servidor, sem as pastas assets/ e sem os .css locais
-(componentes.css, revisao.css, design-system/tokens.css).
+(design-system/componentes.css, revisao.css e tokens.css).
 Uso (na raiz do projeto):  python docs/fase-3-design-system/wdlc-3.2-mockups/build-standalone.py
 """
 import base64

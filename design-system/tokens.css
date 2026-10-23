@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap');
+/* Fontes (Cinzel, Plus Jakarta Sans, Source Sans 3): carregadas pelo <link> do Google Fonts em cada página
+   (src/Views/partials/head.php no site; <head> do protótipo e do catálogo). */
 
 :root{
   /* Cores */

@@ -9,13 +9,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap">
 <style>
-/* WDLC 3.3 — CSS dos componentes do site Souza Guedes.
-   Compartilhado pelo protótipo de páginas (WDLC 3.2, wdlc-3.2-mockups/prototipo.html)
-   e pelo catálogo de componentes (WDLC 3.3, catalogo.html). Editar só aqui.
-   Valores: design-system/tokens.css (nunca hexadecimal neste arquivo).
+/* CSS dos componentes do site Souza Guedes (WDLC 3.3). Fonte única, editar só aqui. Usado por:
+   - site (WDLC 5.1): `npm run build:css` gera o main.css publicado em public/, trocando as container queries
+     por media queries nos mesmos pontos (sm 560 · md 760 · lg 1100);
+   - protótipo de páginas (docs/fase-3-design-system/wdlc-3.2-mockups/prototipo.html);
+   - catálogo de componentes (docs/fase-3-design-system/wdlc-3.3-componentes/catalogo.html).
+   Valores: tokens.css (nunca hexadecimal neste arquivo).
    Responsivo por container queries no contêiner "site" (.frame no protótipo e no catálogo),
-   para mostrar 390px e 1440px lado a lado. Na Fase 5, os mesmos pontos viram media queries
-   (sm 560 · md 760 · lg 1100), ver wdlc-3.2-spec-uso-mockups.md §6.1.
+   para mostrar 390px e 1440px lado a lado.
    Narrativa visual: o hero apresenta a composição completa da marca (névoa com moldura aberta,
    quadrado petróleo, barra turquesa, painel profundo com selo). Cada seção seguinte retoma um desses
    elementos, e o CTA final reúne turquesa + petróleo-profundo de novo.
@@ -25,7 +26,8 @@
    - latão só sobre fundo escuro; latão-escuro sobre papel;
    - erro só em formulário claro, sempre com texto.
    Tema único por decisão de marca (tokens só têm tema claro). */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap');
+/* Fontes (Cinzel, Plus Jakarta Sans, Source Sans 3): carregadas pelo <link> do Google Fonts em cada página
+   (src/Views/partials/head.php no site; <head> do protótipo e do catálogo). */
 
 :root{
   /* Cores */
@@ -616,7 +618,7 @@ p{margin:0}
 <style>
 /* Barra de revisão + "palco" com a moldura do site em 390px (mobile) ou 1440px (desktop).
    Compartilhado pelo protótipo (WDLC 3.2) e pelo catálogo (WDLC 3.3). Fora do site: não vai para a Fase 5.
-   O CSS do site fica em componentes.css. */
+   O CSS do site fica em componentes.css, nesta mesma pasta. */
 :root{--palco:#D9DFDD}  /* fundo do palco de revisão, fora do site */
 body{background:var(--palco)}
 

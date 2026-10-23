@@ -1,10 +1,11 @@
-/* WDLC 3.3 — CSS dos componentes do site Souza Guedes.
-   Compartilhado pelo protótipo de páginas (WDLC 3.2, wdlc-3.2-mockups/prototipo.html)
-   e pelo catálogo de componentes (WDLC 3.3, catalogo.html). Editar só aqui.
-   Valores: design-system/tokens.css (nunca hexadecimal neste arquivo).
+/* CSS dos componentes do site Souza Guedes (WDLC 3.3). Fonte única, editar só aqui. Usado por:
+   - site (WDLC 5.1): `npm run build:css` gera o main.css publicado em public/, trocando as container queries
+     por media queries nos mesmos pontos (sm 560 · md 760 · lg 1100);
+   - protótipo de páginas (docs/fase-3-design-system/wdlc-3.2-mockups/prototipo.html);
+   - catálogo de componentes (docs/fase-3-design-system/wdlc-3.3-componentes/catalogo.html).
+   Valores: tokens.css (nunca hexadecimal neste arquivo).
    Responsivo por container queries no contêiner "site" (.frame no protótipo e no catálogo),
-   para mostrar 390px e 1440px lado a lado. Na Fase 5, os mesmos pontos viram media queries
-   (sm 560 · md 760 · lg 1100), ver wdlc-3.2-spec-uso-mockups.md §6.1.
+   para mostrar 390px e 1440px lado a lado.
    Narrativa visual: o hero apresenta a composição completa da marca (névoa com moldura aberta,
    quadrado petróleo, barra turquesa, painel profundo com selo). Cada seção seguinte retoma um desses
    elementos, e o CTA final reúne turquesa + petróleo-profundo de novo.
@@ -14,7 +15,7 @@
    - latão só sobre fundo escuro; latão-escuro sobre papel;
    - erro só em formulário claro, sempre com texto.
    Tema único por decisão de marca (tokens só têm tema claro). */
-@import url("../../../design-system/tokens.css");
+@import url("tokens.css");
 
 /* Exceções conhecidas: #000 nas máscaras (só alfa), sombras e véus em rgba(14,30,29,α) = tinta, fios em rgba(185,207,204,α) = texto-claro, rgba(245,242,236,α) = papel e rgba(90,167,161,α) = turquesa, todos tokens com transparência, e o fundo do mapa provisório. */
 :root{color-scheme:light}
