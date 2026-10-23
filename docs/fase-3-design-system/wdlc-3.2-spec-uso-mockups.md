@@ -24,8 +24,10 @@ Ela não substitui o catálogo de componentes (#22) nem a copy final (Fase 4).
 
 | Arquivo | Para que serve | Quem usa |
 | --- | --- | --- |
-| [`wdlc-3.2-mockups/prototipo.html`](wdlc-3.2-mockups/prototipo.html) | **Fonte de verdade do layout.** HTML + CSS + JS legíveis, com as imagens em `assets/`. É o único arquivo que se edita. | Fase 5, #22 |
-| `prototipo-souza-guedes.html` (raiz do repositório) | Cópia autônoma com as imagens embutidas, gerada por `build-standalone.py`. Serve para abrir com dois cliques ou mandar por e-mail. **Nunca editar à mão.** | Sócios, revisão rápida |
+| [`wdlc-3.2-mockups/prototipo.html`](wdlc-3.2-mockups/prototipo.html) | **Fonte de verdade do layout.** HTML + JS legíveis, com as imagens em `assets/`. | Fase 5, #22 |
+| [`wdlc-3.3-componentes/componentes.css`](wdlc-3.3-componentes/componentes.css) | CSS do site, compartilhado pelo protótipo e pelo catálogo de componentes. Usa só os tokens de `design-system/tokens.css`. | Fase 5 |
+| [`wdlc-3.3-componentes/catalogo.html`](wdlc-3.3-componentes/catalogo.html) | Catálogo de componentes (WDLC 3.3): variantes, estados e regras de cada bloco, com o partial alvo da Fase 5. Ver [`wdlc-3.3-catalogo-componentes.md`](wdlc-3.3-catalogo-componentes.md). | Fase 5 |
+| `prototipo-souza-guedes.html` e `catalogo-componentes-souza-guedes.html` (raiz do repositório) | Cópias autônomas com CSS e imagens embutidos, geradas por `build-standalone.py`. Servem para abrir com dois cliques ou mandar por e-mail. **Nunca editar à mão.** | Sócios, revisão rápida |
 | [`wdlc-3.2-mockups/apresentacao/`](wdlc-3.2-mockups/apresentacao/) e o link https://claude.ai/artifact/9KUxcLx4LV4qbWviWRQqvg | Capturas das telas em moldura de dispositivo, para homologação. São imagens: não servem para medir nem copiar código. | Sócios |
 | [`wdlc-3.2-mockups/assets/`](wdlc-3.2-mockups/assets/) | Logos e fotos já tratados (ver seção 8). | Fase 5 |
 | [`design-system/tokens.css`](../../design-system/tokens.css), [`tokens.json`](../../design-system/tokens.json), [`tailwind.config.js`](../../tailwind.config.js) | Valores oficiais de cor, tipo, espaçamento e raio. | Fase 5, #22 |
@@ -41,7 +43,7 @@ Quando duas fontes discordarem, vale a primeira da lista:
 3. **Dados** ([`data/firm-profile.json`](../../data/firm-profile.json), [`data/sitemap-taxonomy.json`](../../data/sitemap-taxonomy.json)): nomes, OAB, rotas, áreas, canais.
 4. **Tokens** (`design-system/` e `tailwind.config.js`).
 5. **Mockups homologados** (`prototipo.html`): layout, hierarquia, composição, estados.
-6. **Componentes da #22**, quando existirem, para detalhes de variante e estado.
+6. **Catálogo de componentes da #22** (`catalogo.html`), para detalhes de variante e estado.
 
 Se a implementação precisar divergir do mockup, a divergência é registrada na seção 10 deste documento (ou numa issue) antes do merge, e não decidida em silêncio no código.
 
@@ -54,7 +56,7 @@ O protótipo mistura o site com um "palco" de revisão. **Não levar para produ�
 | `.review`, `.seg`, `.notes`, `#screen-select` | Barra de revisão |
 | `.stage`, `.frame`, `--palco`, `.frame[data-vp="mobile"]` (moldura arredondada) | Palco e moldura de celular |
 | Navegação por hash (`#inicio`, `#area-…`), `route()`, `SCREENS`, `fit()`, `setVP()` | O site real usa as rotas do `Router` PHP |
-| `.toast` e o botão "Copiar" que só mostra aviso | Revisar com a #22 se o botão "Copiar" entra no site |
+| `.toast` e o botão "Copiar" que só mostra aviso | O botão "Copiar" entra no site, com retorno acessível em região `aria-live` (catálogo, "Atendimento e avisos"); o `.toast` do protótipo não |
 | Envio do formulário que só troca de estado na tela | O envio real é da WDLC 5.2 |
 | Textos marcados como provisórios (`.draft`) | A copy final vem da Fase 4 |
 
@@ -92,46 +94,39 @@ O protótipo responde a **container queries** no `.frame` (`container-name: site
 | `@container site (min-width:760px)` | `min-width: 760px` | tablet: tipo maior, grades de 2 colunas |
 | `@container site (min-width:1100px)` | `min-width: 1100px` | desktop: navegação completa, composição do hero |
 
-O `tailwind.config.js` hoje não define `screens`, então valem os padrões do Tailwind (640/768/1024/1280), que **não batem** com o protótipo. Ao iniciar a Fase 5, adicione ao config:
-
-```js
-screens: { sm: '560px', md: '760px', lg: '1100px' },
-```
+Desde a WDLC 3.3, o `tailwind.config.js` define esses pontos como `screens: { sm: '560px', md: '760px', lg: '1100px' }`, e o `tokens.json` os registra como tokens de breakpoint.
 
 O conteúdo fica limitado a `max-width: 1200px` (`.wrap`), com margem lateral de 16px (mobile), 32px (≥760px) e 48px (≥1100px).
 
 ### 6.2 Tokens
 
-O protótipo usa apelidos curtos dos mesmos valores. Em produção, use os nomes oficiais:
+Desde a WDLC 3.3, o `componentes.css` importa `design-system/tokens.css` e usa os nomes oficiais. A correspondência com o Tailwind:
 
-| Protótipo | `tokens.css` | Tailwind |
-| --- | --- | --- |
-| `--s1` … `--s16` | `--space-1` … `--space-16` | `p-1` … `p-16` (8 a 128px) |
-| `--r-sm` | `--radius-sm` | `rounded-sm` |
-| `--turquesa`, `--petroleo` etc. | iguais | `bg-petroleo`, `text-tinta` etc. |
-| `--font-display`, `--font-titulo`, `--font-sans` | iguais | `font-display`, `font-titulo`, `font-sans` |
+| `tokens.css` | Tailwind |
+| --- | --- |
+| `--space-1` … `--space-16` | `p-1` … `p-16` (8 a 128px) |
+| `--radius-sm` | `rounded-sm` |
+| `--turquesa`, `--petroleo`, `--erro` etc. | `bg-petroleo`, `text-tinta`, `text-erro` etc. |
+| `--font-display`, `--font-titulo`, `--font-sans` | `font-display`, `font-titulo`, `font-sans` |
 
-Nenhum valor hexadecimal pode ser escrito direto nas views ou no CSS. A exceção é `--erro`, enquanto não for incorporado (ver 6.4).
+Nenhum valor hexadecimal pode ser escrito direto nas views ou no CSS. As únicas exceções em `componentes.css` estão listadas no topo do arquivo (máscaras, sombras em tinta com transparência e o mapa provisório).
 
-### 6.3 Tipografia: onde o protótipo difere dos tokens
+### 6.3 Tipografia mobile-first
 
-Os tokens de tipo do WDLC 3.1 só têm o tamanho desktop. O protótipo define também o mobile e, em dois pontos, faz escolhas diferentes:
+A WDLC 3.3 incorporou aos tokens a escala do protótipo. Cada estilo tem o par mobile (até 760px) e desktop:
 
-| Elemento | Protótipo (mobile → ≥760px) | Token atual | Decisão |
+| Elemento | Mobile → ≥760px | Token | Tailwind |
 | --- | --- | --- | --- |
-| H1 de página (`.display`) | Cinzel 30/38 → 44/52, `letter-spacing .03em` | `display` 44/52, `.04em` | Seguir o protótipo; ajustar o token na #22 |
-| H1 do artigo (`.art-h1`) | Plus Jakarta 30/38 → 44/54 | `h1` 46/54 | Seguir o protótipo |
-| Token `h1` (Plus Jakarta 46/54) | não é usado em nenhuma tela | — | Revisar na #22 (manter ou remover) |
-| `.h2` | 26/34 → 34/42 | `h2` 34/42 | Token = desktop; mobile segue o protótipo |
-| `.h3` | 20/28 → 22/30 | `h3` 22/30 | Idem |
-| `.lead` | 19/29 → 20/30 | `lead` 20/30 | Idem |
+| H1 de página (`.display`) | Cinzel 30/38 → 44/52, `.03em` | `display-mobile` / `display` | `text-display-mobile md:text-display` |
+| H1 do artigo (`.art-h1`) | Plus Jakarta 30/38 → 44/54 | `h1-mobile` / `h1` | `text-h1-mobile md:text-h1` |
+| `.h2` | 26/34 → 34/42 | `h2-mobile` / `h2` | `text-h2-mobile md:text-h2` |
+| `.h3` | 20/28 → 22/30 | `h3-mobile` / `h3` | `text-h3-mobile md:text-h3` |
+| `.lead` | 19/29 → 20/30 | `lead-mobile` / `lead` | `text-lead-mobile md:text-lead` |
 | Wordmark do hero (`.wordmark`) | Cinzel 60 → 92 → 112px | — | Exclusivo da Home; não vira token |
 
-Os tamanhos mobile entram como tokens na #22. Até lá, a Fase 5 usa os valores da tabela acima.
+### 6.4 Cor `erro`
 
-### 6.4 Cor nova: `--erro`
-
-`--erro: #9B2C1F` (6,9:1 sobre branco) é a única cor fora dos tokens. Ela é usada só nas mensagens e bordas de erro do formulário. Precisa entrar em `tokens.json`, `tokens.css`, `tailwind.config.js` e na auditoria WCAG (pela #22) **antes** de ser usada em produção.
+`erro #9B2C1F` entrou nos tokens na WDLC 3.3, com 7,57:1 sobre branco e 6,78:1 sobre papel (auditoria 3.1 atualizada). Ela é usada só em estados de erro de formulário, nunca em seção escura e nunca como único sinal do erro.
 
 ### 6.5 Elementos de marca
 
@@ -190,8 +185,8 @@ Os ícones das áreas (`ICONS`) e dos canais (`CH_ICONS`) são SVGs de traço 1,
 ## 10. Como alterar os mockups depois da homologação
 
 1. Abra uma issue (ou um comentário na #9) com o pedido e quem pediu.
-2. Edite **só** `prototipo.html` (e `assets/`, se for o caso).
-3. Gere a cópia autônoma: `python docs/fase-3-design-system/wdlc-3.2-mockups/build-standalone.py`
+2. Edite `prototipo.html` (estrutura e conteúdo), `wdlc-3.3-componentes/componentes.css` (visual) e `assets/`, se for o caso. Uma mudança no CSS vale para o protótipo e para o catálogo: confira os dois.
+3. Gere as cópias autônomas: `python docs/fase-3-design-system/wdlc-3.2-mockups/build-standalone.py`
 4. Recapture as telas: `python docs/fase-3-design-system/wdlc-3.2-mockups/apresentacao/capturar-telas.py` (precisa do Chrome instalado e do Pillow).
 5. Republique a apresentação no mesmo link.
 6. Registre a mudança na seção 3 ("Decisões de design") do [documento de entrega](wdlc-3.2-mockups-alta-fidelidade.md), com a data.
@@ -207,8 +202,6 @@ Mudanças que tocam regra OAB, contraste ou rota passam de novo pelos sócios.
 | --- | --- |
 | Aprovação formal dos mockups pelos sócios | Toda a Fase 5 (o mockup só vira referência depois disso) |
 | Aprovação da rota `/artigos/{slug}` | View e rota do artigo |
-| `--erro` incorporado aos tokens e auditado | Estados de erro do formulário |
-| Tamanhos mobile de tipografia nos tokens (#22) | Nada: a Fase 5 usa a tabela 6.3 até lá |
 | Prazo de resposta do formulário ("até 2 dias úteis") | Texto do formulário |
 | Definição do encarregado de dados (DPO) | Seção 5 de `/privacidade` |
 
