@@ -1,0 +1,254 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-10-22",
+  "educational_notice": "Este conteúdo tem caráter exclusivamente informativo e educativo (Art. 4º do Provimento CFOAB nº 205/2021) e não substitui a análise individual de cada caso por advogado.",
+  "articles": [
+    {
+      "slug": "usucapiao-extrajudicial-requisitos-e-documentos",
+      "title": "Usucapião extrajudicial: requisitos e documentos",
+      "area_slug": "direito-imobiliario",
+      "author": "Lays Regina de Souza",
+      "excerpt": "Como funciona o reconhecimento da usucapião diretamente no Cartório de Registro de Imóveis, previsto no art. 216-A da Lei de Registros Públicos, e quais documentos costumam ser exigidos.",
+      "reading_time_minutes": 4,
+      "word_count": 639,
+      "sections": [
+        {
+          "heading": "O que é a usucapião",
+          "paragraphs": [
+            "A usucapião é a forma de adquirir a propriedade de um imóvel pela posse prolongada. Quem ocupa o imóvel como se fosse dono, de forma contínua e sem oposição, pelo prazo que a lei prevê, pode pedir que essa situação seja reconhecida e levada ao registro.",
+            "O prazo depende da modalidade. O Código Civil prevê, entre outras:"
+          ],
+          "list": [
+            "Usucapião extraordinária: 15 anos de posse, independentemente de título e boa-fé, prazo que cai para 10 anos se o possuidor morar no imóvel ou nele tiver realizado obras ou serviços de caráter produtivo (art. 1.238).",
+            "Usucapião ordinária: 10 anos de posse com justo título e boa-fé (art. 1.242).",
+            "Usucapião especial urbana: 5 anos de posse de área urbana de até 250 m², usada para moradia, por quem não é proprietário de outro imóvel urbano ou rural (art. 1.240)."
+          ],
+          "closing_paragraphs": []
+        },
+        {
+          "heading": "A via extrajudicial",
+          "paragraphs": [
+            "Desde o Código de Processo Civil de 2015, a Lei de Registros Públicos admite o pedido de reconhecimento da usucapião diretamente no Cartório de Registro de Imóveis da comarca onde o imóvel está, sem processo judicial (art. 216-A da Lei nº 6.015/1973).",
+            "A via extrajudicial é uma opção, e não uma obrigação: a lei diz que ela existe \"sem prejuízo da via jurisdicional\". O pedido é feito pelo interessado, representado por advogado, e segue também as regras do Conselho Nacional de Justiça, hoje reunidas no Provimento CNJ nº 149/2023, e as normas da Corregedoria do tribunal do estado."
+          ],
+          "list": [],
+          "closing_paragraphs": []
+        },
+        {
+          "heading": "Documentos exigidos",
+          "paragraphs": [
+            "O art. 216-A lista os documentos que acompanham o pedido:"
+          ],
+          "list": [
+            "Ata notarial lavrada por tabelião, que atesta o tempo de posse do requerente e de seus antecessores.",
+            "Planta e memorial descritivo assinados por profissional habilitado, com a anotação de responsabilidade técnica, e pelos titulares de direitos registrados na matrícula do imóvel e na dos imóveis vizinhos (confinantes).",
+            "Certidões negativas dos distribuidores da comarca do imóvel e do domicílio do requerente.",
+            "Justo título ou outros documentos que mostrem a origem, a continuidade, a natureza e o tempo da posse, como comprovantes de pagamento de impostos e taxas do imóvel."
+          ],
+          "closing_paragraphs": [
+            "Quando os documentos sobre a posse são insuficientes, a lei permite comprová-la em um procedimento de justificação administrativa no próprio cartório (art. 216-A, § 15)."
+          ]
+        },
+        {
+          "heading": "Como o pedido anda no cartório",
+          "paragraphs": [
+            "Recebido o pedido, o registrador notifica os titulares de direitos sobre o imóvel e sobre os confinantes que não assinaram a planta. Eles têm 15 dias para se manifestar, e o silêncio é interpretado como concordância. Em condomínio edilício, basta notificar o síndico.",
+            "O cartório também dá ciência do pedido à União, ao Estado, ao Distrito Federal e ao Município, e publica edital para que terceiros interessados possam se manifestar, também em 15 dias. Se a documentação estiver em ordem e não houver diligências pendentes, o registrador registra a aquisição do imóvel, abrindo matrícula quando for o caso."
+          ],
+          "list": [],
+          "closing_paragraphs": []
+        },
+        {
+          "heading": "Quando o pedido não segue no cartório",
+          "paragraphs": [
+            "Se houver impugnação justificada, o cartório envia o procedimento ao juízo da comarca do imóvel, e o pedido passa a seguir o procedimento comum. Se a documentação não estiver em ordem ao final das diligências, o pedido é rejeitado. A rejeição no cartório não impede que a usucapião seja pedida depois na Justiça (art. 216-A, §§ 8º a 10)."
+          ],
+          "list": [],
+          "closing_paragraphs": []
+        },
+        {
+          "heading": "O papel do advogado",
+          "paragraphs": [
+            "A representação por advogado é exigida no pedido extrajudicial. Cabe ao advogado analisar a documentação, identificar a modalidade de usucapião aplicável, verificar a situação da matrícula e dos imóveis vizinhos e acompanhar as exigências do cartório até o registro. Cada situação de posse tem particularidades, e a viabilidade do pedido depende dessa análise individual."
+          ],
+          "list": [],
+          "closing_paragraphs": []
+        }
+      ],
+      "references": [
+        "Código Civil (Lei nº 10.406/2002), arts. 1.238, 1.240 e 1.242.",
+        "Lei de Registros Públicos (Lei nº 6.015/1973), art. 216-A, incluído pela Lei nº 13.105/2015, com redação das Leis nº 13.465/2017 e nº 14.382/2022.",
+        "Provimento CNJ nº 149/2023 (Código Nacional de Normas da Corregedoria Nacional de Justiça, Foro Extrajudicial)."
+      ],
+      "status": "rascunho",
+      "published_at": null,
+      "updated_at": "2026-10-22",
+      "pending": [
+        "Revisão técnica e aprovação do texto e da autoria pelo sócio indicado."
+      ]
+    },
+    {
+      "slug": "negativa-de-cobertura-de-medicamento-pelo-plano-de-saude",
+      "title": "Negativa de cobertura de medicamento pelo plano de saúde",
+      "area_slug": "direito-de-saude",
+      "author": "Rodrigo Guedes da Silva",
+      "excerpt": "O que observar quando o plano de saúde nega um medicamento prescrito: o rol da ANS, a Lei nº 14.454/2022, os critérios fixados pelo STF em 2025 e os documentos que ajudam a analisar o caso.",
+      "reading_time_minutes": 3,
+      "word_count": 545,
+      "sections": [
+        {
+          "heading": "O rol da ANS",
+          "paragraphs": [
+            "A Agência Nacional de Saúde Suplementar (ANS) mantém o rol de procedimentos e eventos em saúde, a lista de coberturas que os planos devem oferecer. Pela Lei dos Planos de Saúde, esse rol é a referência básica para os planos contratados a partir de 1º de janeiro de 1999 e para os contratos adaptados à lei (art. 10, § 12, da Lei nº 9.656/1998).",
+            "Quando o medicamento prescrito consta do rol e as condições de cobertura são atendidas, a operadora deve autorizá-lo nos termos do contrato e da regulação da ANS."
+          ],
+          "list": [],
+          "closing_paragraphs": []
+        },
+        {
+          "heading": "Tratamentos fora do rol",
+          "paragraphs": [
+            "A Lei nº 14.454/2022 incluiu na Lei dos Planos de Saúde a possibilidade de cobertura de tratamento prescrito que não está no rol, desde que haja comprovação de eficácia baseada em evidências científicas ou recomendação da Conitec ou de órgão de avaliação de tecnologias em saúde de renome internacional (art. 10, § 13).",
+            "Em 18 de setembro de 2025, ao julgar a ADI 7265, o Supremo Tribunal Federal manteve essa possibilidade, mas fixou cinco critérios que devem ser cumpridos ao mesmo tempo:"
+          ],
+          "list": [
+            "o tratamento deve ser prescrito por médico ou odontólogo assistente;",
+            "o tratamento não pode ter sido expressamente negado pela ANS nem estar pendente de análise para inclusão no rol;",
+            "não deve haver alternativa terapêutica adequada no rol da ANS;",
+            "o tratamento deve ter comprovação científica de eficácia e segurança;",
+            "o tratamento deve ter registro na Agência Nacional de Vigilância Sanitária (Anvisa)."
+          ],
+          "closing_paragraphs": [
+            "Segundo a decisão, a Justiça só pode autorizar tratamento fora do rol quando esses critérios são atendidos e quando fica demonstrado que a operadora negou o tratamento ou demorou excessivamente, ou se omitiu, em autorizá-lo."
+          ]
+        },
+        {
+          "heading": "A negativa precisa ser comunicada",
+          "paragraphs": [
+            "A Resolução Normativa ANS nº 623/2024, que trata do atendimento aos beneficiários, define o que a operadora deve informar quando nega uma cobertura e prevê a reanálise da negativa pela ouvidoria da operadora. Vale anotar os números de protocolo de cada contato e pedir que a negativa e o seu motivo fiquem registrados por escrito."
+          ],
+          "list": [],
+          "closing_paragraphs": []
+        },
+        {
+          "heading": "Documentos úteis",
+          "paragraphs": [
+            "Para analisar uma negativa, costumam ser necessários:"
+          ],
+          "list": [
+            "Prescrição médica do medicamento, com dose e duração do tratamento.",
+            "Relatório médico detalhado: diagnóstico, tratamentos já realizados e motivo da indicação, inclusive por que as alternativas do rol não são adequadas ao caso, quando for essa a situação.",
+            "A negativa da operadora, com o motivo informado, e os protocolos de atendimento.",
+            "Contrato ou documento do plano e carteirinha do beneficiário.",
+            "Informações sobre o registro do medicamento na Anvisa."
+          ],
+          "closing_paragraphs": []
+        },
+        {
+          "heading": "Caminhos possíveis",
+          "paragraphs": [
+            "Antes da via judicial, é possível pedir a reanálise à operadora e registrar reclamação nos canais da ANS. Quando a demora puder causar dano à saúde do paciente, a ação judicial pode incluir pedido de tutela de urgência, que depende da demonstração da probabilidade do direito e do perigo de dano (art. 300 do Código de Processo Civil).",
+            "Cada caso depende do contrato, do quadro clínico e dos critérios acima, por isso a análise é sempre individual."
+          ],
+          "list": [],
+          "closing_paragraphs": []
+        }
+      ],
+      "references": [
+        "Lei dos Planos de Saúde (Lei nº 9.656/1998), art. 10, §§ 12 e 13, incluídos pela Lei nº 14.454/2022.",
+        "STF, Ação Direta de Inconstitucionalidade 7265, julgada em 18/9/2025.",
+        "Resolução Normativa ANS nº 623/2024.",
+        "Código de Processo Civil (Lei nº 13.105/2015), art. 300."
+      ],
+      "status": "rascunho",
+      "published_at": null,
+      "updated_at": "2026-10-22",
+      "pending": [
+        "Revisão técnica e aprovação do texto e da autoria pelo sócio indicado."
+      ]
+    },
+    {
+      "slug": "inventario-em-cartorio-quando-e-possivel",
+      "title": "Inventário em cartório: quando é possível",
+      "area_slug": "familia-e-sucessoes",
+      "author": "Lays Regina de Souza",
+      "excerpt": "Quando o inventário pode ser feito por escritura pública, o que mudou com a Resolução CNJ nº 571/2024 e quais documentos o cartório exige.",
+      "reading_time_minutes": 3,
+      "word_count": 486,
+      "sections": [
+        {
+          "heading": "Duas vias para o inventário",
+          "paragraphs": [
+            "O inventário é o procedimento que apura os bens, os direitos e as dívidas de quem faleceu e divide o patrimônio entre os herdeiros. Ele pode ser feito na Justiça ou em cartório.",
+            "O Código de Processo Civil prevê que, se todos os herdeiros forem capazes e estiverem de acordo, o inventário e a partilha podem ser feitos por escritura pública. A escritura serve para o registro dos imóveis e para o levantamento de valores depositados em bancos (art. 610, § 1º)."
+          ],
+          "list": [],
+          "closing_paragraphs": []
+        },
+        {
+          "heading": "O que mudou em 2024",
+          "paragraphs": [
+            "O texto do Código prevê o inventário judicial quando há testamento ou herdeiro incapaz (art. 610). Em agosto de 2024, a Resolução CNJ nº 571 alterou a Resolução CNJ nº 35/2007, que regula esses atos em cartório, e passou a admitir a escritura também nessas duas situações, com condições próprias."
+          ],
+          "list": [
+            "Herdeiro menor ou incapaz: a escritura é possível se a parte dele for paga em fração ideal de cada um dos bens e houver manifestação favorável do Ministério Público. Os bens do menor ou incapaz não podem ser objeto de atos de disposição, e, havendo impugnação, o caso vai ao juiz (art. 12-A).",
+            "Testamento: a escritura é possível se houver autorização expressa do juízo, em sentença transitada em julgado na ação de abertura e cumprimento do testamento, e se todos estiverem representados por advogado e de acordo (art. 12-B)."
+          ],
+          "closing_paragraphs": []
+        },
+        {
+          "heading": "Requisitos em resumo",
+          "paragraphs": [],
+          "list": [
+            "Acordo entre todos os herdeiros sobre a partilha.",
+            "Assistência de advogado ou defensor público, cujo nome e registro constam da escritura.",
+            "Nos casos de herdeiro menor ou incapaz e de testamento, as condições da Resolução CNJ nº 35/2007 descritas acima."
+          ],
+          "closing_paragraphs": []
+        },
+        {
+          "heading": "Documentos exigidos",
+          "paragraphs": [
+            "A Resolução CNJ nº 35/2007 lista os documentos apresentados na lavratura da escritura (art. 22):"
+          ],
+          "list": [
+            "Certidão de óbito.",
+            "Documento de identidade e CPF das partes e de quem faleceu.",
+            "Certidão que comprove o parentesco dos herdeiros.",
+            "Certidão de casamento do cônjuge sobrevivente e dos herdeiros casados, e pacto antenupcial, se houver.",
+            "Certidão de propriedade dos imóveis e documentos que comprovem a titularidade dos bens móveis e direitos.",
+            "Certidão negativa de tributos.",
+            "Certificado de Cadastro de Imóvel Rural (CCIR), se houver imóvel rural."
+          ],
+          "closing_paragraphs": []
+        },
+        {
+          "heading": "Prazo",
+          "paragraphs": [
+            "O Código de Processo Civil prevê que o inventário seja aberto em até 2 meses do falecimento (art. 611). A legislação de cada estado pode prever multa sobre o imposto de transmissão (ITCMD) quando esse prazo não é respeitado."
+          ],
+          "list": [],
+          "closing_paragraphs": []
+        },
+        {
+          "heading": "O papel do advogado",
+          "paragraphs": [
+            "O cartório só lavra a escritura com a participação de advogado. Cabe a ele orientar sobre a partilha e os direitos de cada herdeiro, reunir a documentação, acompanhar o cálculo e o recolhimento dos tributos e verificar se o caso pode seguir em cartório ou precisa ir à Justiça."
+          ],
+          "list": [],
+          "closing_paragraphs": []
+        }
+      ],
+      "references": [
+        "Código de Processo Civil (Lei nº 13.105/2015), arts. 610 e 611.",
+        "Resolução CNJ nº 35/2007, arts. 8º, 12-A, 12-B e 22, com redação da Resolução CNJ nº 571/2024."
+      ],
+      "status": "rascunho",
+      "published_at": null,
+      "updated_at": "2026-10-22",
+      "pending": [
+        "Revisão técnica e aprovação do texto e da autoria pelo sócio indicado."
+      ]
+    }
+  ]
+}
