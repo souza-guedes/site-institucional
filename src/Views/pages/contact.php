@@ -1,7 +1,7 @@
 <?php
 /**
- * Contato (WF-07): canais passivos, como funciona o primeiro contato, formulário e sede.
- * O aviso de que o envio não forma relação advogado-cliente fica junto do botão.
+ * Contato (WF-07): canais passivos, como funciona o primeiro contato e sede.
+ * O site não tem formulário: o contato é só pelos canais oficiais (issue #15).
  */
 $phone = channel('phone');
 $inPerson = channel('in_person');
@@ -25,20 +25,19 @@ $inPerson = channel('in_person');
     </section>
 
     <section class="section">
-        <div class="wrap contact-grid">
-            <div class="contact-aside">
+        <div class="wrap">
+            <div class="contact-aside max-w-3xl">
                 <div class="section__head m-0">
                     <p class="eyebrow">Primeiro contato</p>
                     <h2 class="h2">Como funciona</h2>
                 </div>
                 <ol class="steps">
-                    <li><b>Envie uma mensagem</b><span>Descreva a situação de forma resumida, pelo formulário ou pelos canais oficiais.</span></li>
-                    <li><b>Leitura pelos sócios</b><span>A mensagem é lida diretamente por um dos sócios, que retorna pelo canal que você informar.</span></li>
+                    <li><b>Envie uma mensagem</b><span>Descreva a situação de forma resumida, pelos canais oficiais.</span></li>
+                    <li><b>Leitura pelos sócios</b><span>A mensagem é lida diretamente por um dos sócios, que retorna pelo mesmo canal.</span></li>
                     <li><b>Reunião com agendamento</b><span>Quando for o caso, a conversa continua em reunião na sede.</span></li>
                 </ol>
-                <?php partial('notice', ['title' => 'Antes de enviar', 'text' => 'Não envie documentos nem dados sensíveis por aqui. O primeiro contato não constitui consulta jurídica nem estabelece relação advogado-cliente.']); ?>
+                <?php partial('notice', ['title' => 'Antes de enviar', 'text' => 'Não envie documentos nem dados sensíveis no primeiro contato. Ele não constitui consulta jurídica nem estabelece relação advogado-cliente.']); ?>
             </div>
-            <?php partial('contact-form'); ?>
         </div>
     </section>
 

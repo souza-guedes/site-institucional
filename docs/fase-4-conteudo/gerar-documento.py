@@ -167,7 +167,7 @@ def write_sections(sections):
         w(f"#### {s['heading']}\n")
         for para in s['paragraphs']:
             w(para + '\n')
-        if 'table' in s:
+        if s.get('table', {}).get('rows'):
             w('| ' + ' | '.join(s['table']['columns']) + ' |')
             w('|' + ' --- |' * len(s['table']['columns']))
             for row in s['table']['rows']:
@@ -205,13 +205,13 @@ A redação usa só fatos do projeto e as decisões tomadas para esta issue. Cad
 | Cookies | Só os estritamente necessários; aviso informativo, sem pedido de consentimento |
 | Retenção de mensagens | {pp['retention']['contact_without_engagement_months']} meses para contatos que não viram contratação; registros de acesso por {pp['retention']['access_logs_months']} meses |
 | Termos de Uso | Seção da própria página `{pp['route']}`, sem rota nova |
-| Base legal do formulário | Procedimentos preliminares relacionados a contrato, a pedido do titular (art. 7º, V), e não o consentimento |
+| Base legal do contato | Procedimentos preliminares relacionados a contrato, a pedido do titular (art. 7º, V), e não o consentimento |
 
 **Itens da issue**
 
 | Item da #12 | Onde está |
 | --- | --- |
-| Finalidade da coleta no formulário (nome, e-mail, telefone) | Política de Privacidade, seções 2 e 3 |
+| Finalidade da coleta nos canais de contato (nome, e-mail, telefone) | Política de Privacidade, seções 2 e 3 |
 | Hipóteses legais do art. 7º | Política de Privacidade, seção 3 (tabela) |
 | Direitos dos titulares (art. 18) | Política de Privacidade, seções 9 e 10 |
 | Identificação e e-mail do encarregado | Política de Privacidade, seções 1 e 10 |
