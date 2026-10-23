@@ -14,6 +14,7 @@
   --latao-escuro: #7A5F33;
   --linha: #CFD8D6;
   --borda-campo: #6E7C7A;
+  --erro: #9B2C1F;
   --branco: #FFFFFF;
 
   /* Famílias */
@@ -39,12 +40,22 @@
   --hairline: 1px;
 }
 
+/* breakpoints (media queries não aceitam var()): sm 560px · md 760px · lg 1100px */
+
+/* Tipografia mobile-first: estilos *-mobile na base, desktop a partir de md (760px) */
 .t-eyebrow{font-family:var(--font-display);font-size:13px;line-height:16px;font-weight:500;letter-spacing:0.18em;}
-.t-display{font-family:var(--font-display);font-size:44px;line-height:52px;font-weight:400;letter-spacing:0.04em;}
-.t-h1{font-family:var(--font-titulo);font-size:46px;line-height:54px;font-weight:600;letter-spacing:-0.01em;}
-.t-h2{font-family:var(--font-titulo);font-size:34px;line-height:42px;font-weight:600;letter-spacing:-0.01em;}
-.t-h3{font-family:var(--font-titulo);font-size:22px;line-height:30px;font-weight:600;}
-.t-lead{font-family:var(--font-sans);font-size:20px;line-height:30px;font-weight:400;}
+.t-display{font-family:var(--font-display);font-size:30px;line-height:38px;font-weight:400;letter-spacing:0.03em;}
+.t-h1{font-family:var(--font-titulo);font-size:30px;line-height:38px;font-weight:600;letter-spacing:-0.01em;}
+.t-h2{font-family:var(--font-titulo);font-size:26px;line-height:34px;font-weight:600;letter-spacing:-0.01em;}
+.t-h3{font-family:var(--font-titulo);font-size:20px;line-height:28px;font-weight:600;}
+.t-lead{font-family:var(--font-sans);font-size:19px;line-height:29px;font-weight:400;}
+@media (min-width:760px){
+  .t-display{font-size:44px;line-height:52px;}
+  .t-h1{font-size:44px;line-height:54px;}
+  .t-h2{font-size:34px;line-height:42px;}
+  .t-h3{font-size:22px;line-height:30px;}
+  .t-lead{font-size:20px;line-height:30px;}
+}
 .t-body{font-family:var(--font-sans);font-size:17px;line-height:27px;font-weight:400;}
 .t-botao{font-family:var(--font-sans);font-size:16px;line-height:20px;font-weight:600;}
 .t-nota{font-family:var(--font-sans);font-size:14px;line-height:21px;font-weight:400;}

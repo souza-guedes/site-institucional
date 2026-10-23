@@ -6,7 +6,8 @@
 > **Épico Relacionado:** [#7](https://github.com/souza-guedes/site-institucional/issues/7)  
 > **Dependências:** tokens do WDLC 3.1 ([`design-system/tokens.css`](../../design-system/tokens.css)) e wireframes do WDLC 2.2 ([`wdlc-2.2-wireframes-taxonomia.md`](../fase-2-planejamento/wdlc-2.2-wireframes-taxonomia.md))  
 > **Protótipo navegável:** [`wdlc-3.2-mockups/prototipo.html`](wdlc-3.2-mockups/prototipo.html)  
-> **Apresentação das telas (link público):** https://claude.ai/artifact/9KUxcLx4LV4qbWviWRQqvg
+> **Apresentação das telas (link público):** https://claude.ai/artifact/9KUxcLx4LV4qbWviWRQqvg  
+> **Spec de uso (handoff Fase 5 / #22):** [`wdlc-3.2-spec-uso-mockups.md`](wdlc-3.2-spec-uso-mockups.md)
 
 ---
 
@@ -66,7 +67,7 @@ Estados de UI demonstrados: navegação ativa (`aria-current`), menu mobile aber
 - **Tipografia:** Cinzel para wordmark, títulos de página (H1) e eyebrows, para dar o tom institucional; Plus Jakarta Sans nos títulos de seção; Source Sans 3 no corpo (17/27px).
 - **Quinas retas** (radius 0 nos cards, 2px em botões e campos), fios de 1px como assinatura gráfica herdada do monograma.
 - **Conteúdo real** de `data/firm-profile.json` e `data/sitemap-taxonomy.json`: nomes, OAB, formação, endereço, canais, escopo e ritos de cada área.
-- Uma cor nova fora dos tokens: `--erro #9B2C1F` (6,9:1 sobre branco) para mensagens de erro do formulário. Proposta para incorporar ao design system em #22.
+- Uma cor nova fora dos tokens: `--erro #9B2C1F` (7,57:1 sobre branco) para mensagens de erro do formulário. Incorporada ao design system na #22 (WDLC 3.3).
 
 - **O Escritório sem a seção "Sede"** (removida a pedido em 21/10/2026). A página segue com Trajetória (branco) e Ética (papel), e o endereço da sede continua no Contato, no rodapé e no bloco de atendimento.
 
