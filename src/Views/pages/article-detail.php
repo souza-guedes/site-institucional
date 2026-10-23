@@ -10,7 +10,7 @@ $author = partner_by_name($article['author']);
 $sameArea = array_filter($articles, static fn (array $a): bool => $a['slug'] !== $article['slug'] && $a['area_slug'] === $article['area_slug']);
 $otherAreas = array_filter($articles, static fn (array $a): bool => $a['slug'] !== $article['slug'] && $a['area_slug'] !== $article['area_slug']);
 $related = array_slice(array_merge(array_values($sameArea), array_values($otherAreas)), 0, 3);
-$byline = '<div class="byline"><img src="' . e($author['photo']) . '" alt="" width="52" height="52"><div><b>' . e($author['name'])
+$byline = '<div class="byline"><img src="' . e(preg_replace('/\.webp$/', '-104.webp', $author['photo'])) . '" alt="" width="52" height="52"><div><b>' . e($author['name'])
     . '</b><span>' . e(partner_title($author)) . ' · ' . e($author['oab_number']) . '</span></div></div>';
 ?>
 <main id="conteudo">
@@ -24,7 +24,7 @@ $byline = '<div class="byline"><img src="' . e($author['photo']) . '" alt="" wid
                 <h1 class="art-h1"><?= e($article['title']) ?></h1>
                 <?= $byline ?>
             </div>
-            <div class="feat__media arthero"><span class="feat__bar" aria-hidden="true"></span><span class="art__img"><img src="<?= e($article['image']) ?>" alt="" width="900" height="600"></span></div>
+            <div class="feat__media arthero"><span class="feat__bar" aria-hidden="true"></span><span class="art__img"><img src="<?= e($article['image']) ?>" srcset="<?= e(srcset($article['image'], [900, 720, 480])) ?>" sizes="(min-width: 1200px) 1104px, calc(100vw - 32px)" alt="" width="900" height="600" fetchpriority="high"></span></div>
         </div>
     </header>
 

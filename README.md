@@ -22,6 +22,19 @@ npm run build:css   # ou npm run watch:css durante o desenvolvimento
 
 O `main.css` gerado é versionado, porque a hospedagem não roda Node. Depois de mudar o design system ou as classes das views, rode o build e faça commit do `main.css`; o CI falha se ele estiver desatualizado.
 
+## Fontes e imagens
+
+As fontes são servidas pelo próprio site, em WOFF2, a partir de `public/assets/fonts/` (`@font-face` em `resources/css/fonts.css`). As fotos ficam em WebP, em vários tamanhos, a partir dos originais em `resources/img/`. Os dois resultados são versionados:
+
+```bash
+npm run fonts    # copia as fontes dos pacotes @fontsource
+npm run images   # gera as variantes WebP usadas nos srcset
+```
+
+## Auditoria de performance e navegadores
+
+Com o servidor local no ar, `npm run audit:lighthouse` roda o Lighthouse (mobile e desktop) e `npm run audit:browsers` testa Chrome, Edge, Firefox e WebKit (antes, rode `npx playwright install firefox webkit`). O relatório da WDLC 6.1 está em `docs/fase-6-testes-qa/`.
+
 ## Conteúdo
 
 Os textos e dados do site ficam em `data/` (`firm-profile.json`, `articles.json`, `privacy-policy.json` e `sitemap-taxonomy.json`), com schemas em `schemas/`. As views em `src/Views/` só leem esses arquivos.

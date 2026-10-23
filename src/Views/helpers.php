@@ -19,6 +19,29 @@ function e(mixed $value): string
     return htmlspecialchars((string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
+/** Caminho de CSS/JS em public/ com ?v=<data de modificação>, para o cache longo do .htaccess não servir versão antiga. */
+function asset(string $path): string
+{
+    $file = dirname(__DIR__, 2) . '/public' . $path;
+    return $path . (is_file($file) ? '?v=' . filemtime($file) : '');
+}
+
+/**
+ * Atributo srcset de uma imagem gerada por scripts/optimize-images.mjs: o maior tamanho fica no
+ * caminho-base (/assets/img/lays.webp) e os menores ganham o sufixo da largura (lays-400.webp).
+ *
+ * @param int[] $widths larguras disponíveis, a maior primeiro (a do caminho-base)
+ */
+function srcset(string $path, array $widths): string
+{
+    $base = preg_replace('/\.webp$/', '', $path);
+    $candidates = [];
+    foreach ($widths as $index => $width) {
+        $candidates[] = ($index === 0 ? $path : "{$base}-{$width}.webp") . " {$width}w";
+    }
+    return implode(', ', $candidates);
+}
+
 /** Inclui um partial de src/Views/partials com os dados compartilhados e as variáveis indicadas. */
 function partial(string $name, array $vars = []): void
 {

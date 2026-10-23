@@ -121,11 +121,27 @@ final class PageRenderingTest
         if (stripos($withoutNotice, 'especialista') !== false) {
             throw new \AssertionError("'{$path}' usa a palavra 'especialista'.");
         }
-        // Todo asset local referenciado existe em public/
-        preg_match_all('#(?:src|href)="(/assets/[^"\#?]+)#', $html, $assets);
+        // Todo asset local referenciado existe em public/, inclusive cada candidato dos srcset
+        preg_match_all('#(?:src|href)="(/[^"\#?]+\.(?:css|js|svg|webp|png|woff2))#', $html, $assets);
+        preg_match_all('#srcset="([^"]+)"#', $html, $srcsets);
+        foreach ($srcsets[1] as $srcset) {
+            foreach (explode(',', $srcset) as $candidate) {
+                $assets[1][] = strtok(trim($candidate), ' ');
+            }
+        }
         foreach (array_unique($assets[1]) as $asset) {
             if (!file_exists($this->public . $asset)) {
                 throw new \AssertionError("'{$path}' referencia '{$asset}', que não existe em public/.");
+            }
+        }
+        // Desempenho (WDLC 6.1): fontes servidas pelo site e imagens com dimensões, para não gerar CLS
+        if (preg_match('#fonts\.(googleapis|gstatic)\.com#', $html)) {
+            throw new \AssertionError("'{$path}' carrega fontes do Google; elas são servidas pelo próprio site.");
+        }
+        preg_match_all('#<img\b[^>]*>#', $html, $images);
+        foreach ($images[0] as $img) {
+            if (!preg_match('#\swidth="\d+"#', $img) || !preg_match('#\sheight="\d+"#', $img)) {
+                throw new \AssertionError("'{$path}' tem imagem sem width e height: {$img}");
             }
         }
     }

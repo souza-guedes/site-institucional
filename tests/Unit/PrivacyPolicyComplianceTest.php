@@ -207,6 +207,16 @@ final class PrivacyPolicyComplianceTest
         }
     }
 
+    public function testTextsDoNotMentionGoogleFonts(): void
+    {
+        // As fontes são servidas pelo próprio site (WDLC 6.1): o Google não recebe dados de quem visita.
+        foreach ($this->texts($this->policy, 'privacy-policy.json') as $path => $text) {
+            if (mb_stripos($text, 'Google Fonts') !== false) {
+                throw new \AssertionError("{$path} cita o Google Fonts, que o site não usa.");
+            }
+        }
+    }
+
     public function testApprovedVersionHasNoPlaceholders(): void
     {
         if (($this->policy['status'] ?? '') !== 'aprovado') {

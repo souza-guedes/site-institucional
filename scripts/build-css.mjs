@@ -5,6 +5,8 @@
 //   As container queries do contêiner "site" viram media queries nos mesmos pontos
 //   (sm 560 · md 760 · lg 1100), porque no site a largura de referência é a da janela.
 //
+// - resources/css/fonts.css: @font-face das fontes servidas pelo próprio site (WDLC 6.1).
+//
 // O CSS dos componentes fica fora de @layer para não ser podado pelo Tailwind (várias classes
 // só aparecem por JS, como .is-open e .is-stuck). As utilities vêm por último e podem sobrescrevê-lo.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
@@ -14,6 +16,7 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (path) => readFileSync(join(root, path), 'utf8').replace(/\r\n/g, '\n');
 
+const fonts = read('resources/css/fonts.css');
 const tokens = read('design-system/tokens.css');
 const components = read('design-system/componentes.css')
   .replace(/@import url\("tokens\.css"\);\n?/, '')
@@ -28,6 +31,7 @@ mkdirSync(dirname(out), { recursive: true });
 writeFileSync(out, [
   '/* Gerado por scripts/build-css.mjs. Não editar: edite design-system/tokens.css e design-system/componentes.css. */',
   '@tailwind base;',
+  fonts,
   tokens,
   components,
   '@tailwind utilities;',

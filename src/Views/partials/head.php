@@ -19,10 +19,11 @@ $canonical = AppConfig::getCanonicalUrl($path);
     <meta property="og:url" content="<?= e($canonical) ?>">
     <meta property="og:locale" content="pt_BR">
 
-    <!-- Fontes pelo Google Fonts: a Política de Privacidade (seção 5) informa esse compartilhamento. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap">
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fontes servidas pelo próprio site (resources/css/fonts.css); preload só da fonte do texto, que costuma ser o elemento de LCP. -->
+    <link rel="preload" href="/assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="<?= e(asset('/assets/css/main.css')) ?>">
 </head>
 <body class="site m-0">

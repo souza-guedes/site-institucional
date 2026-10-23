@@ -1,5 +1,5 @@
-/* Fontes (Cinzel, Plus Jakarta Sans, Source Sans 3): carregadas pelo <link> do Google Fonts em cada página
-   (src/Views/partials/head.php no site; <head> do protótipo e do catálogo). */
+/* Fontes (Cinzel, Plus Jakarta Sans, Source Sans 3): no site, servidas pelo próprio site (resources/css/fonts.css,
+   WDLC 6.1); no protótipo e no catálogo, carregadas pelo <link> do Google Fonts no <head>. */
 
 :root{
   /* Cores */

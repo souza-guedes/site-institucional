@@ -86,7 +86,7 @@
       "pending": [
         "Revisão técnica e aprovação do texto e da autoria pelo sócio indicado."
       ],
-      "image": "/assets/img/artigos/usucapiao.jpg"
+      "image": "/assets/img/artigos/usucapiao.webp"
     },
     {
       "slug": "negativa-de-cobertura-de-medicamento-pelo-plano-de-saude",
@@ -167,7 +167,7 @@
       "pending": [
         "Revisão técnica e aprovação do texto e da autoria pelo sócio indicado."
       ],
-      "image": "/assets/img/artigos/medicamento.jpg"
+      "image": "/assets/img/artigos/medicamento.webp"
     },
     {
       "slug": "inventario-em-cartorio-quando-e-possivel",
@@ -251,7 +251,7 @@
       "pending": [
         "Revisão técnica e aprovação do texto e da autoria pelo sócio indicado."
       ],
-      "image": "/assets/img/artigos/inventario.jpg"
+      "image": "/assets/img/artigos/inventario.webp"
     }
   ]
 }
