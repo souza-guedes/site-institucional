@@ -75,6 +75,7 @@ Os dados ficam com o escritório. Eles só passam por terceiros na medida necess
 
 - Provedor de e-mail: as mensagens do formulário e os e-mails chegam à caixa institucional do escritório, mantida no Gmail, serviço da Google.
 - Provedor de hospedagem do site, que armazena os registros técnicos de acesso.
+- Google Fonts, serviço da Google que fornece as fontes do site: ao carregar uma página, o navegador solicita as fontes aos servidores da Google, que recebem o endereço IP e as informações do navegador de quem visita.
 - Autoridades públicas, quando houver obrigação legal ou ordem judicial.
 
 Quem usa o WhatsApp para falar com o escritório também se sujeita aos termos e à política de privacidade do aplicativo.
@@ -219,8 +220,6 @@ Conferência feita em 23/10/2026. Antes de publicar, vale confirmar que não hou
 - [ ] Nome técnico do cookie de sessão do formulário, definido na WDLC 5.2 (Política de Cookies, seção 2).
 - [ ] Enquadramento como agente de tratamento de pequeno porte (Res. CD/ANPD nº 2/2022). A indicação da encarregada vale de qualquer forma; se houver o enquadramento, ela conta como boa prática (art. 11, § 2º).
 - [ ] Fase 5: trocar o texto do checkbox do formulário de "autorizo o uso dos meus dados" por uma declaração de ciência da Política de Privacidade, porque a base legal do contato é o art. 7º, V, e não o consentimento.
-- [ ] Fase 5: hospedar as fontes no próprio site em vez de carregá-las do Google Fonts, que recebe o IP de quem visita; se continuar com o Google Fonts, incluir o Google na seção 5 da Política de Privacidade.
-- [ ] Fase 5: PrivacyController lê firm.contact.email, chave que não existe; ler o e-mail de data/privacy-policy.json.
 
 ## 8. Auditoria automática
 

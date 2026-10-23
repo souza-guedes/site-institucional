@@ -85,7 +85,8 @@
       "updated_at": "2026-10-22",
       "pending": [
         "Revisão técnica e aprovação do texto e da autoria pelo sócio indicado."
-      ]
+      ],
+      "image": "/assets/img/artigos/usucapiao.jpg"
     },
     {
       "slug": "negativa-de-cobertura-de-medicamento-pelo-plano-de-saude",
@@ -165,7 +166,8 @@
       "updated_at": "2026-10-22",
       "pending": [
         "Revisão técnica e aprovação do texto e da autoria pelo sócio indicado."
-      ]
+      ],
+      "image": "/assets/img/artigos/medicamento.jpg"
     },
     {
       "slug": "inventario-em-cartorio-quando-e-possivel",
@@ -248,7 +250,8 @@
       "updated_at": "2026-10-22",
       "pending": [
         "Revisão técnica e aprovação do texto e da autoria pelo sócio indicado."
-      ]
+      ],
+      "image": "/assets/img/artigos/inventario.jpg"
     }
   ]
 }
