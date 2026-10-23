@@ -295,28 +295,28 @@
       "label": "E-mail geral institucional",
       "value": "souzaguedes.adv@gmail.com",
       "action_uri": "mailto:souzaguedes.adv@gmail.com",
-      "availability": "Das 10h às 18h"
+      "availability": "De segunda a sexta, das 10h às 18h"
     },
     {
       "channel_type": "phone",
       "label": "Telefone comercial da sede",
       "value": "(11) 93619-1904",
       "action_uri": "tel:+5511936191904",
-      "availability": "Das 10h às 18h"
+      "availability": "De segunda a sexta, das 10h às 18h"
     },
     {
       "channel_type": "whatsapp",
       "label": "WhatsApp",
       "value": "(11) 93619-1904",
       "action_uri": "https://wa.me/5511936191904",
-      "availability": "Das 10h às 18h. Primeiro contato com apresentação e espaço para o cliente expor a demanda."
+      "availability": "De segunda a sexta, das 10h às 18h. Primeiro contato com apresentação e espaço para o cliente expor a demanda."
     },
     {
       "channel_type": "in_person",
       "label": "Sede",
       "value": "Rua Uhland, 784, Casa 1, Vila Ema, São Paulo/SP, CEP 03283-000",
       "action_uri": "https://maps.google.com/?q=Rua+Uhland,+784,+Vila+Ema,+S%C3%A3o+Paulo",
-      "availability": "Das 10h às 18h"
+      "availability": "De segunda a sexta, das 10h às 18h"
     }
   ],
   "compliance_disclaimer": "Este portal tem finalidade exclusivamente institucional, informativa e educativa, em rigorosa conformidade com o Provimento CFOAB nº 205/2021 e o Código de Ética e Disciplina da OAB. As informações divulgadas não configuram captação de clientela, promessa de resultados ou prestação de consulta jurídica direta, a qual depende de contratação formal e análise individualizada de cada caso."
