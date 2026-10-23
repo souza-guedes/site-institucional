@@ -1,27 +1,39 @@
-<header class="bg-white border-b border-gray-200 sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
-            <div class="flex items-center">
-                <a href="/" class="flex items-center space-x-3 text-primary-900 font-serif text-2xl font-bold tracking-tight">
-                    <span>Souza Guedes</span>
-                    <span class="text-xs uppercase tracking-widest font-sans text-gray-500 font-semibold border-l border-gray-300 pl-3">Advogados</span>
-                </a>
-            </div>
-            
-            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-gray-700">
-                <a href="/" class="hover:text-primary-700 transition">Início</a>
-                <a href="/sobre" class="hover:text-primary-700 transition">O Escritório</a>
-                <a href="/areas-de-atuacao" class="hover:text-primary-700 transition">Áreas de Atuação</a>
-                <a href="/advogados" class="hover:text-primary-700 transition">Advogados</a>
-                <a href="/artigos" class="hover:text-primary-700 transition">Artigos</a>
-                <a href="/contato" class="hover:text-primary-700 transition">Contato</a>
-            </nav>
-
-            <div class="flex items-center space-x-4">
-                <a href="https://wa.me/5511936191904" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 border border-primary-700 text-sm font-medium rounded-md text-primary-700 bg-white hover:bg-primary-50 transition">
-                    Atendimento WhatsApp
-                </a>
-            </div>
+<?php
+/**
+ * Cabeçalho fixo com navegação principal e gaveta mobile (abaixo de 1100px).
+ * Rótulos e ordem: catálogo WDLC 3.3, "Header e navbar". A gaveta é controlada por site.js.
+ */
+$menuIconOpen = '<svg class="i-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>';
+$menuIconClose = '<svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>';
+?>
+<header class="hdr">
+    <div class="wrap hdr__in">
+        <a class="brand" href="/" aria-label="Souza Guedes Advogados — início">
+            <svg class="logo-wm" aria-hidden="true"><use href="/assets/img/logos.svg#logo-wordmark"/></svg>
+        </a>
+        <nav class="nav" aria-label="Principal">
+            <a href="/"<?= nav_current('inicio') ?>>Início</a>
+            <a href="/sobre"<?= nav_current('sobre') ?>>O Escritório</a>
+            <a href="/areas-de-atuacao"<?= nav_current('areas-de-atuacao') ?>>Áreas de Atuação</a>
+            <a href="/advogados"<?= nav_current('advogados') ?>>Corpo Jurídico</a>
+            <a href="/artigos"<?= nav_current('artigos') ?>>Artigos</a>
+            <a href="/contato"<?= nav_current('contato') ?>>Contato</a>
+        </nav>
+        <a class="btn btn--primary hdr__cta" href="/contato">Canais de atendimento</a>
+        <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mnav"><?= $menuIconOpen . $menuIconClose ?>Menu</button>
+    </div>
+    <div class="mnav" id="mnav">
+        <div class="wrap">
+            <ul>
+                <li><a href="/"<?= nav_current('inicio') ?>>Início</a></li>
+                <li><a href="/sobre"<?= nav_current('sobre') ?>>O Escritório</a></li>
+                <li><a href="/areas-de-atuacao"<?= nav_current('areas-de-atuacao') ?>>Áreas de Atuação</a></li>
+                <li><a href="/advogados"<?= nav_current('advogados') ?>>Corpo Jurídico</a></li>
+                <li><a href="/artigos"<?= nav_current('artigos') ?>>Artigos</a></li>
+                <li><a href="/contato"<?= nav_current('contato') ?>>Contato</a></li>
+            </ul>
+            <a class="btn btn--primary" href="/contato">Canais de atendimento</a>
         </div>
     </div>
 </header>
+<div class="scrim" id="scrim" aria-hidden="true"></div>

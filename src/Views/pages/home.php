@@ -1,49 +1,94 @@
-<?php include dirname(__DIR__) . '/partials/header.php'; ?>
-<?php include dirname(__DIR__) . '/partials/navbar.php'; ?>
-
-<main class="min-h-screen py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-    <!-- Hero Section Informativo e Moderado -->
-    <section class="text-center py-12 md:py-20 border-b border-gray-200">
-        <h1 class="text-4xl sm:text-5xl font-serif font-bold text-gray-900 tracking-tight mb-6">
-            Advocacia Estratégica com Rigor Técnico e Ética
-        </h1>
-        <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-8 leading-relaxed">
-            O escritório Souza Guedes Advogados presta assessoria jurídica contenciosa e consultiva com foco no atendimento individualizado, transparência e segurança jurídica.
-        </p>
-        <div class="flex flex-wrap justify-center gap-4">
-            <a href="/areas-de-atuacao" class="px-6 py-3 bg-gray-900 text-white font-medium rounded-md hover:bg-gray-800 transition">
-                Conheça Nossas Áreas de Atuação
-            </a>
-            <a href="/contato" class="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-md hover:bg-gray-100 transition">
-                Canais de Atendimento
-            </a>
-        </div>
-    </section>
-
-    <!-- Resumo das Áreas de Atuação -->
-    <section class="py-16">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-serif font-bold text-gray-900 mb-4">Áreas de Atuação</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">
-                Atuação dedicada em demandas imobiliárias, saúde suplementar, relações de consumo e planejamento familiar.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <?php foreach (($firm['practice_areas'] ?? []) as $area): ?>
-                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-xl font-bold font-serif text-gray-900 mb-3"><?= htmlspecialchars($area['title']) ?></h3>
-                        <p class="text-sm text-gray-600 mb-4"><?= htmlspecialchars($area['summary'] ?? '') ?></p>
-                    </div>
-                    <a href="/areas-de-atuacao/<?= htmlspecialchars($area['slug']) ?>" class="text-sm font-semibold text-primary-700 hover:underline mt-2">
-                        Saiba mais &rarr;
-                    </a>
+<?php
+/** Início (WF-01). A composição da marca abre a página; cada seção seguinte retoma um elemento dela. */
+$values = array_map(static fn (string $v): array => array_map('trim', explode(':', $v, 2)), $firm['firm']['values']);
+$carousel = array_slice($articles, 0, 6);
+$arrow = static fn (string $d): string => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="' . $d . '"/></svg>';
+?>
+<main id="conteudo">
+    <section class="hero">
+        <div class="wrap">
+            <div class="hero__txt">
+                <h1 class="wordmark">Souza<br>Guedes<small>ADVOGADOS</small></h1>
+                <p class="claim">Atuação jurídica estratégica, técnica e dedicada.</p>
+                <p class="lead">Cuidamos dos interesses de nossos clientes, antecipamos riscos e buscamos soluções jurídicas que façam sentido para cada situação.</p>
+                <div class="hero__ctas">
+                    <a class="btn btn--primary" href="/areas-de-atuacao">Conhecer as áreas de atuação</a>
+                    <a class="btn btn--ghost" href="/contato">Canais de atendimento</a>
                 </div>
-            <?php endforeach; ?>
+                <div class="hero__id">
+                    <?php foreach ($firm['partners'] as $partner): ?>
+                        <span><b><?= e($partner['name']) ?></b> · <?= e($partner['oab_number']) ?></span>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+        <div class="comp" aria-hidden="true">
+            <span class="comp__nevoa of"></span><span class="comp__sq"></span><span class="comp__bar"></span><span class="comp__panel seal of"></span>
         </div>
     </section>
-</main>
 
-<?php include dirname(__DIR__) . '/partials/cookie-banner.php'; ?>
-<?php include dirname(__DIR__) . '/partials/footer.php'; ?>
+    <section class="section section--tight valband" aria-labelledby="valores-t">
+        <div class="wrap valband__in">
+            <div class="valband__head">
+                <p class="eyebrow">Nossos valores</p>
+                <h2 class="h3" id="valores-t">Os princípios que orientam cada atendimento</h2>
+            </div>
+            <div class="values">
+                <?php foreach ($values as [$name, $text]): ?>
+                    <div class="value"><h3><span class="sq"></span><?= e($name) ?></h3><p class="muted"><?= e($text) ?></p></div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" aria-labelledby="areas-t">
+        <div class="wrap">
+            <div class="section__head">
+                <p class="eyebrow">Áreas de Atuação</p>
+                <h2 class="h2" id="areas-t">Prática jurídica em quatro áreas do Direito Civil</h2>
+            </div>
+            <div class="areas areas--4">
+                <?php foreach ($firm['practice_areas'] as $area) { partial('area-card', ['area' => $area]); } ?>
+            </div>
+            <p class="more"><a class="link arrow" href="/areas-de-atuacao">Todas as áreas de atuação</a></p>
+        </div>
+    </section>
+
+    <section class="section dark team of" aria-labelledby="socios-t">
+        <div class="wrap">
+            <div class="section__head">
+                <p class="eyebrow">Corpo Jurídico</p>
+                <h2 class="h2" id="socios-t">Sócios fundadores</h2>
+                <p class="muted">Cada caso é analisado e acompanhado diretamente pelos sócios.</p>
+            </div>
+            <div class="people">
+                <?php foreach ($firm['partners'] as $partner) { partial('lawyer-card', ['partner' => $partner]); } ?>
+            </div>
+        </div>
+    </section>
+
+    <?php if ($carousel !== []): ?>
+    <section class="section" aria-labelledby="artigos-t">
+        <div class="wrap">
+            <div class="arts-head">
+                <div class="section__head m-0">
+                    <p class="eyebrow">Artigos e Informações</p>
+                    <h2 class="h2" id="artigos-t">Orientação jurídica de caráter educativo</h2>
+                </div>
+                <?php partial('notice', ['title' => 'Conteúdo informativo', 'text' => 'Os artigos explicam direitos e procedimentos de forma geral e não substituem a análise individual de cada caso (Art. 4º do Provimento CFOAB nº 205/2021).']); ?>
+            </div>
+            <div class="articles carousel" id="home-articles" role="region" aria-roledescription="carrossel" aria-label="Artigos recentes" tabindex="0">
+                <?php foreach ($carousel as $article) { partial('article-card', ['article' => $article]); } ?>
+            </div>
+            <div class="car-ctl">
+                <div class="car-dots" id="home-dots"></div>
+                <div class="car-btns">
+                    <button type="button" id="car-prev" aria-label="Artigo anterior"><?= $arrow('M15 5l-7 7 7 7') ?></button>
+                    <button type="button" id="car-next" aria-label="Próximo artigo"><?= $arrow('M9 5l7 7-7 7') ?></button>
+                </div>
+            </div>
+            <p class="more"><a class="link arrow" href="/artigos">Ver todos os artigos</a></p>
+        </div>
+    </section>
+    <?php endif; ?>
+</main>

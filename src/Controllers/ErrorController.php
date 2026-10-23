@@ -13,7 +13,9 @@ final class ErrorController extends BaseController
     {
         return $this->render('pages/404', [
             'pageTitle' => 'Página Não Encontrada (404) | Souza Guedes Advogados',
-            'metaDescription' => 'O endereço solicitado não foi encontrado no portal institucional de Souza Guedes Advogados.'
+            'metaDescription' => 'O endereço solicitado não foi encontrado no portal institucional de Souza Guedes Advogados.',
+            'path' => $request->getPath(),
+            'showCta' => false,
         ], 404);
     }
 }

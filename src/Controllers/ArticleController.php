@@ -12,9 +12,29 @@ final class ArticleController extends BaseController
     public function index(Request $request): Response
     {
         return $this->render('pages/articles', [
-            'pageTitle' => 'Artigos e Orientações Jurídicas | Souza Guedes Advogados',
-            'metaDescription' => 'Artigos e conteúdos informativos sobre Direito Imobiliário, Saúde, Consumidor e Família elaborados por Souza Guedes Advogados.',
-            'practiceAreas' => $this->firmProfile['practice_areas'] ?? []
+            'pageTitle' => $this->routeTitle('/artigos'),
+            'metaDescription' => 'Artigos informativos e educativos escritos pelos sócios de Souza Guedes Advogados sobre direitos e procedimentos das áreas de atuação do escritório.',
+            'path' => '/artigos',
+            'nav' => 'artigos',
         ]);
+    }
+
+    public function detail(Request $request, array $params): Response
+    {
+        $slug = (string) ($params['slug'] ?? '');
+
+        foreach ($this->articles['articles'] ?? [] as $article) {
+            if (($article['slug'] ?? '') === $slug) {
+                return $this->render('pages/article-detail', [
+                    'pageTitle' => $article['title'] . ' | Souza Guedes Advogados',
+                    'metaDescription' => $article['excerpt'] ?? '',
+                    'path' => '/artigos/' . $slug,
+                    'nav' => 'artigos',
+                    'article' => $article,
+                ]);
+            }
+        }
+
+        return (new ErrorController())->notFound($request);
     }
 }

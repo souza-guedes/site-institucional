@@ -11,10 +11,16 @@ final class LawyerController extends BaseController
 {
     public function index(Request $request): Response
     {
+        $partners = array_map(
+            static fn (array $p): string => "{$p['name']} ({$p['oab_number']})",
+            $this->firmProfile['partners'] ?? []
+        );
+
         return $this->render('pages/lawyers', [
-            'pageTitle' => 'Corpo Jurídico | Souza Guedes Advogados',
-            'metaDescription' => 'Conheça os advogados e sócios fundadores de Souza Guedes Advogados: Rodrigo Guedes da Silva (OAB/SP 538.416) e Lays Regina de Souza (OAB/SP 511.204).',
-            'partners' => $this->firmProfile['partners'] ?? []
+            'pageTitle' => $this->routeTitle('/advogados'),
+            'metaDescription' => 'Sócios fundadores de Souza Guedes Advogados: ' . implode(' e ', $partners) . '.',
+            'path' => '/advogados',
+            'nav' => 'advogados',
         ]);
     }
 }

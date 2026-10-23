@@ -1,80 +1,50 @@
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <!-- Breadcrumb -->
-    <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
-        <ol class="list-none p-0 inline-flex space-x-2">
-            <li><a href="/" class="hover:underline text-primary-700">Início</a></li>
-            <li><span>&rarr;</span></li>
-            <li class="text-gray-700 font-semibold">Artigos & Orientações</li>
-        </ol>
-    </nav>
+<?php
+/** Artigos e Informações (WF-06): conteúdo educativo (Art. 4º), com aviso antes da lista. */
+$featured = $articles[0] ?? null;
+$areasWithArticles = array_values(array_unique(array_column($articles, 'area_slug')));
+$notice = '';
+if ($featured !== null) {
+    ob_start();
+    partial('notice', ['title' => 'Conteúdo de natureza educativa', 'text' => 'Os textos desta seção têm finalidade exclusivamente informativa e acadêmica (Art. 4º do Provimento CFOAB nº 205/2021). Eles não substituem a análise individual de um caso por advogado.']);
+    $notice = (string) ob_get_clean();
+}
+?>
+<main id="conteudo">
+    <?php partial('page-header', [
+        'crumbs' => [['Início', '/'], ['Artigos e Informações', null]],
+        'eyebrow' => 'Artigos e Informações',
+        'title' => 'Artigos e informações jurídicas',
+        'lead' => 'Textos escritos pelos sócios para explicar, em linguagem clara, direitos e procedimentos das nossas áreas de atuação.',
+        'extra' => $notice,
+    ]); ?>
 
-    <header class="mb-10 text-center max-w-3xl mx-auto">
-        <h1 class="text-3xl sm:text-4xl font-serif font-bold text-gray-900 mb-4">
-            Artigos e Informações Jurídicas
-        </h1>
-        <p class="text-lg text-gray-600 leading-relaxed">
-            Esclarecimentos técnicos, análises de jurisprudência e orientações educativas voltadas à elucidação de direitos e deveres legais.
-        </p>
-    </header>
+    <?php if ($featured !== null): ?>
+        <section class="section dark" aria-labelledby="feat-t">
+            <div class="wrap">
+                <div class="section__head"><p class="eyebrow" id="feat-t">Publicação mais recente</p></div>
+                <?php partial('article-card', ['article' => $featured, 'variant' => 'destaque']); ?>
+            </div>
+        </section>
 
-    <!-- Disclaimer Ético em Destaque (Art. 4º Provimento CFOAB 205/2021) -->
-    <div class="bg-blue-50 border-l-4 border-primary-700 p-4 rounded-r-md mb-12 max-w-4xl mx-auto">
-        <p class="text-xs text-blue-900 leading-relaxed">
-            <strong>Aviso Legal Informativo:</strong> Os artigos e conteúdos veiculados nesta seção possuem natureza exclusivamente acadêmica, pedagógica e informativa, em consonância com o Art. 4º do Provimento CFOAB nº 205/2021. As exposições teóricas não substituem a análise jurídica de casos concretos nem constituem consulta jurídica ou proposta de contratação.
-        </p>
-    </div>
-
-    <!-- Lista de Artigos Educativos -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-        <article class="bg-white rounded-lg border border-gray-200 shadow-sm p-6 flex flex-col justify-between">
-            <div>
-                <span class="inline-block px-2.5 py-0.5 rounded text-xs font-semibold bg-gray-100 text-gray-800 mb-3">
-                    Direito Imobiliário
-                </span>
-                <h2 class="text-xl font-serif font-bold text-gray-900 mb-3">
-                    Requisitos e Etapas do Procedimento de Usucapião Extrajudicial
-                </h2>
-                <p class="text-sm text-gray-600 leading-relaxed mb-4">
-                    Compreenda a sistemática do Art. 216-A da Lei de Registros Públicos e a documentação obrigatória perante os Cartórios de Registro de Imóveis.
-                </p>
+        <section class="section" aria-labelledby="todos-t">
+            <div class="wrap">
+                <div class="arts-bar">
+                    <div class="arts-bar__t">
+                        <h2 class="h2" id="todos-t">Todos os artigos</h2>
+                        <p class="nota" id="arts-count" aria-live="polite"></p>
+                    </div>
+                    <div class="filters" role="group" aria-label="Filtrar artigos por área" data-filter-group="area">
+                        <span>Área:</span>
+                        <button class="chip" type="button" data-afilter="todas" aria-pressed="true">Todas</button>
+                        <?php foreach ($areasWithArticles as $slug): ?>
+                            <button class="chip" type="button" data-afilter="<?= e($slug) ?>" data-label="<?= e(area_short($slug)) ?>" aria-pressed="false"><?= e(area_short($slug)) ?></button>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <div class="articles" id="articles-list">
+                    <?php foreach ($articles as $article) { partial('article-card', ['article' => $article]); } ?>
+                </div>
             </div>
-            <div class="pt-4 border-t border-gray-100 text-xs text-gray-400">
-                Publicação informativa &bull; Atualizado em 2026
-            </div>
-        </article>
-
-        <article class="bg-white rounded-lg border border-gray-200 shadow-sm p-6 flex flex-col justify-between">
-            <div>
-                <span class="inline-block px-2.5 py-0.5 rounded text-xs font-semibold bg-gray-100 text-gray-800 mb-3">
-                    Direito de Saúde
-                </span>
-                <h2 class="text-xl font-serif font-bold text-gray-900 mb-3">
-                    Parâmetros Jurisprudenciais sobre a Cobertura de Medicamentos de Alto Custo
-                </h2>
-                <p class="text-sm text-gray-600 leading-relaxed mb-4">
-                    Análise dos critérios consolidados pelo Superior Tribunal de Justiça acerca do fornecimento de fármacos e prescrições médicas especializadas.
-                </p>
-            </div>
-            <div class="pt-4 border-t border-gray-100 text-xs text-gray-400">
-                Publicação informativa &bull; Atualizado em 2026
-            </div>
-        </article>
-
-        <article class="bg-white rounded-lg border border-gray-200 shadow-sm p-6 flex flex-col justify-between">
-            <div>
-                <span class="inline-block px-2.5 py-0.5 rounded text-xs font-semibold bg-gray-100 text-gray-800 mb-3">
-                    Direito do Consumidor
-                </span>
-                <h2 class="text-xl font-serif font-bold text-gray-900 mb-3">
-                    Dever de Informação Prévia e Consequências da Negativação Indevida
-                </h2>
-                <p class="text-sm text-gray-600 leading-relaxed mb-4">
-                    Revisão das garantias previstas no Art. 43 do CDC e os entendimentos sumulados dos tribunais superiores relativos a cadastros de inadimplentes.
-                </p>
-            </div>
-            <div class="pt-4 border-t border-gray-100 text-xs text-gray-400">
-                Publicação informativa &bull; Atualizado em 2026
-            </div>
-        </article>
-    </div>
+        </section>
+    <?php endif; ?>
 </main>

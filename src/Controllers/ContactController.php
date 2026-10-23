@@ -12,9 +12,11 @@ final class ContactController extends BaseController
     public function index(Request $request): Response
     {
         return $this->render('pages/contact', [
-            'pageTitle' => 'Contato e Localização | Souza Guedes Advogados',
-            'metaDescription' => 'Entre em contato pelos canais institucionais de atendimento de Souza Guedes Advogados. Sede na Vila Ema, São Paulo/SP.',
-            'contactChannels' => $this->firmProfile['contact_channels'] ?? []
+            'pageTitle' => $this->routeTitle('/contato'),
+            'metaDescription' => 'Canais oficiais de atendimento de Souza Guedes Advogados e endereço da sede na Vila Ema, São Paulo/SP.',
+            'path' => '/contato',
+            'nav' => 'contato',
+            'showCta' => false,
         ]);
     }
 }
