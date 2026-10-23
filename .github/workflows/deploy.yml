@@ -1,0 +1,79 @@
+name: Deploy - Hostinger
+
+# Publica na Hostinger o commit da main que passou no CI (WDLC 7.1).
+# O envio é por rsync/SSH com uma chave só de deploy, presa no servidor ao rrsync: ela só escreve em
+# ~/domains/<site>/app e não abre shell. O public_html do site é um link para app/public.
+on:
+  workflow_run:
+    workflows: ["CI - Compliance & Tests"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ vars.DEPLOY_URL }}
+
+    steps:
+    - name: Checkout do commit aprovado no CI
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+
+    - name: Chave de deploy e servidor conhecido
+      env:
+        DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+      run: |
+        install -m 700 -d ~/.ssh
+        printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+        chmod 600 ~/.ssh/deploy_key
+        printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+
+    - name: Envio por rsync (arquivos 644, diretórios 755)
+      env:
+        DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+        DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+        DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+      # Só o que roda em produção: public/ (raiz web), src/ e data/. O destino é relativo à pasta
+      # liberada pelo rrsync; --delete remove do servidor o que saiu do repositório.
+      run: |
+        rsync -rlz --delete --chmod=D755,F644 \
+          -e "ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes" \
+          public src data "$DEPLOY_USER@$DEPLOY_HOST:./"
+
+    - name: Teste de fumaça
+      env:
+        DEPLOY_URL: ${{ vars.DEPLOY_URL }}
+      # As 9 páginas da auditoria da WDLC 6.1: todas 200 e sem mensagens do PHP no HTML; rota inexistente 404.
+      run: |
+        area=$(jq -r '.practice_areas[0].slug' data/firm-profile.json)
+        article=$(jq -r '.articles[0].slug' data/articles.json)
+        failed=0
+        for path in / /sobre /areas-de-atuacao "/areas-de-atuacao/$area" /advogados /artigos "/artigos/$article" /contato /privacidade; do
+          code=$(curl -sS -o page.html -w '%{http_code}' --retry 3 --retry-all-errors "$DEPLOY_URL$path")
+          if [ "$code" != 200 ] || grep -qE '(Warning|Notice|Deprecated|Fatal error|Parse error):' page.html; then
+            echo "::error::$path respondeu $code ou exibiu mensagem do PHP"
+            failed=1
+          else
+            echo "ok $path"
+          fi
+        done
+        code=$(curl -sS -o /dev/null -w '%{http_code}' "$DEPLOY_URL/pagina-inexistente-deploy")
+        [ "$code" = 404 ] || { echo "::error::rota inexistente respondeu $code"; failed=1; }
+        exit $failed
+
+    - name: Remover a chave do runner
+      if: always()
+      run: rm -f ~/.ssh/deploy_key

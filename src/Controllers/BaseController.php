@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Config\AppConfig;
 use App\Http\Response;
 
 require_once dirname(__DIR__) . '/Views/helpers.php';
@@ -78,7 +79,12 @@ abstract class BaseController
         $content = $this->capture($viewFile, \ViewData::$shared + $data);
         $page = $this->capture($this->viewsPath . '/layouts/default.php', \ViewData::$shared + ['content' => $content]);
 
-        return new Response($page, $status);
+        $headers = ['Content-Type' => 'text/html; charset=UTF-8'];
+        if (AppConfig::isTemporaryHost()) {
+            $headers['X-Robots-Tag'] = 'noindex, nofollow';
+        }
+
+        return new Response($page, $status, $headers);
     }
 
     private function capture(string $__file, array $__vars): string

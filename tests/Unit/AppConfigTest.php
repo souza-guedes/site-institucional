@@ -51,4 +51,22 @@ final class AppConfigTest
             throw new \AssertionError("Geração de URL canônica incorreta: '{$canonical}'");
         }
     }
+
+    public function testTemporaryHostingerHostIsDetected(): void
+    {
+        $cases = [
+            'xyz-123456.hostingersite.com' => true,
+            'XYZ-123456.HOSTINGERSITE.COM:443' => true,
+            'souzaguedesadv.com.br' => false,
+            'hostingersite.com.evil.example' => false,
+            'localhost:8080' => false,
+        ];
+        foreach ($cases as $host => $expected) {
+            $_SERVER['HTTP_HOST'] = $host;
+            if (AppConfig::isTemporaryHost() !== $expected) {
+                throw new \AssertionError("isTemporaryHost() errou para '{$host}'.");
+            }
+        }
+        $_SERVER['HTTP_HOST'] = 'localhost:8080';
+    }
 }

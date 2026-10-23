@@ -39,6 +39,16 @@ final class AppConfig
     }
 
     /**
+     * Endereço temporário de homologação da Hostinger (*.hostingersite.com), que não deve ser indexado
+     * pelos buscadores: evita conteúdo duplicado quando o domínio definitivo entrar (WDLC 7.1).
+     */
+    public static function isTemporaryHost(): bool
+    {
+        $host = strtolower(explode(':', (string) ($_SERVER['HTTP_HOST'] ?? ''))[0]);
+        return str_ends_with($host, '.hostingersite.com');
+    }
+
+    /**
      * Identifica o ambiente de execução da aplicação.
      */
     public static function getEnvironment(): string

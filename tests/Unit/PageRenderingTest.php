@@ -237,4 +237,28 @@ final class PageRenderingTest
             }
         }
     }
+
+    public function testTemporaryHostIsNotIndexed(): void
+    {
+        // O endereço de homologação (*.hostingersite.com) sai com noindex; o domínio definitivo, não (WDLC 7.1).
+        $previous = $_SERVER['HTTP_HOST'] ?? null;
+        try {
+            $_SERVER['HTTP_HOST'] = 'xyz-123456.hostingersite.com';
+            foreach (['/', '/pagina-inexistente'] as $path) {
+                if (($this->dispatch($path)->headers['X-Robots-Tag'] ?? '') !== 'noindex, nofollow') {
+                    throw new \AssertionError("'{$path}' no endereço temporário deve sair com X-Robots-Tag: noindex.");
+                }
+            }
+            $_SERVER['HTTP_HOST'] = 'souzaguedesadv.com.br';
+            if (isset($this->dispatch('/')->headers['X-Robots-Tag'])) {
+                throw new \AssertionError('O domínio definitivo não pode sair com X-Robots-Tag.');
+            }
+        } finally {
+            if ($previous === null) {
+                unset($_SERVER['HTTP_HOST']);
+            } else {
+                $_SERVER['HTTP_HOST'] = $previous;
+            }
+        }
+    }
 }
