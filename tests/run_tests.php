@@ -17,6 +17,8 @@ require_once __DIR__ . '/Unit/TaxonomyComplianceTest.php';
 require_once __DIR__ . '/Unit/RouterExpandedTest.php';
 require_once __DIR__ . '/Unit/ArticlesSchemaTest.php';
 require_once __DIR__ . '/Unit/ContentComplianceTest.php';
+require_once __DIR__ . '/Unit/PrivacyPolicySchemaTest.php';
+require_once __DIR__ . '/Unit/PrivacyPolicyComplianceTest.php';
 
 use Tests\Unit\FirmProfileSchemaTest;
 use Tests\Unit\FirmProfileEntityTest;
@@ -33,6 +35,8 @@ use Tests\Unit\TaxonomyComplianceTest;
 use Tests\Unit\RouterExpandedTest;
 use Tests\Unit\ArticlesSchemaTest;
 use Tests\Unit\ContentComplianceTest;
+use Tests\Unit\PrivacyPolicySchemaTest;
+use Tests\Unit\PrivacyPolicyComplianceTest;
 
 echo "====================================================\n";
 echo " Executando Suíte de Testes: Souza Guedes Advogados \n";
@@ -59,6 +63,8 @@ $testClasses = [
     RouterExpandedTest::class,
     ArticlesSchemaTest::class,
     ContentComplianceTest::class,
+    PrivacyPolicySchemaTest::class,
+    PrivacyPolicyComplianceTest::class,
 ];
 
 foreach ($testClasses as $className) {

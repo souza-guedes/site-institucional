@@ -1,4 +1,6 @@
-"""Gera wdlc-4.1-textos-institucionais.md a partir de data/firm-profile.json e data/articles.json.
+"""Gera os documentos de revisão da Fase 4 a partir dos dados:
+- wdlc-4.1-textos-institucionais.md, de data/firm-profile.json e data/articles.json;
+- wdlc-4.2-privacidade-termos-cookies.md, de data/privacy-policy.json.
 
 Uso (na raiz do projeto):  python docs/fase-4-conteudo/gerar-documento.py
 """
@@ -149,5 +151,148 @@ Com a aprovação, o status de cada artigo passa para `"aprovado"`, `published_a
 
 out = Path('docs/fase-4-conteudo/wdlc-4.1-textos-institucionais.md')
 out.parent.mkdir(parents=True, exist_ok=True)
+out.write_text('\n'.join(L), encoding='utf-8')
+print(out, len('\n'.join(L)))
+
+
+# ---------------------------------------------------------------- WDLC 4.2
+pp = json.loads(Path('data/privacy-policy.json').read_text(encoding='utf-8'))
+dpo = pp['data_protection_officer']
+L = []
+w = L.append
+
+
+def write_sections(sections):
+    for s in sections:
+        w(f"#### {s['heading']}\n")
+        for para in s['paragraphs']:
+            w(para + '\n')
+        if 'table' in s:
+            w('| ' + ' | '.join(s['table']['columns']) + ' |')
+            w('|' + ' --- |' * len(s['table']['columns']))
+            for row in s['table']['rows']:
+                w('| ' + ' | '.join(row) + ' |')
+            w('')
+        for item in s['list']:
+            w(f'- {item}')
+        if s['list']:
+            w('')
+        for para in s['closing_paragraphs']:
+            w(para + '\n')
+
+
+w(f'''# WDLC 4.2 — Política de Privacidade, Termos de Uso e cookies (LGPD)
+
+> **Status:** Rascunho para revisão e aprovação dos sócios
+> **Fase:** 4 — Produção de conteúdo e copy jurídica
+> **Sub-issue:** [#12](https://github.com/souza-guedes/site-institucional/issues/12)
+> **Épico Relacionado:** [#10](https://github.com/souza-guedes/site-institucional/issues/10)
+> **Dados:** [`data/privacy-policy.json`](../../data/privacy-policy.json) · **Rota:** `{pp['route']}` ("{pp['page_title']}")
+
+---
+
+## 1. Como revisar
+
+Este documento reúne os textos da rota `{pp['route']}`, gravados em `data/privacy-policy.json`. **A fonte de verdade é o arquivo JSON**: correções aprovadas aqui são feitas lá, e este documento é gerado de novo com `python docs/fase-4-conteudo/gerar-documento.py`.
+
+A redação usa só fatos do projeto e as decisões tomadas para esta issue. Cada artigo de lei citado foi conferido no texto oficial (seção 6). Como são documentos jurídicos do próprio escritório, **a revisão final é dos sócios**.
+
+**Decisões adotadas**
+
+| Tema | Decisão |
+| --- | --- |
+| Encarregada de dados (art. 41 da LGPD) | {dpo['name']}, {dpo['oab_number']}, pelo e-mail {dpo['email']} com o assunto "{dpo['email_subject']}" |
+| Cookies | Só os estritamente necessários; aviso informativo, sem pedido de consentimento |
+| Retenção de mensagens | {pp['retention']['contact_without_engagement_months']} meses para contatos que não viram contratação; registros de acesso por {pp['retention']['access_logs_months']} meses |
+| Termos de Uso | Seção da própria página `{pp['route']}`, sem rota nova |
+| Base legal do formulário | Procedimentos preliminares relacionados a contrato, a pedido do titular (art. 7º, V), e não o consentimento |
+
+**Itens da issue**
+
+| Item da #12 | Onde está |
+| --- | --- |
+| Finalidade da coleta no formulário (nome, e-mail, telefone) | Política de Privacidade, seções 2 e 3 |
+| Hipóteses legais do art. 7º | Política de Privacidade, seção 3 (tabela) |
+| Direitos dos titulares (art. 18) | Política de Privacidade, seções 9 e 10 |
+| Identificação e e-mail do encarregado | Política de Privacidade, seções 1 e 10 |
+| Termos de Uso e política de retenção de mensagens | Termos de Uso; Política de Privacidade, seção 6 |
+| Texto do banner de cookies essenciais e analíticos | Seção 5: texto em uso (essenciais) e variante futura com consentimento (analíticos) |
+
+## 2. {pp['privacy_policy']['title']}
+''')
+write_sections(pp['privacy_policy']['sections'])
+
+w(f"## 3. {pp['cookie_policy']['title']}\n")
+write_sections(pp['cookie_policy']['sections'])
+
+w(f"## 4. {pp['terms_of_use']['title']}\n")
+write_sections(pp['terms_of_use']['sections'])
+
+banner = pp['cookie_banner']
+variant = banner['future_consent_variant']
+w(f'''## 5. Banner de cookies
+
+**Texto em uso** (modo {banner['mode']}):
+
+> {banner['text']}
+>
+> [{banner['link_label']}]({banner['link_href']}) · botão **{banner['button_label']}**
+
+O aviso é uma faixa no pé da página, que não bloqueia a navegação (componente `.cookie` do catálogo da WDLC 3.3).
+
+**Variante futura, com consentimento** (não publicada):
+
+> {variant['text']}
+>
+> Botões: {' · '.join(f"**{b}**" for b in variant['buttons'])}
+
+{variant['note']}
+
+## 6. Conferência das normas citadas
+
+| Norma | Dispositivos | Onde foi conferida |
+| --- | --- | --- |
+| LGPD (Lei nº 13.709/2018) | arts. 7º, 11, 16, 18, 19, 41 e 48 | [Planalto](https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm) |
+| Resolução CD/ANPD nº 2/2022 | art. 11 (encarregado de agente de pequeno porte) | [ANPD](https://www.gov.br/anpd/pt-br/acesso-a-informacao/institucional/atos-normativos/regulamentacoes_anpd/resolucao-cd-anpd-no-2-de-27-de-janeiro-de-2022) |
+| Marco Civil da Internet (Lei nº 12.965/2014) | art. 15 | [Planalto](https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l12965.htm). O artigo obriga provedores de aplicação com fins econômicos; a política usa o mesmo prazo de 6 meses como referência, sem afirmar que o escritório está obrigado a ele. |
+| Estatuto da Advocacia (Lei nº 8.906/1994) | art. 7º, II | [Planalto](https://www.planalto.gov.br/ccivil_03/leis/l8906.htm) |
+| Código de Ética e Disciplina da OAB (Res. CFOAB nº 02/2015) | arts. 35 e 36 | [Texto publicado pela OAB/RN](https://oabrn.org.br/storage/gLIXPjEOV7kEvpTBOxDlW2KYJrWJClKTGG4w3AwC.pdf) |
+| Provimento CFOAB nº 205/2021 | finalidade informativa do site | Matriz de conformidade da WDLC 1.2 |
+
+Conferência feita em 23/10/2026. Antes de publicar, vale confirmar que não houve alteração posterior nessas normas.
+
+## 7. Pendências
+''')
+for x in pp['pending']:
+    w(f'- [ ] {x}')
+w('')
+
+w('''## 8. Auditoria automática
+
+`php tests/run_tests.php` roda dois testes sobre estes textos:
+
+- **`PrivacyPolicyComplianceTest`** confere que:
+  - as bases legais citadas são hipóteses do art. 7º, e toda finalidade tem uma;
+  - os nove direitos do art. 18 estão na lista;
+  - a encarregada é sócia cadastrada, com OAB válida e o e-mail institucional, e aparece no texto (art. 41, § 1º);
+  - os prazos de retenção estão nos textos;
+  - o aviso informativo só é usado com cookies estritamente necessários;
+  - os Termos dizem que o site não presta consulta jurídica e que o contato não forma relação advogado-cliente;
+  - não há expressão vedada pelo Provimento 205/2021.
+- **`PrivacyPolicySchemaTest`** confere a estrutura de `data/privacy-policy.json`.
+
+Num teste negativo feito à parte, três alterações fizeram a suíte falhar nos três pontos, como esperado: retirar a portabilidade da lista de direitos, trocar a OAB da encarregada e declarar cookies analíticos com o aviso informativo.
+
+## 9. Aprovação
+
+| Sócio | Política de Privacidade | Política de Cookies | Termos de Uso | Banner | Data |
+| --- | --- | --- | --- | --- | --- |
+| Lays Regina de Souza (encarregada) | [ ] | [ ] | [ ] | [ ] | |
+| Rodrigo Guedes da Silva | [ ] | [ ] | [ ] | [ ] | |
+
+Com a aprovação, `status` passa para `"aprovado"` e as pendências resolvidas são removidas dos dados. O teste `testApprovedVersionHasNoPlaceholders` impede aprovar com marcadores `[A DEFINIR]` restantes.
+''')
+
+out = Path('docs/fase-4-conteudo/wdlc-4.2-privacidade-termos-cookies.md')
 out.write_text('\n'.join(L), encoding='utf-8')
 print(out, len('\n'.join(L)))
