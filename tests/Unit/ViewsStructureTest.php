@@ -16,10 +16,18 @@ final class ViewsStructureTest
     public function testPartialsFilesExist(): void
     {
         $partials = [
-            'header.php',
+            'head.php',
             'navbar.php',
             'footer.php',
-            'cookie-banner.php'
+            'cookie-banner.php',
+            'page-header.php',
+            'area-card.php',
+            'lawyer-card.php',
+            'article-card.php',
+            'channels.php',
+            'notice.php',
+            'cta.php',
+            'contact-form.php'
         ];
 
         foreach ($partials as $partial) {
@@ -41,8 +49,12 @@ final class ViewsStructureTest
             'lawyers.php',
             'articles.php',
             'privacy.php',
+            'article-detail.php',
             '404.php'
         ];
+        if (!file_exists($this->viewsPath . '/layouts/default.php')) {
+            throw new \AssertionError("Layout obrigatório não encontrado: 'layouts/default.php'");
+        }
 
         foreach ($pages as $page) {
             $path = $this->viewsPath . '/pages/' . $page;
@@ -59,7 +71,13 @@ final class ViewsStructureTest
             throw new \AssertionError("Arquivo '{$footerPath}' inexistente.");
         }
 
-        $content = (string) file_get_contents($footerPath);
+        // O rodapé lê sócios, OAB e disclaimer de data/firm-profile.json: o teste confere o HTML renderizado.
+        require_once $this->viewsPath . '/helpers.php';
+        $firm = json_decode((string) file_get_contents(dirname(__DIR__, 2) . '/data/firm-profile.json'), true, 512, JSON_THROW_ON_ERROR);
+        \ViewData::$shared = ['firm' => $firm];
+        ob_start();
+        partial('footer');
+        $content = (string) ob_get_clean();
 
         // Nomes dos sócios fundadores e inscrições OAB/SP
         if (!str_contains($content, 'Rodrigo Guedes da Silva') || !str_contains($content, '538.416')) {

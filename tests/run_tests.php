@@ -19,6 +19,7 @@ require_once __DIR__ . '/Unit/ArticlesSchemaTest.php';
 require_once __DIR__ . '/Unit/ContentComplianceTest.php';
 require_once __DIR__ . '/Unit/PrivacyPolicySchemaTest.php';
 require_once __DIR__ . '/Unit/PrivacyPolicyComplianceTest.php';
+require_once __DIR__ . '/Unit/PageRenderingTest.php';
 
 use Tests\Unit\FirmProfileSchemaTest;
 use Tests\Unit\FirmProfileEntityTest;
@@ -37,6 +38,7 @@ use Tests\Unit\ArticlesSchemaTest;
 use Tests\Unit\ContentComplianceTest;
 use Tests\Unit\PrivacyPolicySchemaTest;
 use Tests\Unit\PrivacyPolicyComplianceTest;
+use Tests\Unit\PageRenderingTest;
 
 echo "====================================================\n";
 echo " Executando Suíte de Testes: Souza Guedes Advogados \n";
@@ -65,6 +67,7 @@ $testClasses = [
     ContentComplianceTest::class,
     PrivacyPolicySchemaTest::class,
     PrivacyPolicyComplianceTest::class,
+    PageRenderingTest::class,
 ];
 
 foreach ($testClasses as $className) {
