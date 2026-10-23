@@ -51,6 +51,14 @@
       "oab_compliance_notes": "Marketing de conteúdo jurídico educativo e informativo (Art. 4º do Provimento CFOAB nº 205/2021)."
     },
     {
+      "path": "/artigos/{slug}",
+      "controller": "App\\Controllers\\ArticleController",
+      "action": "detail",
+      "title": "Artigo | Souza Guedes Advogados",
+      "nav_visible": false,
+      "oab_compliance_notes": "Página do artigo (WDLC 3.2, WF-06b): autoria com nome completo e OAB/SP, aviso de natureza educativa (Art. 4º) e atendimento passivo. Textos em data/articles.json."
+    },
+    {
       "path": "/contato",
       "controller": "App\\Controllers\\ContactController",
       "action": "index",

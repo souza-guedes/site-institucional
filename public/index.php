@@ -46,6 +46,7 @@ $router->get('/areas-de-atuacao/{slug}', [PracticeAreaController::class, 'detail
 $router->redirect('/atuacao', '/areas-de-atuacao', 301);
 $router->get('/advogados', [LawyerController::class, 'index']);
 $router->get('/artigos', [ArticleController::class, 'index']);
+$router->get('/artigos/{slug}', [ArticleController::class, 'detail']);
 $router->get('/contato', [ContactController::class, 'index']);
 $router->get('/privacidade', [PrivacyController::class, 'index']);
 

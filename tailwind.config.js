@@ -2,6 +2,8 @@
 // Espelha design-system/tokens.json e tokens.css. Se um token mudar, atualize os três.
 module.exports = {
   content: ['./src/**/*.php', './public/**/*.{php,html,js}'],
+  // Sem o reset do Tailwind: o visual vem de design-system/componentes.css, igual ao protótipo aprovado.
+  corePlugins: { preflight: false },
   theme: {
     // Mesmos pontos do protótipo (WDLC 3.2) e do catálogo (WDLC 3.3).
     screens: {

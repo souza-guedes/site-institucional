@@ -20,5 +20,20 @@ jobs:
         php-version: '8.2'
         extensions: mbstring, json
 
+    - name: Lint PHP (sintaxe em PHP 8.2)
+      run: find src public tests scripts -name '*.php' -print0 | xargs -0 -n1 php -l > /dev/null
+
     - name: Run Test Suite (Contracts & Ethical Compliance)
       run: php tests/run_tests.php
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+        cache: npm
+
+    - name: Build CSS e conferência do main.css versionado
+      run: |
+        npm ci
+        npm run build:css
+        git diff --exit-code -- public/assets/css/main.css || (echo "public/assets/css/main.css está desatualizado: rode npm run build:css e faça commit." && exit 1)

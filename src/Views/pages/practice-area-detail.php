@@ -1,51 +1,81 @@
-<?php include dirname(__DIR__) . '/partials/header.php'; ?>
-<?php include dirname(__DIR__) . '/partials/navbar.php'; ?>
+<?php
+/**
+ * Detalhe de área (WF-04): detalhamento técnico informativo, sem promessa de resultado.
+ *
+ * @var array $area  item de practice_areas (firm-profile.json)
+ */
+$taxonomyArea = taxonomy_by_slug($area['slug']);
+$tracks = $taxonomyArea['procedural_tracks'] ?? ['judicial' => [], 'extrajudicial' => []];
+$others = array_filter($firm['practice_areas'], static fn (array $a): bool => $a['slug'] !== $area['slug']);
+ob_start();
+?>
+<div class="tags">
+    <?php foreach ($area['audience_types'] as $type): ?>
+        <span class="tag"><?= $type === 'pf' ? 'Pessoas físicas' : 'Pessoas jurídicas' ?></span>
+    <?php endforeach; ?>
+</div>
+<?php $tags = (string) ob_get_clean(); ?>
+<main id="conteudo">
+    <?php partial('page-header', [
+        'crumbs' => [['Início', '/'], ['Áreas de Atuação', '/areas-de-atuacao'], [$area['title'], null]],
+        'eyebrow' => 'Área de Atuação',
+        'title' => $area['title'],
+        'lead' => $area['focus'],
+        'extra' => $tags,
+    ]); ?>
 
-<main class="min-h-screen py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-    <div class="mb-6">
-        <a href="/areas-de-atuacao" class="text-sm font-semibold text-primary-700 hover:underline">&larr; Voltar para todas as áreas</a>
-    </div>
-
-    <article class="bg-white p-8 md:p-12 rounded-lg border border-gray-200 shadow-sm">
-        <h1 class="text-3xl sm:text-4xl font-serif font-bold text-gray-900 mb-4"><?= htmlspecialchars($area['title'] ?? 'Área de Atuação') ?></h1>
-        <p class="text-lg text-gray-600 mb-8 leading-relaxed"><?= htmlspecialchars($area['focus'] ?? $area['summary'] ?? '') ?></p>
-
-        <section class="mb-8">
-            <h2 class="text-xl font-serif font-bold text-gray-900 mb-4 border-b border-gray-100 pb-2">Escopo de Atuação</h2>
-            <ul class="space-y-3">
-                <?php foreach (($area['scope_items'] ?? []) as $item): ?>
-                    <li class="flex items-start text-sm text-gray-700">
-                        <span class="mr-3 text-primary-700 font-bold">✓</span>
-                        <span><?= htmlspecialchars($item) ?></span>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        </section>
-
-        <?php if (!empty($area['target_audience'])): ?>
-            <section class="mb-8">
-                <h2 class="text-xl font-serif font-bold text-gray-900 mb-4 border-b border-gray-100 pb-2">Público Atendido</h2>
-                <ul class="space-y-2">
-                    <?php foreach ($area['target_audience'] as $audience): ?>
-                        <li class="flex items-start text-sm text-gray-700">
-                            <span class="mr-3 text-gray-400">•</span>
-                            <span><?= htmlspecialchars($audience) ?></span>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </section>
-        <?php endif; ?>
-
-        <div class="mt-12 pt-8 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p class="text-sm text-gray-500">
-                Atendimento mediante análise individualizada da demanda.
-            </p>
-            <a href="/contato" class="px-6 py-3 bg-gray-900 text-white text-sm font-semibold rounded-md hover:bg-gray-800 transition">
-                Fale com a Banca
-            </a>
+    <section class="section section--tight">
+        <div class="wrap detail">
+            <div class="detail__main">
+                <div class="block">
+                    <p class="eyebrow">Sobre a área</p>
+                    <h2 class="h2">Como o escritório atua</h2>
+                    <div class="prose">
+                        <?php foreach ($area['description'] as $paragraph): ?><p><?= e($paragraph) ?></p><?php endforeach; ?>
+                    </div>
+                </div>
+                <div class="block">
+                    <p class="eyebrow">Escopo</p>
+                    <h2 class="h2">Escopo de atuação</h2>
+                    <ul class="list">
+                        <?php foreach ($area['scope_items'] as $item): ?><li><?= e($item) ?></li><?php endforeach; ?>
+                    </ul>
+                </div>
+                <div class="block">
+                    <p class="eyebrow">Procedimentos</p>
+                    <h2 class="h2">Caminhos judiciais e extrajudiciais</h2>
+                    <p class="muted max-w-[66ch]">O caminho adequado depende da análise de cada caso. Os procedimentos abaixo são os mais comuns nesta área.</p>
+                    <div class="tracks">
+                        <div class="track"><h3>Judicial</h3><ul><?php foreach ($tracks['judicial'] as $item): ?><li><?= e($item) ?></li><?php endforeach; ?></ul></div>
+                        <div class="track"><h3>Extrajudicial</h3><ul><?php foreach ($tracks['extrajudicial'] as $item): ?><li><?= e($item) ?></li><?php endforeach; ?></ul></div>
+                    </div>
+                </div>
+                <div class="block">
+                    <p class="eyebrow">Público</p>
+                    <h2 class="h2">Público atendido</h2>
+                    <ul class="list">
+                        <?php foreach ($area['target_audience'] as $item): ?><li><?= e($item) ?></li><?php endforeach; ?>
+                    </ul>
+                </div>
+            </div>
+            <aside class="aside dark of" aria-label="Fale com o escritório">
+                <p class="eyebrow">Atendimento</p>
+                <h2 class="h3">Fale com o escritório</h2>
+                <p class="muted text-[16px] leading-6">Apresente sua demanda pelos canais oficiais. O primeiro contato não constitui consulta jurídica.</p>
+                <?php partial('channels', ['group' => 'fale']); ?>
+                <a class="btn btn--light" href="/contato">Ir para contato</a>
+            </aside>
         </div>
-    </article>
-</main>
+    </section>
 
-<?php include dirname(__DIR__) . '/partials/cookie-banner.php'; ?>
-<?php include dirname(__DIR__) . '/partials/footer.php'; ?>
+    <section class="section section--tight pt-0">
+        <div class="wrap">
+            <p class="eyebrow mb-2">Outras áreas de atuação</p>
+            <div class="others">
+                <?php foreach ($others as $other): ?>
+                    <a href="/areas-de-atuacao/<?= e($other['slug']) ?>"><span><?= e($other['title']) ?></span><span aria-hidden="true">→</span></a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+</main>

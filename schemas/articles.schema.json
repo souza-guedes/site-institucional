@@ -66,7 +66,12 @@
           "status": { "type": "string", "enum": ["rascunho", "aprovado"] },
           "published_at": { "type": ["string", "null"], "format": "date" },
           "updated_at": { "type": "string", "format": "date" },
-          "pending": { "type": "array", "items": { "type": "string" } }
+          "pending": { "type": "array", "items": { "type": "string" } },
+          "image": {
+            "description": "Caminho público da imagem de capa, decorativa (alt vazio).",
+            "type": "string",
+            "pattern": "^/assets/img/"
+          }
         }
       }
     }

@@ -25,7 +25,7 @@ Ela não substitui o catálogo de componentes (#22) nem a copy final (Fase 4).
 | Arquivo | Para que serve | Quem usa |
 | --- | --- | --- |
 | [`wdlc-3.2-mockups/prototipo.html`](wdlc-3.2-mockups/prototipo.html) | **Fonte de verdade do layout.** HTML + JS legíveis, com as imagens em `assets/`. | Fase 5, #22 |
-| [`wdlc-3.3-componentes/componentes.css`](wdlc-3.3-componentes/componentes.css) | CSS do site, compartilhado pelo protótipo e pelo catálogo de componentes. Usa só os tokens de `design-system/tokens.css`. | Fase 5 |
+| [`design-system/componentes.css`](../../design-system/componentes.css) | CSS do site, compartilhado pelo site (build da WDLC 5.1), pelo protótipo e pelo catálogo de componentes. Usa só os tokens de `design-system/tokens.css`. | Fase 5 |
 | [`wdlc-3.3-componentes/catalogo.html`](wdlc-3.3-componentes/catalogo.html) | Catálogo de componentes (WDLC 3.3): variantes, estados e regras de cada bloco, com o partial alvo da Fase 5. Ver [`wdlc-3.3-catalogo-componentes.md`](wdlc-3.3-catalogo-componentes.md). | Fase 5 |
 | `prototipo-souza-guedes.html` e `catalogo-componentes-souza-guedes.html` (raiz do repositório) | Cópias autônomas com CSS e imagens embutidos, geradas por `build-standalone.py`. Servem para abrir com dois cliques ou mandar por e-mail. **Nunca editar à mão.** | Sócios, revisão rápida |
 | [`wdlc-3.2-mockups/apresentacao/`](wdlc-3.2-mockups/apresentacao/) e o link https://claude.ai/artifact/9KUxcLx4LV4qbWviWRQqvg | Capturas das telas em moldura de dispositivo, para homologação. São imagens: não servem para medir nem copiar código. | Sócios |
@@ -185,7 +185,7 @@ Os ícones das áreas (`ICONS`) e dos canais (`CH_ICONS`) são SVGs de traço 1,
 ## 10. Como alterar os mockups depois da homologação
 
 1. Abra uma issue (ou um comentário na #9) com o pedido e quem pediu.
-2. Edite `prototipo.html` (estrutura e conteúdo), `wdlc-3.3-componentes/componentes.css` (visual) e `assets/`, se for o caso. Uma mudança no CSS vale para o protótipo e para o catálogo: confira os dois.
+2. Edite `prototipo.html` (estrutura e conteúdo), `design-system/componentes.css` (visual) e `assets/`, se for o caso. Uma mudança no CSS vale para o site, o protótipo e o catálogo: rode `npm run build:css` e confira os três.
 3. Gere as cópias autônomas: `python docs/fase-3-design-system/wdlc-3.2-mockups/build-standalone.py`
 4. Recapture as telas: `python docs/fase-3-design-system/wdlc-3.2-mockups/apresentacao/capturar-telas.py` (precisa do Chrome instalado e do Pillow).
 5. Republique a apresentação no mesmo link.

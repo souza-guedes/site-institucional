@@ -6,3 +6,7 @@ Thumbs.db
 
 # Pasta de assets originais da marca (24 MB, não rastreada)
 SITE-Conteudo de marca/
+
+# Build do CSS (WDLC 5.1)
+node_modules/
+resources/css/app.generated.css

@@ -1,6 +1,6 @@
 /* Barra de revisão + "palco" com a moldura do site em 390px (mobile) ou 1440px (desktop).
    Compartilhado pelo protótipo (WDLC 3.2) e pelo catálogo (WDLC 3.3). Fora do site: não vai para a Fase 5.
-   O CSS do site fica em componentes.css. */
+   O CSS do site fica em componentes.css, nesta mesma pasta. */
 :root{--palco:#D9DFDD}  /* fundo do palco de revisão, fora do site */
 body{background:var(--palco)}
 

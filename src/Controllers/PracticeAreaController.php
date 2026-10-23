@@ -12,33 +12,29 @@ final class PracticeAreaController extends BaseController
     public function index(Request $request): Response
     {
         return $this->render('pages/practice-areas', [
-            'pageTitle' => 'Áreas de Atuação | Souza Guedes Advogados',
-            'metaDescription' => 'Conheça as áreas de atuação jurídica de Souza Guedes Advogados: Direito Imobiliário, Saúde, Consumidor, Família e Sucessões.',
-            'practiceAreas' => $this->firmProfile['practice_areas'] ?? []
+            'pageTitle' => $this->routeTitle('/areas-de-atuacao'),
+            'metaDescription' => 'Áreas de atuação de Souza Guedes Advogados: Direito Imobiliário, Direito de Saúde, Direito do Consumidor e Direito de Família e Sucessões.',
+            'path' => '/areas-de-atuacao',
+            'nav' => 'areas-de-atuacao',
         ]);
     }
 
     public function detail(Request $request, array $params): Response
     {
         $slug = (string) ($params['slug'] ?? '');
-        $areas = $this->firmProfile['practice_areas'] ?? [];
 
-        $foundArea = null;
-        foreach ($areas as $area) {
+        foreach ($this->firmProfile['practice_areas'] ?? [] as $area) {
             if (($area['slug'] ?? '') === $slug) {
-                $foundArea = $area;
-                break;
+                return $this->render('pages/practice-area-detail', [
+                    'pageTitle' => $area['title'] . ' | Souza Guedes Advogados',
+                    'metaDescription' => $area['summary'] ?? '',
+                    'path' => '/areas-de-atuacao/' . $slug,
+                    'nav' => 'areas-de-atuacao',
+                    'area' => $area,
+                ]);
             }
         }
 
-        if ($foundArea === null) {
-            return (new ErrorController())->notFound($request);
-        }
-
-        return $this->render('pages/practice-area-detail', [
-            'pageTitle' => ($foundArea['title'] ?? 'Área de Atuação') . ' | Souza Guedes Advogados',
-            'metaDescription' => $foundArea['summary'] ?? '',
-            'area' => $foundArea
-        ]);
+        return (new ErrorController())->notFound($request);
     }
 }

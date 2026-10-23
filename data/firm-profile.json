@@ -60,7 +60,8 @@
         "Publicações, se houver.",
         "Experiência profissional anterior à fundação do escritório, se for para constar.",
         "Áreas do escritório em que atua com mais frequência, se for para constar."
-      ]
+      ],
+      "photo": "/assets/img/rodrigo.webp"
     },
     {
       "name": "Lays Regina de Souza",
@@ -91,7 +92,8 @@
         "Publicações, se houver.",
         "Experiência profissional anterior à fundação do escritório, se for para constar.",
         "Confirmar a relação entre a pós-graduação e o trabalho em cartório descrita no segundo parágrafo."
-      ]
+      ],
+      "photo": "/assets/img/lays.webp"
     }
   ],
   "practice_areas": [
@@ -116,6 +118,10 @@
         "A área de Direito Imobiliário reúne as questões jurídicas ligadas à aquisição, à posse, à propriedade e ao uso de imóveis. O escritório atua em usucapião judicial e extrajudicial, em ações de despejo, reintegração e imissão na posse, na assessoria para arrematação de imóveis em leilão e em ações indenizatórias por atraso na entrega de imóveis.",
         "O trabalho começa pela análise documental: matrícula, contratos, edital do leilão e comprovantes de posse. É essa análise que indica se o caminho é extrajudicial, como a usucapião perante o Cartório de Registro de Imóveis ou a notificação para desocupação, ou se a questão precisa ser levada ao Judiciário.",
         "A área atende pessoas físicas proprietárias, possuidoras, adquirentes ou locatárias de imóveis, investidores e arrematantes, e também construtoras, incorporadoras, imobiliárias e empresas que possuem ou utilizam imóveis em suas atividades."
+      ],
+      "audience_types": [
+        "pf",
+        "pj"
       ]
     },
     {
@@ -141,6 +147,10 @@
         "A área de Direito de Saúde trata da relação entre pacientes, planos de saúde e prestadores de serviços de saúde. O escritório atua em negativas de cobertura de medicamentos, tratamentos, exames, cirurgias e internações, na manutenção e no restabelecimento de planos de saúde, na revisão de reajustes e cobranças indevidas e em casos de responsabilidade civil por erro médico.",
         "Quando há negativa de cobertura, o primeiro passo é reunir a prescrição e o relatório médico, a negativa da operadora e o contrato do plano. Com esses documentos, avalia-se o pedido administrativo à operadora e a reclamação à ANS ou, quando a situação exige, a ação judicial com pedido de tutela de urgência.",
         "A área atende pacientes, familiares e beneficiários de planos de saúde, e também profissionais, clínicas, hospitais e empresas do setor de saúde."
+      ],
+      "audience_types": [
+        "pf",
+        "pj"
       ]
     },
     {
@@ -163,6 +173,10 @@
         "A área de Direito do Consumidor cuida dos conflitos nas relações de consumo. O escritório atua em negativação e cobranças indevidas, na interrupção de serviços essenciais, como energia elétrica, água, telefonia e internet, em falhas na prestação de serviços e em problemas na compra de produtos e serviços, como vícios, defeitos, não entrega, descumprimento da oferta e dificuldade de cancelamento ou de restituição de valores.",
         "A atuação parte dos documentos da relação de consumo: contratos, faturas, comprovantes de pagamento, protocolos de atendimento e registros de reclamação. Conforme o caso, busca-se a solução diretamente com o fornecedor ou pelos canais administrativos, ou propõe-se a ação para corrigir o problema e pedir a reparação dos danos materiais e morais.",
         "A área atende pessoas físicas em suas relações de consumo e pequenas e médias empresas em demandas decorrentes dessas relações."
+      ],
+      "audience_types": [
+        "pf",
+        "pj"
       ]
     },
     {
@@ -183,6 +197,9 @@
         "A área de Direito de Família e Sucessões acompanha os momentos de reorganização familiar e patrimonial. O escritório atua em divórcios consensuais e litigiosos, com a definição da partilha de bens, em ações sobre alimentos, guarda e convivência dos filhos, e em inventários judiciais e extrajudiciais.",
         "Quando há acordo entre as partes, avalia-se a possibilidade de resolver a questão em cartório, por escritura pública, como no divórcio consensual e no inventário extrajudicial. Quando não há acordo, ou quando a lei exige, o caso segue pela via judicial. Nos dois caminhos, a assistência de advogado é obrigatória.",
         "A área atende pessoas físicas e famílias em divórcio, sucessão, partilha de bens e transmissão de patrimônio."
+      ],
+      "audience_types": [
+        "pf"
       ]
     }
   ],
