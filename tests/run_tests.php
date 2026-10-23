@@ -15,6 +15,8 @@ require_once __DIR__ . '/Unit/SitemapTaxonomySchemaTest.php';
 require_once __DIR__ . '/Unit/TaxonomyEntityTest.php';
 require_once __DIR__ . '/Unit/TaxonomyComplianceTest.php';
 require_once __DIR__ . '/Unit/RouterExpandedTest.php';
+require_once __DIR__ . '/Unit/ArticlesSchemaTest.php';
+require_once __DIR__ . '/Unit/ContentComplianceTest.php';
 
 use Tests\Unit\FirmProfileSchemaTest;
 use Tests\Unit\FirmProfileEntityTest;
@@ -29,6 +31,8 @@ use Tests\Unit\SitemapTaxonomySchemaTest;
 use Tests\Unit\TaxonomyEntityTest;
 use Tests\Unit\TaxonomyComplianceTest;
 use Tests\Unit\RouterExpandedTest;
+use Tests\Unit\ArticlesSchemaTest;
+use Tests\Unit\ContentComplianceTest;
 
 echo "====================================================\n";
 echo " Executando Suíte de Testes: Souza Guedes Advogados \n";
@@ -53,6 +57,8 @@ $testClasses = [
     TaxonomyEntityTest::class,
     TaxonomyComplianceTest::class,
     RouterExpandedTest::class,
+    ArticlesSchemaTest::class,
+    ContentComplianceTest::class,
 ];
 
 foreach ($testClasses as $className) {
