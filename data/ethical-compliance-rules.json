@@ -1,6 +1,6 @@
 {
-  "version": "1.2.0",
-  "last_updated": "2026-10-07",
+  "version": "1.3.0",
+  "last_updated": "2026-10-24",
   "regulatory_framework": {
     "statute": "Estatuto da Advocacia e da OAB (Lei Federal nº 8.906/1994)",
     "primary_provimento": "Provimento CFOAB nº 205/2021",
@@ -255,9 +255,9 @@
   "rules": [
     {
       "id": "RULE-OAB-001",
-      "provimento_article": "Art. 1º, caput e § 1º",
+      "provimento_article": "Art. 1º, caput, §§ 1º e 2º",
       "title": "Marketing jurídico pautado na informação objetiva, verdadeira e identificação responsável",
-      "description": "Permissão do marketing jurídico desde que exercido em conformidade com preceitos éticos. As informações veiculadas devem ser objetivas e verdadeiras, sob responsabilidade dos advogados e da sociedade identificados.",
+      "description": "O marketing jurídico é permitido desde que observe os preceitos éticos do Estatuto, do Regulamento Geral e do Código de Ética e Disciplina (caput). As informações veiculadas são de responsabilidade dos advogados identificados, e, na sociedade, dos sócios administradores (§ 1º). A veracidade das informações deve ser comprovada sempre que a fiscalização solicitar (§ 2º).",
       "target_audience": ["copywriters", "designers", "developers", "partners"],
       "enforcement_type": "hybrid"
     },
@@ -271,17 +271,17 @@
     },
     {
       "id": "RULE-OAB-003",
-      "provimento_article": "Art. 3º, caput, inc. II, IV e § 1º",
-      "title": "Vedação a indução a erro, expressões persuasivas, autoengrandecimento, comparação e incitação ao litígio",
-      "description": "A publicidade profissional deve primar pela discrição e sobriedade, sendo vedada a veiculação de informações que possam induzir a erro ou causar dano (inc. II), orações persuasivas ou de autoengrandecimento ('o melhor', 'líder') (inc. IV), bem como incitação direta ou indireta ao litígio (§ 1º). A divulgação da advocacia conjunta com outra atividade é vedada pelo Art. 8º.",
+      "provimento_article": "Art. 3º, caput, incisos II e IV e § 1º",
+      "title": "Vedação a indução a erro, expressões persuasivas, autoengrandecimento, comparação, promoção pessoal e incitação ao litígio",
+      "description": "A publicidade profissional deve ser meramente informativa, discreta e sóbria, sem configurar captação de clientela ou mercantilização (caput). São vedadas informações que possam induzir a erro ou causar dano (inc. II) e orações persuasivas, de autoengrandecimento ou de comparação, como 'o melhor' ou 'líder' (inc. IV). A publicidade sóbria divulga o perfil profissional sem ostentação, sem incitar diretamente ao litígio judicial ou administrativo nem à contratação de serviços, e sem promoção pessoal (§ 1º).",
       "target_audience": ["copywriters", "partners"],
       "enforcement_type": "automated"
     },
     {
       "id": "RULE-OAB-004",
       "provimento_article": "Art. 3º, inciso I",
-      "title": "Vedação absoluta de menção a honorários, tabelas de preços, gratuidade ou descontos",
-      "description": "É expressamente vedada qualquer referência direta ou indireta a valores de honorários, tabelas de preços, formas de pagamento, 'consulta grátis' ou reduções promocionais de preço na presença digital do escritório.",
+      "title": "Vedação a menção de honorários, preços, gratuidade ou descontos",
+      "description": "O Art. 3º, I veda a referência a valores de honorários, forma de pagamento, gratuidade ou descontos como forma de captação de clientes. O portal adota a vedação de forma ampla: nenhuma referência, direta ou indireta, a valores, tabelas de preços, formas de pagamento, 'consulta grátis' ou reduções promocionais.",
       "target_audience": ["copywriters", "developers", "partners"],
       "enforcement_type": "automated"
     },
@@ -296,26 +296,42 @@
     {
       "id": "RULE-OAB-006",
       "provimento_article": "Art. 4º, caput e §§ 1º a 5º",
-      "title": "Marketing de conteúdo, anúncios digitais e sigilo de clientes",
-      "description": "Autorização de publicidade ativa e passiva no marketing de conteúdo e em anúncios na internet e redes sociais, desde que com finalidade informativa e nos meios permitidos pelo Art. 40 do CED. Vedada a divulgação de lista de clientes ou casos concretos (§ 2º c/c Art. 5º, § 3º e Art. 6º).",
+      "title": "Marketing de conteúdo, títulos verdadeiros, canais de contato e impulsionamento lícito",
+      "description": "Admite publicidade ativa ou passiva de conteúdos jurídicos, com anúncios pagos ou não, sem mercantilização, captação de clientela ou emprego excessivo de recursos financeiros, observados o Art. 40 do CED e o Anexo Único (caput). Admite a identificação com qualificações e títulos verdadeiros e comprováveis (§ 1º). Na divulgação de imagem, vídeo ou áudio de atuação profissional, exige respeito ao sigilo e veda mencionar decisões judiciais e resultados obtidos (§ 2º). Sites, redes sociais e aplicativos de mensagem, como o WhatsApp, são equiparados a e-mail como dados de contato (§ 3º). Veda meios que influam de forma fraudulenta no impulsionamento ou no alcance da publicidade (§ 5º).",
       "target_audience": ["copywriters", "developers", "partners"],
       "enforcement_type": "manual_review"
     },
     {
       "id": "RULE-OAB-007",
-      "provimento_article": "Art. 5º, caput, §§ 1º e 2º e Anexo Único",
-      "title": "Sobriedade em ferramentas digitais, proibição de rankings pagos e regras de WhatsApp/Chatbot",
-      "description": "Proibição de pagamento ou patrocínio para figurar em guias ou rankings comerciais de 'melhores advogados' (§ 1º); vedação de uso de logotipos, brasões ou símbolos oficiais da OAB e da República (§ 2º). WhatsApp limitado ao atendimento passivo de clientes e interessados pré-autorizados. Chatbot permitido exclusivamente para triagem e primeiro contato institucional, vedada a resposta automatizada a consultas jurídicas sem intervenção do advogado (Anexo Único).",
+      "provimento_article": "Art. 5º, caput e §§ 1º a 3º",
+      "title": "Anúncios em meios permitidos, rankings pagos, símbolos da OAB e participação em vídeos",
+      "description": "Admite anúncios, pagos ou não, nos meios de comunicação não vedados pelo Art. 40 do CED (caput). Veda pagar ou patrocinar a aparição em rankings, prêmios ou honrarias que destaquem profissionais (§ 1º). Permite logomarca e fotos dos advogados e do escritório, vedado o uso de símbolos oficiais da OAB (§ 2º). Permite participar de vídeos, debates e palestras virtuais, vedada a referência a casos concretos e a apresentação de resultados (§ 3º).",
       "target_audience": ["developers", "copywriters", "designers"],
       "enforcement_type": "hybrid"
     },
     {
       "id": "RULE-OAB-008",
-      "provimento_article": "Art. 6º, caput, parágrafo único e Anexo Único",
-      "title": "Limites da publicidade ativa, promessa de resultado, vedação à ostentação e diretrizes do Google Ads",
-      "description": "A publicidade ativa é restrita a conteúdo educativo, vedada a menção a dimensões, estrutura física do escritório, promessas de resultado ('resultado garantido', 'causa ganha') ou casos concretos. É terminantemente proibida a ostentação de bens patrimoniais decorrentes da atividade advocatícia em qualquer publicidade profissional (parágrafo único). Anúncios de busca (Google Ads) devem responder a consultas ativas do usuário, sem uso de marcas de concorrentes ou termos mercantis (Anexo Único).",
+      "provimento_article": "Art. 6º, caput e parágrafo único",
+      "title": "Limites da publicidade ativa, promessa de resultado e vedação à ostentação",
+      "description": "Na publicidade ativa, é vedado informar dimensões, qualidades ou estrutura física do escritório, prometer resultados ou usar casos concretos para oferecer atuação profissional (caput). Em qualquer publicidade, é vedada a ostentação de bens relativos ao exercício ou não da profissão, como veículos, viagens, hospedagens e bens de consumo, assim como a promessa de resultados e o uso de casos concretos (parágrafo único).",
       "target_audience": ["copywriters", "designers", "partners"],
       "enforcement_type": "hybrid"
+    },
+    {
+      "id": "RULE-OAB-009",
+      "provimento_article": "Art. 8º, caput e parágrafo único",
+      "title": "Vedação à publicidade conjunta da advocacia com outra atividade",
+      "description": "É vedado vincular os serviços advocatícios a outras atividades ou divulgá-los em conjunto com elas, salvo o magistério (caput). O escritório pode funcionar em coworking, vedada a divulgação da advocacia junto com as demais atividades ou empresas do espaço (parágrafo único).",
+      "target_audience": ["copywriters", "designers", "partners"],
+      "enforcement_type": "manual_review"
+    },
+    {
+      "id": "RULE-OAB-010",
+      "provimento_article": "Anexo Único",
+      "title": "Critérios por meio: palavra-chave paga, impulsionamento, chatbot, WhatsApp e mala direta",
+      "description": "Palavra-chave paga (como no Google Ads) é permitida quando responde a uma busca iniciada pelo potencial cliente e os termos são eticamente adequados; anúncios ostensivos em plataformas de vídeo são vedados. Patrocínio e impulsionamento em redes sociais são permitidos desde que o conteúdo não ofereça serviços jurídicos. Chatbot é permitido para facilitar a comunicação, como primeiras dúvidas e coleta de dados, sem afastar a pessoalidade nem suprimir a responsabilidade do advogado; aplicativos com respostas automáticas indiscriminadas a não clientes são vedados. Grupos de WhatsApp só reúnem pessoas determinadas, ligadas ao advogado ou ao escritório. Mala direta é vedada a coletividades, admitida a clientes, relacionamentos pessoais ou a quem autorizou previamente, sem caráter mercantil.",
+      "target_audience": ["developers", "copywriters", "designers", "partners"],
+      "enforcement_type": "manual_review"
     }
   ],
   "pre_publication_signoff_protocol": {
