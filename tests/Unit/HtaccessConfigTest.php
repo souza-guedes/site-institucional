@@ -97,7 +97,7 @@ final class HtaccessConfigTest
     {
         $content = (string) file_get_contents($this->htaccessPath);
         // Regra de trailing slash deve conter QSA para não perder query strings
-        if (!preg_match('/RewriteRule\s+\^\(\.\*\)\/\$\s+\/\$1\s+\[.*QSA.*\]/i', $content)) {
+        if (!preg_match('/RewriteRule\s+\^\(\[\^\/\]\.\*\)\/\$\s+\/\$1\s+\[.*QSA.*\]/i', $content)) {
             throw new \AssertionError("A regra de normalização de trailing slash deve conter a flag QSA para preservar query parameters.");
         }
     }
@@ -128,9 +128,40 @@ final class HtaccessConfigTest
     {
         // WDLC 7.2: www.souzaguedes.adv.br responde 301 para o domínio sem www, evitando conteúdo duplicado
         $content = (string) file_get_contents($this->htaccessPath);
-        if (!str_contains($content, 'RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]')
-            || !str_contains($content, 'RewriteRule ^(.*)$ https://%1%{REQUEST_URI} [L,R=301]')) {
-            throw new \AssertionError("O .htaccess deve redirecionar www para o domínio sem www, em HTTPS.");
+        // Destino fixo (issue #31): www.<outro-site> não pode ser redirecionado para <outro-site>
+        if (!str_contains($content, 'RewriteCond %{HTTP_HOST} ^www\.souzaguedes\.adv\.br$ [NC]')
+            || !str_contains($content, 'RewriteRule ^(.*)$ https://souzaguedes.adv.br/$1 [L,R=301]')) {
+            throw new \AssertionError("O .htaccess deve redirecionar só www.souzaguedes.adv.br para https://souzaguedes.adv.br.");
+        }
+        if (str_contains($content, 'https://%1')) {
+            throw new \AssertionError("Nenhum redirect do .htaccess pode montar o destino com o Host da requisição.");
+        }
+    }
+
+    public function testTrailingSlashRuleIsNotAnOpenRedirect(): void
+    {
+        // Issue #31: com //evil.example/ o destino não pode sair //evil.example (relativo ao protocolo)
+        $content = (string) file_get_contents($this->htaccessPath);
+        if (!preg_match('#^\s*RewriteRule\s+(\S+)\s+/\$1\s+\[[^\]]*R=301#m', $content, $rule)) {
+            throw new \AssertionError("Regra de barra final não encontrada no .htaccess.");
+        }
+        $pattern = '#' . $rule[1] . '#';
+        foreach (['/evil.example/' => false, '//evil.example/' => false, 'sobre/' => true, 'artigos/x/' => true] as $path => $expected) {
+            if ((bool) preg_match($pattern, $path) !== $expected) {
+                throw new \AssertionError("A regra de barra final " . ($expected ? 'deveria' : 'não pode') . " casar com '{$path}'.");
+            }
+        }
+    }
+
+    public function testPhpVersionIsNotExposed(): void
+    {
+        $content = (string) file_get_contents($this->htaccessPath);
+        if (!str_contains($content, 'Header always unset X-Powered-By')) {
+            throw new \AssertionError("O .htaccess deve remover o cabeçalho X-Powered-By.");
+        }
+        $index = (string) file_get_contents(dirname($this->htaccessPath) . '/index.php');
+        if (!str_contains($index, "header_remove('X-Powered-By');")) {
+            throw new \AssertionError("public/index.php deve remover o cabeçalho X-Powered-By.");
         }
     }
 

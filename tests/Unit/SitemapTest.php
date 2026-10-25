@@ -106,6 +106,14 @@ final class SitemapTest
         }
     }
 
+    public function testForgedHostDoesNotChangeTheUrls(): void
+    {
+        // Issue #31: o sitemap usa o domínio definitivo, seja qual for o Host
+        if (str_contains($this->sitemap('evil.example')->content, 'evil.example')) {
+            throw new \AssertionError('O Host forjado aparece no sitemap.');
+        }
+    }
+
     public function testTemporaryHostIsNotIndexed(): void
     {
         if (($this->sitemap('xyz-123456.hostingersite.com')->headers['X-Robots-Tag'] ?? '') !== 'noindex, nofollow') {

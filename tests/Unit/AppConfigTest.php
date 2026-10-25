@@ -52,6 +52,28 @@ final class AppConfigTest
         }
     }
 
+    public function testForgedHostFallsBackToTheProductionDomain(): void
+    {
+        // Issue #31: o Host vem do cliente; fora do ambiente local a URL base é sempre o domínio definitivo
+        $_SERVER['HTTPS'] = 'on';
+        foreach (['evil.example', 'www.evil.example', 'souzaguedes.adv.br.evil.example', 'localhost.evil.example',
+                  'www.souzaguedes.adv.br', 'xyz-123456.hostingersite.com', 'evil.example:443'] as $host) {
+            $_SERVER['HTTP_HOST'] = $host;
+            if (AppConfig::getCanonicalUrl('/sobre') !== 'https://souzaguedes.adv.br/sobre') {
+                throw new \AssertionError("Host '{$host}' não pode mudar o canonical: " . AppConfig::getCanonicalUrl('/sobre'));
+            }
+        }
+        unset($_SERVER['HTTPS']);
+        foreach (['localhost:8080' => 'http://localhost:8080', '127.0.0.1:8091' => 'http://127.0.0.1:8091',
+                  '[::1]:8080' => 'http://[::1]:8080', 'site.localhost' => 'http://site.localhost'] as $host => $expected) {
+            $_SERVER['HTTP_HOST'] = $host;
+            if (AppConfig::getBaseUrl() !== $expected) {
+                throw new \AssertionError("Host local '{$host}' deve continuar dinâmico: " . AppConfig::getBaseUrl());
+            }
+        }
+        $_SERVER['HTTP_HOST'] = 'localhost:8080';
+    }
+
     public function testTemporaryHostingerHostIsDetected(): void
     {
         $cases = [
