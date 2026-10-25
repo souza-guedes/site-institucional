@@ -24,6 +24,7 @@ require_once $baseDir . '/src/Controllers/ErrorController.php';
 require_once $baseDir . '/src/Controllers/LawyerController.php';
 require_once $baseDir . '/src/Controllers/ArticleController.php';
 require_once $baseDir . '/src/Controllers/PrivacyController.php';
+require_once $baseDir . '/src/Controllers/SitemapController.php';
 
 use App\Http\Request;
 use App\Http\Router;
@@ -35,6 +36,7 @@ use App\Controllers\ErrorController;
 use App\Controllers\LawyerController;
 use App\Controllers\ArticleController;
 use App\Controllers\PrivacyController;
+use App\Controllers\SitemapController;
 
 // Instanciação e configuração das rotas limpas
 $router = new Router();
@@ -49,6 +51,7 @@ $router->get('/artigos', [ArticleController::class, 'index']);
 $router->get('/artigos/{slug}', [ArticleController::class, 'detail']);
 $router->get('/contato', [ContactController::class, 'index']);
 $router->get('/privacidade', [PrivacyController::class, 'index']);
+$router->get('/sitemap.xml', [SitemapController::class, 'index']);
 
 // Handler customizado para 404 Not Found
 $router->setNotFoundHandler([ErrorController::class, 'notFound']);

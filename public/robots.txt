@@ -3,5 +3,6 @@ Allow: /
 Disallow: /tests/
 Disallow: /schemas/
 Disallow: /data/
+Disallow: /src/
 
-Sitemap: https://souzaguedesadv.com.br/sitemap.xml
+Sitemap: https://souzaguedes.adv.br/sitemap.xml

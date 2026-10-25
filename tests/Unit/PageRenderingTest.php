@@ -238,6 +238,33 @@ final class PageRenderingTest
         }
     }
 
+    public function testEveryPageHasOpenGraphAndTwitterTags(): void
+    {
+        // WDLC 7.2: compartilhamento rico no WhatsApp e no LinkedIn, com imagem em URL absoluta
+        foreach (array_keys($this->pages()) as $path) {
+            $html = $this->dispatch($path)->content;
+            foreach (['og:title', 'og:description', 'og:url', 'og:image', 'og:image:alt'] as $property) {
+                if (!preg_match('#<meta property="' . preg_quote($property, '#') . '" content="[^"]+">#', $html)) {
+                    throw new \AssertionError("'{$path}' deve ter a meta tag {$property}.");
+                }
+            }
+            if (!preg_match('#<meta property="og:image" content="https?://[^"/]+/assets/img/og-default\.jpg">#', $html)) {
+                throw new \AssertionError("'{$path}' deve ter og:image com URL absoluta.");
+            }
+            if (!str_contains($html, '<meta name="twitter:card" content="summary_large_image">')) {
+                throw new \AssertionError("'{$path}' deve ter twitter:card summary_large_image.");
+            }
+            $type = str_starts_with($path, '/artigos/') ? 'article' : 'website';
+            if (!str_contains($html, '<meta property="og:type" content="' . $type . '">')) {
+                throw new \AssertionError("'{$path}' deve ter og:type {$type}.");
+            }
+        }
+        [$width, $height] = getimagesize($this->public . '/assets/img/og-default.jpg') ?: [0, 0];
+        if ($width !== 1200 || $height !== 630) {
+            throw new \AssertionError("public/assets/img/og-default.jpg deve ter 1200x630 (npm run images); tem {$width}x{$height}.");
+        }
+    }
+
     public function testTemporaryHostIsNotIndexed(): void
     {
         // O endereço de homologação (*.hostingersite.com) sai com noindex; o domínio definitivo, não (WDLC 7.1).
@@ -249,7 +276,7 @@ final class PageRenderingTest
                     throw new \AssertionError("'{$path}' no endereço temporário deve sair com X-Robots-Tag: noindex.");
                 }
             }
-            $_SERVER['HTTP_HOST'] = 'souzaguedesadv.com.br';
+            $_SERVER['HTTP_HOST'] = 'souzaguedes.adv.br';
             if (isset($this->dispatch('/')->headers['X-Robots-Tag'])) {
                 throw new \AssertionError('O domínio definitivo não pode sair com X-Robots-Tag.');
             }

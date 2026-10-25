@@ -11,7 +11,7 @@ namespace App\Config;
 final class AppConfig
 {
     /**
-     * Retorna a URL base do site (ex: https://souzaguedesadv.com.br ou http://localhost:8080)
+     * Retorna a URL base do site (ex: https://souzaguedes.adv.br ou http://localhost:8080)
      */
     public static function getBaseUrl(): string
     {

@@ -36,6 +36,15 @@ for (const [source, widths] of Object.entries(images)) {
 }
 console.log(`tamanho-base: ${(before / 1024).toFixed(0)} KB nos originais, ${(after / 1024).toFixed(0)} KB em WebP`);
 
+// Imagem de compartilhamento (WDLC 7.2): 1200x630 em JPEG, que WhatsApp e LinkedIn leem melhor que WebP.
+// Recorte horizontal da foto dos sócios, do alto das cabeças até os braços cruzados.
+const og = await sharp(join(root, 'resources/img/socios-palacio.jpg'))
+  .extract({ left: 0, top: 170, width: 1000, height: 525 })
+  .resize(1200, 630)
+  .jpeg({ quality: 82, mozjpeg: true })
+  .toFile(join(root, 'public/assets/img/og-default.jpg'));
+console.log(`public/assets/img/og-default.jpg  ${og.width}x${og.height}  ${(og.size / 1024).toFixed(1)} KB`);
+
 // Favicon: o SVG vai como está; o PNG 180 px atende o ícone de tela inicial do iOS.
 copyFileSync(join(root, 'resources/img/favicon.svg'), join(root, 'public/favicon.svg'));
 await sharp(join(root, 'resources/img/favicon.svg'), { density: 300 }).resize(180).png().toFile(join(root, 'public/apple-touch-icon.png'));
