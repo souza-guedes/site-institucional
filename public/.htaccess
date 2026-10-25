@@ -10,18 +10,21 @@
     # 1. Bloqueio de Acesso a Arquivos Ocultos e Dotfiles (.git, .env, etc.)
     RewriteRule ^\..* - [F,L]
 
-    # 2a. Domínio canônico sem www (WDLC 7.2): www.souzaguedes.adv.br -> souzaguedes.adv.br, já em HTTPS
-    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-    RewriteRule ^(.*)$ https://%1%{REQUEST_URI} [L,R=301]
+    # 2a. Domínio canônico sem www (WDLC 7.2): www.souzaguedes.adv.br -> souzaguedes.adv.br, já em HTTPS.
+    #     Destino fixo, nunca tirado do Host, para não virar redirect aberto com www.<outro-site> (issue #31).
+    RewriteCond %{HTTP_HOST} ^www\.souzaguedes\.adv\.br$ [NC]
+    RewriteRule ^(.*)$ https://souzaguedes.adv.br/$1 [L,R=301]
 
     # 2b. Redirecionamento Canônico para HTTPS (ignora localhost e portas de desenvolvimento)
     RewriteCond %{HTTPS} off
     RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:[0-9]+)?$ [NC]
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-    # 3. Normalização de Trailing Slash (remove barra final preservando query strings)
+    # 3. Normalização de Trailing Slash (remove barra final preservando query strings).
+    #    O caminho não pode começar com /: com //outro-site/ o destino sairia //outro-site, que o
+    #    navegador lê como outro domínio (issue #31).
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)/$ /$1 [L,R=301,QSA]
+    RewriteRule ^([^/].*)/$ /$1 [L,R=301,QSA]
 
     # 4. Front Controller Pattern: Despacho de rotas para index.php
     RewriteCond %{REQUEST_FILENAME} !-f
@@ -40,6 +43,9 @@
     Header set X-Frame-Options "SAMEORIGIN"
     Header set X-XSS-Protection "1; mode=block"
     Header set Referrer-Policy "strict-origin-when-cross-origin"
+    # Não expõe a versão do PHP (issue #31); public/index.php também remove o cabeçalho
+    Header always unset X-Powered-By
+    Header unset X-Powered-By
     # HSTS (WDLC 7.2): só em respostas HTTPS; sem preload, para não prender o domínio à lista dos navegadores
     Header always set Strict-Transport-Security "max-age=31536000" "expr=%{HTTPS} == 'on'"
 </IfModule>

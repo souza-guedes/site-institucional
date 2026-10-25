@@ -56,6 +56,9 @@ $router->get('/sitemap.xml', [SitemapController::class, 'index']);
 // Handler customizado para 404 Not Found
 $router->setNotFoundHandler([ErrorController::class, 'notFound']);
 
+// Não expõe a versão do PHP (issue #31): expose_php fica ligado na hospedagem
+header_remove('X-Powered-By');
+
 // Captura a requisição e despacha a resposta
 $request = Request::createFromGlobals();
 $response = $router->dispatch($request);

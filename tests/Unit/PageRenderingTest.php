@@ -265,6 +265,32 @@ final class PageRenderingTest
         }
     }
 
+    public function testForgedHostDoesNotLeakIntoAbsoluteUrls(): void
+    {
+        // Issue #31: canonical, og:url e og:image usam o domínio definitivo, seja qual for o Host
+        $previous = $_SERVER['HTTP_HOST'] ?? null;
+        try {
+            $_SERVER['HTTP_HOST'] = 'evil.example';
+            $html = $this->dispatch('/sobre')->content;
+            if (str_contains($html, 'evil.example')) {
+                throw new \AssertionError('O Host forjado aparece no HTML de /sobre.');
+            }
+            foreach (['<link rel="canonical" href="https://souzaguedes.adv.br/sobre">',
+                      '<meta property="og:url" content="https://souzaguedes.adv.br/sobre">',
+                      '<meta property="og:image" content="https://souzaguedes.adv.br/assets/img/og-default.jpg">'] as $tag) {
+                if (!str_contains($html, $tag)) {
+                    throw new \AssertionError("Com Host forjado, /sobre deve ter {$tag}");
+                }
+            }
+        } finally {
+            if ($previous === null) {
+                unset($_SERVER['HTTP_HOST']);
+            } else {
+                $_SERVER['HTTP_HOST'] = $previous;
+            }
+        }
+    }
+
     public function testTemporaryHostIsNotIndexed(): void
     {
         // O endereço de homologação (*.hostingersite.com) sai com noindex; o domínio definitivo, não (WDLC 7.1).

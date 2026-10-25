@@ -49,6 +49,8 @@ Cada push na `main` que passa no CI é publicado na Hostinger pelo workflow `.gi
   A variável `DEPLOY_URL` é a URL do site.
 - **Teste de fumaça:** depois do envio, o workflow abre as 9 páginas principais e falha se alguma não responder 200 ou exibir mensagem do PHP.
 - **Endereço temporário:** em `*.hostingersite.com`, as páginas saem com `X-Robots-Tag: noindex`.
+- **Domínio:** `https://souzaguedes.adv.br`, fixo em `AppConfig::PRODUCTION_URL`. O canonical, o `og:url` e o sitemap não usam o cabeçalho `Host`, exceto no ambiente local (issue #31).
+- **Se a pasta do site mudar de nome** (a Hostinger renomeia `~/domains/<site>` ao ligar um domínio): ajuste o caminho do `rrsync` no `authorized_keys` e a variável `DEPLOY_URL` do environment `production`.
 - **Trocar a chave:** gere um par novo (`ssh-keygen -t ed25519`), troque a linha correspondente no `authorized_keys` do servidor e atualize o secret `DEPLOY_SSH_KEY`.
 
 ## Conteúdo
