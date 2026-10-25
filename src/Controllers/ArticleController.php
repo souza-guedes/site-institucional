@@ -29,6 +29,7 @@ final class ArticleController extends BaseController
                     'pageTitle' => $article['title'] . ' | Souza Guedes Advogados',
                     'metaDescription' => $article['excerpt'] ?? '',
                     'path' => '/artigos/' . $slug,
+                    'ogType' => 'article',
                     'nav' => 'artigos',
                     'article' => $article,
                 ]);

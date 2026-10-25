@@ -119,8 +119,26 @@ final class HtaccessConfigTest
         if (!str_contains($content, 'User-agent:')) {
             throw new \AssertionError("O robots.txt deve conter diretiva 'User-agent:'.");
         }
-        if (!str_contains($content, 'sitemap.xml')) {
-            throw new \AssertionError("O robots.txt deve apontar para o mapa 'sitemap.xml'.");
+        if (!str_contains($content, 'Sitemap: https://souzaguedes.adv.br/sitemap.xml')) {
+            throw new \AssertionError("O robots.txt deve apontar para https://souzaguedes.adv.br/sitemap.xml.");
+        }
+    }
+
+    public function testWwwRedirectsToApexOverHttps(): void
+    {
+        // WDLC 7.2: www.souzaguedes.adv.br responde 301 para o domínio sem www, evitando conteúdo duplicado
+        $content = (string) file_get_contents($this->htaccessPath);
+        if (!str_contains($content, 'RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]')
+            || !str_contains($content, 'RewriteRule ^(.*)$ https://%1%{REQUEST_URI} [L,R=301]')) {
+            throw new \AssertionError("O .htaccess deve redirecionar www para o domínio sem www, em HTTPS.");
+        }
+    }
+
+    public function testHstsHeaderOnlyOverHttps(): void
+    {
+        $content = (string) file_get_contents($this->htaccessPath);
+        if (!preg_match('/Header always set Strict-Transport-Security "max-age=\d+" "expr=%\{HTTPS\} == \'on\'"/', $content)) {
+            throw new \AssertionError("O .htaccess deve enviar Strict-Transport-Security apenas em respostas HTTPS.");
         }
     }
 }

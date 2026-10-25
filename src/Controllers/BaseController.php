@@ -54,7 +54,7 @@ abstract class BaseController
      * Renderiza src/Views/{$viewName}.php dentro de layouts/default.php.
      *
      * Chaves de $data usadas pelo layout: pageTitle, metaDescription, path (rota canônica),
-     * nav (seção ativa do menu) e showCta (bloco "Atendimento" antes do rodapé).
+     * ogType (og:type, padrão website), nav (seção ativa do menu) e showCta (bloco "Atendimento" antes do rodapé).
      */
     protected function render(string $viewName, array $data = [], int $status = 200): Response
     {
@@ -72,6 +72,7 @@ abstract class BaseController
             'pageTitle' => $data['pageTitle'] ?? 'Souza Guedes Advogados',
             'metaDescription' => $data['metaDescription'] ?? '',
             'path' => $data['path'] ?? '/',
+            'ogType' => $data['ogType'] ?? 'website',
             'nav' => $data['nav'] ?? '',
             'showCta' => $data['showCta'] ?? true,
         ];

@@ -56,7 +56,8 @@ jobs:
     - name: Teste de fumaça
       env:
         DEPLOY_URL: ${{ vars.DEPLOY_URL }}
-      # As 9 páginas da auditoria da WDLC 6.1: todas 200 e sem mensagens do PHP no HTML; rota inexistente 404.
+      # As 9 páginas da auditoria da WDLC 6.1: todas 200 e sem mensagens do PHP no HTML; rota inexistente 404;
+      # robots.txt, sitemap.xml e imagem do Open Graph com o tipo certo (WDLC 7.2).
       run: |
         area=$(jq -r '.practice_areas[0].slug' data/firm-profile.json)
         article=$(jq -r '.articles[0].slug' data/articles.json)
@@ -72,6 +73,15 @@ jobs:
         done
         code=$(curl -sS -o /dev/null -w '%{http_code}' "$DEPLOY_URL/pagina-inexistente-deploy")
         [ "$code" = 404 ] || { echo "::error::rota inexistente respondeu $code"; failed=1; }
+        # SEO (WDLC 7.2): robots.txt, sitemap.xml em XML e a imagem do Open Graph
+        for spec in /robots.txt:text/plain /sitemap.xml:application/xml /assets/img/og-default.jpg:image/jpeg; do
+          path=${spec%%:*}; type=${spec#*:}
+          result=$(curl -sS -o /dev/null -w '%{http_code} %{content_type}' --retry 3 --retry-all-errors "$DEPLOY_URL$path")
+          case "$result" in
+            "200 $type"*) echo "ok $path" ;;
+            *) echo "::error::$path respondeu '$result' (esperado 200 $type)"; failed=1 ;;
+          esac
+        done
         exit $failed
 
     - name: Remover a chave do runner

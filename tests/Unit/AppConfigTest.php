@@ -32,22 +32,22 @@ final class AppConfigTest
 
     public function testDynamicBaseUrlResolutionWithHttps(): void
     {
-        $_SERVER['HTTP_HOST'] = 'souzaguedes.com.br';
+        $_SERVER['HTTP_HOST'] = 'souzaguedes.adv.br';
         $_SERVER['HTTPS'] = 'on';
 
         $baseUrl = AppConfig::getBaseUrl();
-        if ($baseUrl !== 'https://souzaguedes.com.br') {
+        if ($baseUrl !== 'https://souzaguedes.adv.br') {
             throw new \AssertionError("Resolução dinâmica de Base URL falhou para conexão segura HTTPS. Recebido: '{$baseUrl}'");
         }
     }
 
     public function testCanonicalUrlGeneration(): void
     {
-        $_SERVER['HTTP_HOST'] = 'souzaguedes.com.br';
+        $_SERVER['HTTP_HOST'] = 'souzaguedes.adv.br';
         $_SERVER['HTTPS'] = 'on';
 
         $canonical = AppConfig::getCanonicalUrl('/areas-de-atuacao/direito-imobiliario');
-        if ($canonical !== 'https://souzaguedes.com.br/areas-de-atuacao/direito-imobiliario') {
+        if ($canonical !== 'https://souzaguedes.adv.br/areas-de-atuacao/direito-imobiliario') {
             throw new \AssertionError("Geração de URL canônica incorreta: '{$canonical}'");
         }
     }
@@ -57,7 +57,7 @@ final class AppConfigTest
         $cases = [
             'xyz-123456.hostingersite.com' => true,
             'XYZ-123456.HOSTINGERSITE.COM:443' => true,
-            'souzaguedesadv.com.br' => false,
+            'souzaguedes.adv.br' => false,
             'hostingersite.com.evil.example' => false,
             'localhost:8080' => false,
         ];
